@@ -10,11 +10,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CardActionArea, IconButton, InputBase, Paper } from '@mui/material';
+import { Avatar, CardActionArea, Icon, IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import banner from "../assets/images/banner.jpg";
-
-
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -61,6 +60,12 @@ export default function Album() {
                           <SearchIcon />
                         </IconButton>
                       </Paper>
+
+                      <Avatar sx={{ m: 1, bgcolor: "rgb(255, 255, 255)" }}>
+                        <IconButton>
+                        <FilterAltIcon color='info' fontSize='large' sx={{ pt: 1 }} />
+                        </IconButton>
+                      </Avatar>
                     </Stack>
                   </div>
                 </div>
@@ -78,7 +83,7 @@ export default function Album() {
                 ? theme.palette.grey[200]
                 : theme.palette.grey[800],
             overflowY: 'scroll',
-            height: 500
+            height: 700
           }} maxWidth="lg">
           <Box sx={{
             display: 'flex',
@@ -86,11 +91,11 @@ export default function Album() {
             alignItems: 'center',
           }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={12}>
+              <Grid item xs={12} sm={12} md={4}>
 
                 <Typography
                   component="h1"
-                  variant="h5"
+                  variant="h4"
                   align="left"
                   color="text.primary"
                   gutterBottom>
@@ -128,18 +133,21 @@ export default function Album() {
                   </Grid>
                 </Box>
               </Grid>
-
-
-
-              {/* <Grid item xs={12} sm={8}>
-                <Box >
+              <Grid item xs={12} sm={12} md={8}>
+                <Box
+                  id='test'
+                  sx={{
+                    mt: 7,
+                    border: 1
+                  }}
+                >
                   <Card>
                     <CardContent>
                       <Typography>test</Typography>
                     </CardContent>
                   </Card>
                 </Box>
-              </Grid> */}
+              </Grid>
             </Grid>
           </Box>
         </Container>

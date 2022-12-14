@@ -16,6 +16,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { useNavigate } from "react-router-dom"
+import EmailIcon from '@mui/icons-material/Email';
+
 
 
 
@@ -25,6 +27,7 @@ function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
+
   };
 
   const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
@@ -69,7 +72,6 @@ function Header() {
           component="div"
           sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           <Button onClick={(e) => navigate("/")} color="inherit">Home</Button>
-          <Button onClick={(e) => navigate("/Search")} color="inherit">Search</Button>
           <Button  color="inherit">FAQ</Button>
           <Button color="inherit" onClick={handleClicSubscribe}>
             Subscribe
@@ -122,14 +124,12 @@ function Header() {
               horizontal: 'left',
             }}
             open={Boolean(anchorE2)}
-            onClose={handleClose2}>
+            onClick={handleClose2}>
 
-            <MenuItem onClick={handleClose2}><HomeIcon /> Home </MenuItem>
-            <MenuItem onClick={handleClose2}><SearchIcon /> Search </MenuItem>
+            <MenuItem onClick={(e) => navigate("/")}><HomeIcon /> Home </MenuItem>
             <MenuItem onClick={handleClose2}><HelpOutlineIcon /> FAQ </MenuItem>
-
+            <MenuItem onClick={handleClicSubscribe}><EmailIcon /> Subscribe </MenuItem>
           </Menu>
-
         </Box>
 
         <Paper component="form" sx={{ display: 'flex', alignItems: 'center', width: 300, borderRadius: 5 }}>
@@ -151,7 +151,6 @@ function Header() {
             onClick={handleMenu}
             color="inherit">
             <AccountCircleIcon fontSize="large" />
-
           </IconButton>
 
           <Menu
@@ -168,9 +167,9 @@ function Header() {
               horizontal: 'right',
             }}
             open={Boolean(anchorEl)}
-            onClose={handleClose}>
-            <MenuItem onClick={(e) => navigate("/profile")}><AccountCircleIcon /> Profile </MenuItem>
-            <MenuItem onClick={handleClose}><SettingsIcon /> Edit Profile </MenuItem>
+            onClick={handleClose}>
+            <MenuItem onClick={(e) => navigate("/ProfileUser")}><AccountCircleIcon /> Profile </MenuItem>
+            <MenuItem onClick={(e) => navigate("/EditProfile")}><SettingsIcon /> Edit Profile </MenuItem>
             <MenuItem onClick={handleClose}><FavoriteIcon /> Favoris </MenuItem>
           </Menu>
         </Box>

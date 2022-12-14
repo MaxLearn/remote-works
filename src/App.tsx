@@ -4,8 +4,8 @@ import SignInPage from "./pages/SignInPage.tsx";
 import SignUp from "./components/Signup.tsx";
 import StickyFooter from "./components/StickyFooter.tsx";
 import Home from "./pages/Home.tsx";
-import ProfilePage from "./pages/Profile.tsx"
-import Search from "./pages/Search.tsx"
+import EditProfile from "./pages/EditProfileUser.tsx"
+import ProfileUser from "./pages/ProfileUser.tsx"
 
 export default function App() {
   return (
@@ -15,8 +15,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignInPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/EditProfile" element={<EditProfile />} />
+        <Route path="/ProfileUser" element={<ProfileUser />} />
       </Routes>
       <StickyFooter />
     </BrowserRouter>

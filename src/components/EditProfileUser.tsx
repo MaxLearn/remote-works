@@ -12,7 +12,7 @@ import { updateUser } from '../hooks/updateUser.ts';
 
 const theme = createTheme();
 
-export default function Profile() {
+export default function EditProfile() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newItem1 = {
