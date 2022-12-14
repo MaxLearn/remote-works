@@ -8,13 +8,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Card, CardMedia, CardContent, FormControl, InputLabel, MenuItem, Select, Divider } from '@mui/material';
 import { getUserId } from '../hooks/getUserId.ts';
 import { updateUser } from '../hooks/updateUser.ts';
+import { getUserProfile } from '../hooks/getUserProfile';
 
 
 const theme = createTheme();
 
 export default function Profile() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmit = () => {
+       
         const newItem1 = {
             first_name: inputFirstName,
             last_name: inputLastName,
@@ -90,6 +91,11 @@ export default function Profile() {
         setInputValYear('');
     };
 
+    const getUserInfo = () => {
+        let data = getUserProfile()
+        console.log('in getuserInfo' + data)
+    }
+
     const handleUpdateProfile = () => {
         const newItem1 = {
             firstName: inputFirstName,
@@ -98,7 +104,10 @@ export default function Profile() {
             country: inputCountry,
             website: inputWebsite,
             gitUrl: inputGit
+
         };
+
+        
 
         const newItems1 = [newItem1];
 
@@ -133,7 +142,7 @@ export default function Profile() {
                                 mt: 10,
                             }}>
 
-                            <Box component="form" onSubmit={handleSubmit}
+                            <Box component="form" 
                                 sx={{
                                     ml: 3,
                                     mr: 3
@@ -284,7 +293,7 @@ export default function Profile() {
                                         <Button
                                             type="submit"
                                             variant="contained"
-                                            // onClick={() => handleUpdateProfile()}
+                                            onClick={handleSubmit}
                                             sx={{ mt: 3, mb: 2 }}>
                                             Save changes
                                         </Button>
