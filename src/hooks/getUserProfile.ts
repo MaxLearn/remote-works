@@ -6,10 +6,9 @@ import axios from 'axios';
     try {
         let myToken = getJwtToken();
         let userId = getUserId();
-        let url = `http://localhost:4000/users`
-        let params = {'userId' : userId}
+        let url = `http://localhost:4000/users/${userId}`
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
-      let res = await axios.post(url, params, headers)
+      let res = await axios.get(url, headers)
       .catch( function (error) {
         console.log(error)
       })
