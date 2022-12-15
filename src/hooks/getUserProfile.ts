@@ -13,7 +13,7 @@ import axios from 'axios';
         console.log(error)
       })
       if (res) 
-      { let data = res.data ;
+      { let data: Object = res.data ;
       console.log(data)
      return data;
       }
