@@ -112,7 +112,7 @@ export default function Album() {
                 ? theme.palette.grey[200]
                 : theme.palette.grey[800],
             overflowY: 'scroll',
-            height: 700
+            height: 700,
           }} maxWidth="lg">
           <Box sx={{
             display: 'flex',
@@ -137,14 +137,16 @@ export default function Album() {
                     alignItems: 'center',
                   }}>
                   <Grid container spacing={4} >
-
                     {cards.map((card) => (
                       <Grid item key={card} xs={12} sm={12}>
                         <CardActionArea onClick={() => setShow(prev => !prev)}>
                           <Card
-                            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                            sx={{
+                              height: '100%',
+                              display: 'flex',
+                              flexDirection: 'column'
+                            }}>
                             <CardContent sx={{ flexGrow: 1 }}>
-
                               {items.map((item) => (
                                 <span>
                                   <h1>{item.itemJobTitle}</h1>
@@ -165,40 +167,46 @@ export default function Album() {
               </Grid>
               <Grid item xs={12} sm={12} md={8}>
                 <Box
-                  id='test'
                   sx={{
-                    mt: 7,
+                    bgcolor: 'white',
+                    height: '100%',
+                    borderRadius: 2,
+                    pl:5,
+                    pr:5,
+                    pt:1
                   }}>
-                  <Card>
-                    <CardContent>
-                      {show && <Box>
-                        {items.map((item) => (
-                          <span>
-                            <h1>{item.itemJobTitle}</h1>
-                            <p>{item.itemCie}<br></br>
-                              {item.itemCity}<br></br>
-                              {item.itemCountry}<br></br>
-                              <Button>Apply now</Button><IconButton><FavoriteIcon fontSize='large'/></IconButton>
-                            </p>
-                            <Divider />
-                            <p>Created date<br></br>{item.itemDate}</p>
-                            <p>Salary<br></br>{item.itemSalary}</p>
-                            <p>Job Type<br></br>{item.itemJobType}</p>
-                            <p>Full job Description:<br></br>{item.itemLongDesc}</p>
-                            <p>What you'll need<br></br><li>{item.itemRequirement}</li></p>
-                            <Divider />
-                          </span>
-                        ))}
-                      </Box>}
-                    
-                    </CardContent>
-                  </Card>
+                  <Box
+                    id='test'
+                    sx={{
+                      mt: 7,
+                      bgcolor: 'white'
+                    }}>
+                    {show && <Box>
+                      {items.map((item) => (
+                        <span>
+                          <h1>{item.itemJobTitle}</h1>
+                          <p>{item.itemCie}<br></br>
+                            {item.itemCity}<br></br>
+                            {item.itemCountry}<br></br>
+                            <Button>Apply now</Button><IconButton><FavoriteIcon fontSize='large' /></IconButton>
+                          </p>
+                          <Divider />
+                          <p>Created date<br></br>{item.itemDate}</p>
+                          <p>Salary<br></br>{item.itemSalary}</p>
+                          <p>Job Type<br></br>{item.itemJobType}</p>
+                          <p>Full job Description:<br></br>{item.itemLongDesc}</p>
+                          <p>What you'll need<br></br><li>{item.itemRequirement}</li></p>
+                          <Divider />
+                        </span>
+                      ))}
+                    </Box>}
+                  </Box>
                 </Box>
               </Grid>
             </Grid>
           </Box>
         </Container>
       </main>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }

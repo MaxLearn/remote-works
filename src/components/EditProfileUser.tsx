@@ -5,7 +5,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Card, CardMedia, CardContent, FormControl, InputLabel, MenuItem, Select, Divider } from '@mui/material';
+import { Card, CardMedia, CardContent, FormControl, InputLabel, MenuItem, Select, Divider, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { getUserId } from '../hooks/getUserId.ts';
 import { updateUser } from '../hooks/updateUser.ts';
 import { getUserProfile } from '../hooks/getUserProfile';
@@ -14,7 +15,7 @@ import { getUserProfile } from '../hooks/getUserProfile';
 const theme = createTheme();
 
 export default function Profile() {
-    
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newItem1 = {
@@ -26,7 +27,7 @@ export default function Profile() {
             git_url: inputGit
         };
 
-        updateUser(getUserId(),newItem1);
+        updateUser(getUserId(), newItem1);
         handleUpdateProfile();
 
 
@@ -471,9 +472,12 @@ export default function Profile() {
                                                     flexDirection: 'column'
                                                 }}>
                                                 <CardContent sx={{ flexGrow: 1, width: '450px', }}>
+                                                    <IconButton sx={{position:'absolute', ml:45}}>
+                                                        <DeleteIcon fontSize='medium' />
+                                                    </IconButton>
                                                     {items.map((item) => (
                                                         <span>
-                                                            <p>Job Title: {item.itemJob}</p> 
+                                                            <p>Job Title: {item.itemJob}</p>
                                                             <p>Company: {item.itemCie} </p>
                                                             <p>Year: {item.itemYear}</p>
                                                             <Divider />
