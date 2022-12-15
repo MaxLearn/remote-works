@@ -14,7 +14,6 @@ import { Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTit
 import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { useNavigate } from "react-router-dom"
 import EmailIcon from '@mui/icons-material/Email';
 

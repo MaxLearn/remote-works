@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,7 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Avatar, CardActionArea, Icon, IconButton, InputBase, Paper } from '@mui/material';
+import { Avatar, CardActionArea, IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import banner from "../assets/images/banner.jpg";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
