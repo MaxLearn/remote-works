@@ -14,6 +14,7 @@ import { getUserProfile } from '../hooks/getUserProfile';
 const theme = createTheme();
 
 export default function Profile() {
+    
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newItem1 = {
