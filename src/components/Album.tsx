@@ -54,7 +54,15 @@ export default function Album() {
                       direction="row"
                       spacing={2}
                       justifyContent="center">
-                      <Paper component="form" sx={{ display: 'flex', alignItems: 'center', width: 300, borderRadius: 5, border: 1 }}>
+                      <Paper
+                        component="form"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          width: 300,
+                          borderRadius: 5,
+                          border: 1
+                        }}>
                         <InputBase sx={{ ml: 1, flex: 1 }} inputProps={{ 'aria-label': 'search' }} />
                         <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
                           <SearchIcon />
@@ -63,7 +71,7 @@ export default function Album() {
 
                       <Avatar sx={{ m: 1, bgcolor: "rgb(255, 255, 255)" }}>
                         <IconButton>
-                        <FilterAltIcon color='info' fontSize='large' sx={{ pt: 1 }} />
+                          <FilterAltIcon color='info' fontSize='large' sx={{ pt: 1 }} />
                         </IconButton>
                       </Avatar>
                     </Stack>
@@ -112,15 +120,15 @@ export default function Album() {
                     {cards.map((card) => (
                       <Grid item key={card} xs={12} sm={12}>
 
-                        <CardActionArea href='#'>
+                        <CardActionArea href='main'>
                           <Card
                             sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                             <CardContent sx={{ flexGrow: 1 }}>
-                              <Typography gutterBottom variant="h5" component="h2">
+                              <Typography variant="h5" component="h2">
                                 Full Stack Developer</Typography>
-                              <Typography gutterBottom>National Bank</Typography>
-                              <Typography gutterBottom>Montreal, Qc</Typography>
-                              <Typography gutterBottom>You are passionate about technology issues. You have an interest in creating
+                              <Typography >National Bank</Typography>
+                              <Typography >Montreal, Qc</Typography>
+                              <Typography >You are passionate about technology issues. You have an interest in creating
                                 and developing new applications and you are familiar with Java programming[...]
                               </Typography>
                               <Button>more detail...</Button>
@@ -138,10 +146,10 @@ export default function Album() {
                   id='test'
                   sx={{
                     mt: 7,
-                    border: 1
+                    border: 1,
                   }}
                 >
-                  <Card>
+                  <Card id='main'>
                     <CardContent>
                       <Typography>test</Typography>
                     </CardContent>

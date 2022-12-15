@@ -72,7 +72,6 @@ function Header() {
           component="div"
           sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           <Button onClick={(e) => navigate("/")} color="inherit">Home</Button>
-          <Button  color="inherit">FAQ</Button>
           <Button color="inherit" onClick={handleClicSubscribe}>
             Subscribe
           </Button>
@@ -127,7 +126,6 @@ function Header() {
             onClick={handleClose2}>
 
             <MenuItem onClick={(e) => navigate("/")}><HomeIcon /> Home </MenuItem>
-            <MenuItem onClick={handleClose2}><HelpOutlineIcon /> FAQ </MenuItem>
             <MenuItem onClick={handleClicSubscribe}><EmailIcon /> Subscribe </MenuItem>
           </Menu>
         </Box>
