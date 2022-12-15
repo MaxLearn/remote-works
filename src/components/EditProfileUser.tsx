@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Card, CardMedia, CardContent, FormControl, InputLabel, MenuItem, Select, Divider } from '@mui/material';
 import { getUserId } from '../hooks/getUserId.ts';
 import { updateUser } from '../hooks/updateUser.ts';
+import { getUserProfile } from '../hooks/getUserProfile';
 
 
 const theme = createTheme();
@@ -91,6 +92,7 @@ export default function Profile() {
     };
 
     const handleUpdateProfile = () => {
+        //const newItem1 = getUserProfile();
         const newItem1 = {
             firstName: inputFirstName,
             lastName: inputLastName,
