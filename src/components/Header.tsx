@@ -16,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom"
 import EmailIcon from '@mui/icons-material/Email';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
@@ -167,7 +167,8 @@ function Header() {
             onClick={handleClose}>
             <MenuItem onClick={(e) => navigate("/ProfileUser")}><AccountCircleIcon /> Profile </MenuItem>
             <MenuItem onClick={(e) => navigate("/EditProfile")}><SettingsIcon /> Edit Profile </MenuItem>
-            <MenuItem onClick={handleClose}><FavoriteIcon /> Favoris </MenuItem>
+            <MenuItem onClick={handleClose}><FavoriteIcon /> Favorites </MenuItem>
+            <MenuItem onClick={handleClose}><LogoutIcon /> Logout </MenuItem>
           </Menu>
         </Box>
       </Toolbar>
