@@ -119,7 +119,7 @@ export default function ProfileUser() {
                                 maxWidth: 'sm',
                                 height:500,
                             }}>
-                                <Box sx={{ml:25}}>
+                                <Box sx={{ml:55}}>
                                 <Button onClick={(e) => navigate("/EditProfile")}>
                                     <Typography sx={{mr:1}}>Edit Profile</Typography><EditIcon/>
                                 </Button>
