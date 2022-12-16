@@ -13,16 +13,19 @@ import { User } from "../models/User";
 const theme = createTheme();
 
 
-export default function ProfileUser() {
+export default function ProfileUser(props : {user: User}) {
+    
+    
     const navigate = useNavigate();
-    const [userInfo, setUserInfo] = useState<User>();
+    const [userInfo, setUserInfo] = useState<User>(props.user!);
+    
     useEffect(() => {
                ((async () => {
             const value = await getUserProfile();
             console.log(value);
-            setUserInfo(value);
+            setUserInfo(value!);
         })()).catch(console.error); 
-      });
+      },[]);
     const [items, setItems] = useState([
         {
             itemJob: 'Full Stack dev',

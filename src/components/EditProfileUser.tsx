@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
@@ -10,13 +10,25 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { getUserId } from '../hooks/getUserId.ts';
 import { updateUser } from '../hooks/updateUser.ts';
 import { getUserProfile } from '../hooks/getUserProfile';
+import ProfileUser from './ProfileUser';
+import { User } from "../models/User";
 
 
 const theme = createTheme();
 
 export default function Profile() {
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const [userInfo, setUserInfo] = useState<User>();
+    
+    useEffect(() => {
+               ((async () => {
+            const value = await getUserProfile();
+            console.log(value);
+            setUserInfo(value);
+        })()).catch(console.error); 
+      },[]);
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newItem1 = {
             first_name: inputFirstName,
@@ -28,6 +40,9 @@ export default function Profile() {
         };
 
         updateUser(getUserId(), newItem1);
+        const value = await getUserProfile();
+            console.log(value);
+            setUserInfo(value);
         handleUpdateProfile();
 
 
@@ -288,7 +303,7 @@ export default function Profile() {
                                         <Button
                                             type="submit"
                                             variant="contained"
-                                            // onClick={() => handleUpdateProfile()}
+                                            //onClick={() => handleUpdateProfile()}
                                             sx={{ mt: 3, mb: 2 }}>
                                             Save changes
                                         </Button>
@@ -371,7 +386,9 @@ export default function Profile() {
                     </Grid>
                     <Grid item xs={12} sm={3} md={5}>
 
-                        <Box
+                        <ProfileUser user={userInfo!}/>
+
+                        {/* <Box
                             sx={{
                                 alignItems: 'center',
                                 flexDirection: 'colum',
@@ -489,7 +506,7 @@ export default function Profile() {
                                     </Grid>
                                 </Box>
                             </Box>
-                        </Box>
+                        </Box> */}
                     </Grid>
                 </Grid>
             </Box>
