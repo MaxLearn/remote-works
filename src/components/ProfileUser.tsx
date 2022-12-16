@@ -28,9 +28,9 @@ export default function ProfileUser(props : {user: User}) {
       },[]);
     const [items, setItems] = useState([
         {
-            itemJob: 'Full Stack dev',
-            itemCie: 'UbiSoft',
-            itemYear: '2002-2008',
+            itemJob: '',
+            itemCie: '',
+            itemYear: '',
         },
     ]);
     if (!userInfo) return <div>Loading...</div>;
@@ -147,9 +147,9 @@ export default function ProfileUser(props : {user: User}) {
                                             <CardContent sx={{ flexGrow: 1, width: '450px', }}>
                                                 {items.map((item) => (
                                                     <span>
-                                                        <p>Job Title: {item.itemJob}</p>
-                                                        <p>Company: {item.itemCie} </p>
-                                                        <p>Year: {item.itemYear}</p>
+                                                        <p>{item.itemJob}</p>
+                                                        <p>{item.itemCie} </p>
+                                                        <p>{item.itemYear}</p>
                                                         <Divider />
                                                     </span>
                                                 ))}

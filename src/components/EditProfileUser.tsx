@@ -30,6 +30,7 @@ export default function Profile() {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        window.location.reload();
         const newItem1 = {
             first_name: inputFirstName,
             last_name: inputLastName,
