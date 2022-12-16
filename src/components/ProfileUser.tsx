@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -9,30 +9,29 @@ import { getUserId } from '../hooks/getUserId.ts';
 import { updateUser } from '../hooks/updateUser.ts';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom"
+import { getUserProfile } from '../hooks/getUserProfile';
+import { userInfo } from 'os';
 
 const theme = createTheme();
 
 
 export default function ProfileUser() {
     const navigate = useNavigate();
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const newItem1 = {
-            first_name: inputFirstName,
-            last_name: inputLastName,
-            timezone: inputtimeZone,
-            country: inputCountry,
-            website: inputWebsite,
-            git_url: inputGit
-        };
-
-        updateUser(getUserId(), newItem1);
-        handleUpdateProfile();
-
-
-    };
-
+    const [userInfo, setUserInfo] = useState({
+        first_name: "",
+        last_name: "",
+        timezone: "",
+        website: "",
+        country: "",
+        git_url:""
+    });
+    useEffect(() => {
+        // Update the document title using the browser API
+               ((async () => {
+            const value = await getUserProfile();
+            console.log(value);
+        })()).catch(console.error); 
+      });
     // const [file, setFile] = useState();
     // function handleChange(e) {
 
@@ -53,47 +52,6 @@ export default function ProfileUser() {
         },
     ]);
 
-
-    const [items1, setItems1] = useState([
-        {
-            firstName: 'George',
-            lastName: 'Lord',
-            timezone: 'UTC -3:30',
-            country: 'Canada',
-            website: 'www.Remoteworks.com',
-            gitUrl: 'github.com/GeorgeLord/'
-        },
-    ]);
-
-
-    const [inputFirstName, setInputFirstName] = useState('');
-    const [inputLastName, setInputLastName] = useState('');
-    const [inputtimeZone, setInputtimeZone] = useState('');
-    const [inputCountry, setInputCountry] = useState('');
-    const [inputWebsite, setInputWebsite] = useState('');
-    const [inputGit, setInputGit] = useState('');
-  
-
-    const handleUpdateProfile = () => {
-        const newItem1 = {
-            firstName: inputFirstName,
-            lastName: inputLastName,
-            timezone: inputtimeZone,
-            country: inputCountry,
-            website: inputWebsite,
-            gitUrl: inputGit
-        };
-
-        const newItems1 = [newItem1];
-
-        setItems1(newItems1);
-        setInputFirstName('');
-        setInputLastName('');
-        setInputtimeZone('');
-        setInputCountry('');
-        setInputWebsite('');
-        setInputGit('');
-    };
 
 
     return (
@@ -156,15 +114,15 @@ export default function ProfileUser() {
 
 
                                     <CardContent sx={{ flexGrow: 1, width: '450px', textAlign: 'center', mt:15 }}>
-                                        {items1.map((item) => (
+                                        
                                             <span>
-                                                {item.firstName}  {item.lastName}<br></br>
-                                                {item.timezone}<br></br>
-                                                {item.country}<br></br>
-                                                {item.website}<br></br>
-                                                {item.gitUrl}<br></br>
+                                                {userInfo.first_name}  {userInfo.last_name}<br></br>
+                                                {userInfo.timezone}<br></br>
+                                                {userInfo.country}<br></br>
+                                                {userInfo.website}<br></br>
+                                                {userInfo.git_url}<br></br>
                                             </span>
-                                        ))}
+                        
                                     </CardContent>
                                 </Card>
                             </Box>
