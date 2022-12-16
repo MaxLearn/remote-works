@@ -5,45 +5,24 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Card, CardMedia, CardContent,Divider } from '@mui/material';
-import { getUserId } from '../hooks/getUserId.ts';
-import { updateUser } from '../hooks/updateUser.ts';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom"
 import { getUserProfile } from '../hooks/getUserProfile';
-import { userInfo } from 'os';
+import { User } from "../models/User";
 
 const theme = createTheme();
 
 
 export default function ProfileUser() {
     const navigate = useNavigate();
-    const [userInfo, setUserInfo] = useState({
-        first_name: "",
-        last_name: "",
-        timezone: "",
-        website: "",
-        country: "",
-        git_url:""
-    });
+    const [userInfo, setUserInfo] = useState<User>();
     useEffect(() => {
-        // Update the document title using the browser API
                ((async () => {
             const value = await getUserProfile();
             console.log(value);
+            setUserInfo(value);
         })()).catch(console.error); 
       });
-    // const [file, setFile] = useState();
-    // function handleChange(e) {
-
-    //     setFile(URL.createObjectURL(e.target.files[0]));
-    // };
-
-    // const imageStyles = {
-    //     flex: 1,
-    //     width: 250,
-    //     height: 250,
-    // }
-
     const [items, setItems] = useState([
         {
             itemJob: 'Full Stack dev',
@@ -51,8 +30,7 @@ export default function ProfileUser() {
             itemYear: '2002-2008',
         },
     ]);
-
-
+    if (!userInfo) return <div>Loading...</div>;
 
     return (
         <ThemeProvider theme={theme}>
@@ -114,7 +92,7 @@ export default function ProfileUser() {
 
 
                                     <CardContent sx={{ flexGrow: 1, width: '450px', textAlign: 'center', mt:15 }}>
-                                        
+                                    {userInfo && (
                                             <span>
                                                 {userInfo.first_name}  {userInfo.last_name}<br></br>
                                                 {userInfo.timezone}<br></br>
@@ -122,7 +100,7 @@ export default function ProfileUser() {
                                                 {userInfo.website}<br></br>
                                                 {userInfo.git_url}<br></br>
                                             </span>
-                        
+                                            )}
                                     </CardContent>
                                 </Card>
                             </Box>

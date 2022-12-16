@@ -1,6 +1,7 @@
 import { getJwtToken } from './accessToken.ts';
 import { getUserId } from './getUserId.ts';
 import axios from 'axios';
+import { User } from '../models/User';
 
  export const getUserProfile = async () => {
     try {
@@ -13,8 +14,7 @@ import axios from 'axios';
         console.log(error)
       })
       if (res) 
-      { let data: Object = res.data ;
-      console.log(data)
+      { let data: User = res.data ;
      return data;
       }
       
