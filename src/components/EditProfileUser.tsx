@@ -5,8 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Card, CardMedia, CardContent, FormControl, InputLabel, MenuItem, Select, Divider, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import {FormControl, InputLabel, MenuItem, Select} from '@mui/material';
 import { getUserId } from '../hooks/getUserId.ts';
 import { updateUser } from '../hooks/updateUser.ts';
 import { getUserProfile } from '../hooks/getUserProfile';
@@ -17,21 +16,37 @@ import { User } from "../models/User";
 const theme = createTheme();
 
 export default function Profile() {
-
+    
     const [userInfo, setUserInfo] = useState<User>();
+    
+    const [inputFirstName, setInputFirstName] = useState(userInfo?.first_name);
+    const [inputLastName, setInputLastName] = useState(userInfo?.last_name);
+    const [inputtimeZone, setInputtimeZone] = useState(userInfo?.timezone);
+    const [inputCountry, setInputCountry] = useState(userInfo?.country);
+    const [inputWebsite, setInputWebsite] = useState(userInfo?.website);
+    const [inputGit, setInputGit] = useState(userInfo?.git_url);
+    
+    const [inputValJob, setInputValJob] = useState('');
+    const [inputValCie, setInputValCie] = useState('');
+    const [inputValYear, setInputValYear] = useState('');
     
     useEffect(() => {
                ((async () => {
-            const value = await getUserProfile();
-            console.log(value);
-            setUserInfo(value);
+            const userInfo = await getUserProfile();
+            console.log(userInfo);
+            setUserInfo(userInfo);
+            setInputFirstName(userInfo?.first_name)
+            setInputLastName(userInfo?.last_name)
+            setInputtimeZone(userInfo?.timezone)
+            setInputCountry(userInfo?.country)
+            setInputWebsite(userInfo?.website)
+            setInputGit(userInfo?.git_url)
         })()).catch(console.error); 
       },[]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        window.location.reload();
-        const newItem1 = {
+        const newUserInfo = {
             first_name: inputFirstName,
             last_name: inputLastName,
             timezone: inputtimeZone,
@@ -40,11 +55,7 @@ export default function Profile() {
             git_url: inputGit
         };
 
-        updateUser(getUserId(), newItem1);
-        const value = await getUserProfile();
-            console.log(value);
-            setUserInfo(value);
-        handleUpdateProfile();
+        updateUser(getUserId(), newUserInfo);
 
 
     };
@@ -69,31 +80,6 @@ export default function Profile() {
         },
     ]);
 
-
-    const [items1, setItems1] = useState([
-        {
-            firstName: 'George',
-            lastName: 'Lord',
-            timezone: 'UTC -3:30',
-            country: 'Canada',
-            website: 'www.Remoteworks.com',
-            gitUrl: 'github.com/GeorgeLord/'
-        },
-    ]);
-
-
-    const [inputFirstName, setInputFirstName] = useState('');
-    const [inputLastName, setInputLastName] = useState('');
-    const [inputtimeZone, setInputtimeZone] = useState('');
-    const [inputCountry, setInputCountry] = useState('');
-    const [inputWebsite, setInputWebsite] = useState('');
-    const [inputGit, setInputGit] = useState('');
-
-
-    const [inputValJob, setInputValJob] = useState('');
-    const [inputValCie, setInputValCie] = useState('');
-    const [inputValYear, setInputValYear] = useState('');
-
     const handleAddButtonClick = () => {
         const newItem = {
             itemJob: inputValJob,
@@ -108,29 +94,6 @@ export default function Profile() {
         setInputValCie('');
         setInputValYear('');
     };
-
-    const handleUpdateProfile = () => {
-        //const newItem1 = getUserProfile();
-        const newItem1 = {
-            firstName: inputFirstName,
-            lastName: inputLastName,
-            timezone: inputtimeZone,
-            country: inputCountry,
-            website: inputWebsite,
-            gitUrl: inputGit
-        };
-
-        const newItems1 = [newItem1];
-
-        setItems1(newItems1);
-        setInputFirstName('');
-        setInputLastName('');
-        setInputtimeZone('');
-        setInputCountry('');
-        setInputWebsite('');
-        setInputGit('');
-    };
-
 
     return (
         <ThemeProvider theme={theme}>
