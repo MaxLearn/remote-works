@@ -19,28 +19,32 @@ export default function Profile() {
     
     const [userInfo, setUserInfo] = useState<User>();
     
-    const [inputFirstName, setInputFirstName] = useState(userInfo?.first_name);
-    const [inputLastName, setInputLastName] = useState(userInfo?.last_name);
-    const [inputtimeZone, setInputtimeZone] = useState(userInfo?.timezone);
-    const [inputCountry, setInputCountry] = useState(userInfo?.country);
-    const [inputWebsite, setInputWebsite] = useState(userInfo?.website);
-    const [inputGit, setInputGit] = useState(userInfo?.git_url);
+    const [inputFirstName, setInputFirstName] = useState('');
+    const [inputLastName, setInputLastName] = useState('');
+    const [inputtimeZone, setInputtimeZone] = useState('');
+    const [inputCountry, setInputCountry] = useState('');
+    const [inputWebsite, setInputWebsite] = useState('');
+    const [inputGit, setInputGit] = useState('');
     
     const [inputValJob, setInputValJob] = useState('');
     const [inputValCie, setInputValCie] = useState('');
     const [inputValYear, setInputValYear] = useState('');
+
+    let [update, setUpdate] = useState(1);
+        
+    
     
     useEffect(() => {
                ((async () => {
             const userInfo = await getUserProfile();
             console.log(userInfo);
             setUserInfo(userInfo);
-            setInputFirstName(userInfo?.first_name)
+            userInfo?.first_name? setInputFirstName(userInfo?.first_name);
             setInputLastName(userInfo?.last_name)
             setInputtimeZone(userInfo?.timezone)
             setInputCountry(userInfo?.country)
             setInputWebsite(userInfo?.website)
-            setInputGit(userInfo?.git_url)
+            setInputGit(userInfo?.git_url) */
         })()).catch(console.error); 
       },[]);
 
@@ -56,6 +60,8 @@ export default function Profile() {
         };
 
         updateUser(getUserId(), newUserInfo);
+
+        setUpdate(update++);
 
 
     };
