@@ -39,7 +39,7 @@ export default function Profile() {
             const userInfo = await getUserProfile();
             console.log(userInfo);
             setUserInfo(userInfo);
-            userInfo?.first_name? setInputFirstName(userInfo?.first_name);
+      /*      userInfo?.first_name? setInputFirstName(userInfo?.first_name);
             setInputLastName(userInfo?.last_name)
             setInputtimeZone(userInfo?.timezone)
             setInputCountry(userInfo?.country)
