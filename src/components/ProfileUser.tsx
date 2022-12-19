@@ -4,28 +4,28 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Card, CardMedia, CardContent,Divider } from '@mui/material';
+import { Card, CardMedia, CardContent, Divider } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom"
 import { getUserProfile } from '../hooks/getUserProfile';
 import { User } from "../models/User";
 
-const theme = createTheme();
 
 
-export default function ProfileUser(props : {user: User}) {
-    
-    
+
+export default function ProfileUser(props: { user: User }) {
+
+    const theme = createTheme();
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState<User>(props.user!);
-    
+
     useEffect(() => {
-               ((async () => {
+        ((async () => {
             const value = await getUserProfile();
             console.log(value);
             setUserInfo(value!);
-        })()).catch(console.error); 
-      },[]);
+        })()).catch(console.error);
+    }, []);
     const [items, setItems] = useState([
         {
             itemJob: '',
@@ -49,21 +49,22 @@ export default function ProfileUser(props : {user: User}) {
                         <Box
                             sx={{
                                 margin: 'auto',
-                  
                                 flexDirection: 'column',
                                 alignItems: 'center',
                                 borderRadius: 2,
                                 mt: 10,
                                 bgcolor: "rgb(16, 70, 123)",
                                 maxWidth: 'sm',
-                                height:500,
+                                height: 500,
+                                width: '100%',
                             }}>
-                                <Box sx={{ml:55}}>
+                            <Box>
                                 <Button onClick={(e) => navigate("/EditProfile")}>
-                                    <Typography sx={{mr:1}}>Edit Profile</Typography><EditIcon/>
+                                    <Typography sx={{ mr: 1 }}>Edit Profile</Typography><EditIcon />
                                 </Button>
-                                </Box>
-                                 <Card>
+                            </Box>
+                            <Box>
+                                <Card>
                                     <CardMedia
                                         component='img'
                                         sx={{
@@ -71,19 +72,20 @@ export default function ProfileUser(props : {user: User}) {
                                             width: '200px',
                                             height: '200px',
                                             borderRadius: '50%',
+                                            mt: 7,
                                             ml:25,
-                                            mt:7
                                         }}
                                         image="https://source.unsplash.com/random" />
-                                    </Card>
+                                </Card>
+                                </Box>
                             <Box
                                 sx={{
+                                    width: '95%',
+                                    mb: 2,
+                                    height: '55%',
+                                    ml: 2,
                                     mt: 20,
-                                    ml: 10,
-                                    mr: 10,
-                                    mb: 3,
                                 }}>
-                                   
                                 <Card
                                     sx={{
                                         height: '100%',
@@ -91,11 +93,14 @@ export default function ProfileUser(props : {user: User}) {
                                         flexDirection: 'column',
                                         alignItems: 'center'
                                     }}>
-                                    
-
-
-                                    <CardContent sx={{ flexGrow: 1, width: '450px', textAlign: 'center', mt:15 }}>
-                                    {userInfo && (
+                                    <CardContent
+                                        sx={{
+                                            flexGrow: 1,
+                                            width: '450px',
+                                            textAlign: 'center',
+                                            mt: 15
+                                        }}>
+                                        {userInfo && (
                                             <span>
                                                 {userInfo.first_name}  {userInfo.last_name}<br></br>
                                                 {userInfo.timezone}<br></br>
@@ -103,12 +108,12 @@ export default function ProfileUser(props : {user: User}) {
                                                 {userInfo.website}<br></br>
                                                 {userInfo.git_url}<br></br>
                                             </span>
-                                            )}
+                                        )}
                                     </CardContent>
                                 </Card>
                             </Box>
                         </Box>
-                    
+
                         <Box
                             sx={{
                                 margin: 'auto',
@@ -123,12 +128,9 @@ export default function ProfileUser(props : {user: User}) {
 
                             <Box
                                 sx={{
-                                    mt: 3,
-                                    ml: 10,
-                                    mr: 10,
-                                    mb: 3,
+                                    width: '90%',
+                                    mb: 2,
                                 }}>
-
                                 <Typography
                                     component="h1"
                                     variant="h5"
@@ -142,7 +144,9 @@ export default function ProfileUser(props : {user: User}) {
                                             sx={{
                                                 alignContent: 'center',
                                                 display: 'flex',
-                                                flexDirection: 'column'
+                                                flexDirection: 'column',
+                                                width: '100%',
+
                                             }}>
                                             <CardContent sx={{ flexGrow: 1, width: '450px', }}>
                                                 {items.map((item) => (
