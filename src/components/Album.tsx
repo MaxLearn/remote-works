@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Avatar, CardActionArea, Divider, IconButton, InputBase, Paper } from '@mui/material';
+import { Avatar, CardActionArea, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, FormControl, IconButton, InputBase, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import banner from "../assets/images/banner.jpg";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
@@ -40,6 +40,19 @@ export default function Album() {
   ]);
 
   const [show, setShow] = useState(false);
+
+  const [subscribe, setSubscribe] = React.useState(false);
+
+  const handleClicSubscribe = () => {
+    setSubscribe(true);
+  };
+
+  const handleCloseSubscribe = () => {
+    setSubscribe(false);
+  };
+
+  const [inputtimeZone, setInputtimeZone] = useState('');
+  const [inputSalary, setInputSalary] = useState('');
 
 
   return (
@@ -89,13 +102,117 @@ export default function Album() {
                           <SearchIcon />
                         </IconButton>
                       </Paper>
-
                       <Avatar sx={{ m: 1, bgcolor: "rgb(255, 255, 255)" }}>
                         <IconButton>
-                          <FilterAltIcon color='info' fontSize='large' sx={{ pt: 1 }} />
+                          <FilterAltIcon onClick={handleClicSubscribe} color='info' fontSize='large' sx={{ pt: 1 }} />
                         </IconButton>
                       </Avatar>
                     </Stack>
+
+                    <Dialog maxWidth='xl'  open={subscribe} onClose={handleClicSubscribe}>
+                      <DialogTitle sx={{
+                        backgroundColor: (theme) =>
+                          theme.palette.mode === 'light'
+                            ? theme.palette.grey[200]
+                            : theme.palette.grey[800],
+                      }}>
+                        Filter
+                      </DialogTitle>
+                      <DialogContent>
+                      <Grid container spacing={4}>
+                      <Grid item xs={12} sm={6} md={6}>
+                        <FormControl sx={{ mt: 2 }} fullWidth>
+                          <InputLabel>Time Zone</InputLabel>
+                          <Select
+                            required
+                            id="timezone"
+                            value={inputtimeZone}
+                            label="timezone"
+                            onChange={(event) => setInputtimeZone(event.target.value)}>
+                            <MenuItem value={'UTC -12:00'}>UTC -12:00 </MenuItem>
+                            <MenuItem value={'UTC -11:00'}>UTC -11:00</MenuItem>
+                            <MenuItem value={'UTC -10:00'}>UTC -10:00</MenuItem>
+                            <MenuItem value={'UTC -09:30'}>UTC -09:30</MenuItem>
+                            <MenuItem value={'UTC -09:00'}>UTC -09:00</MenuItem>
+                            <MenuItem value={'UTC -08:00'}>UTC -08:00</MenuItem>
+                            <MenuItem value={'UTC -07:00'}>UTC -07:00</MenuItem>
+                            <MenuItem value={'UTC -06:00'}>UTC -06:00</MenuItem>
+                            <MenuItem value={'UTC -05:00'}>UTC -05:00</MenuItem>
+                            <MenuItem value={'UTC -04:00'}>UTC -04:00</MenuItem>
+                            <MenuItem value={'UTC -03:30'}>UTC -03:30</MenuItem>
+                            <MenuItem value={'UTC -03:00'}>UTC -03:00</MenuItem>
+                            <MenuItem value={'UTC -02:00'}>UTC -02:00</MenuItem>
+                            <MenuItem value={'UTC -01:00'}>UTC -01:00</MenuItem>
+                            <MenuItem value={'UTC  00:00'}>UTC  00:00</MenuItem>
+                            <MenuItem value={'UTC +01:00'}>UTC +01:00</MenuItem>
+                            <MenuItem value={'UTC +02:00'}>UTC +02:00</MenuItem>
+                            <MenuItem value={'UTC +03:00'}>UTC +03:00</MenuItem>
+                            <MenuItem value={'UTC +03:30'}>UTC +03:30</MenuItem>
+                            <MenuItem value={'UTC +04:00'}>UTC +04:00</MenuItem>
+                            <MenuItem value={'UTC +04:30'}>UTC +04:30</MenuItem>
+                            <MenuItem value={'UTC +05:00'}>UTC +05:00</MenuItem>
+                            <MenuItem value={'UTC +05:30'}>UTC +05:30</MenuItem>
+                            <MenuItem value={'UTC +05:45'}>UTC +05:45</MenuItem>
+                            <MenuItem value={'UTC +06:00'}>UTC +06:00</MenuItem>
+                            <MenuItem value={'UTC +06:30'}>UTC +06:30</MenuItem>
+                            <MenuItem value={'UTC +07:00'}>UTC +07:00</MenuItem>
+                            <MenuItem value={'UTC +08:00'}>UTC +08:00</MenuItem>
+                            <MenuItem value={'UTC +08:45'}>UTC +08:45</MenuItem>
+                            <MenuItem value={'UTC +09:00'}>UTC +09:00</MenuItem>
+                            <MenuItem value={'UTC +09:30'}>UTC +09:30</MenuItem>
+                            <MenuItem value={'UTC +10:00'}>UTC +10:00</MenuItem>
+                            <MenuItem value={'UTC +10:30'}>UTC +10:30</MenuItem>
+                            <MenuItem value={'UTC +11:00'}>UTC +11:00</MenuItem>
+                            <MenuItem value={'UTC +12:00'}>UTC +12:00</MenuItem>
+                            <MenuItem value={'UTC +12:45'}>UTC +12:45</MenuItem>
+                            <MenuItem value={'UTC +13:00'}>UTC +13:00</MenuItem>
+                            <MenuItem value={'UTC +14:00'}>UTC +14:00</MenuItem>
+                          </Select>
+                        </FormControl>
+                        </Grid>
+                     
+                        <Grid item xs={12} sm={6} md={6}>
+                        <FormControl sx={{ mt: 2 }} fullWidth>
+                          <InputLabel>Salary</InputLabel>
+                          <Select
+                            required
+                            id="salary"
+                            value={inputSalary}
+                            label="Salary"
+                            onChange={(event) => setInputSalary(event.target.value)}>
+                            <MenuItem value={'+ de 40 000 CAD'}>+ de 40 000 CAD </MenuItem>
+                            <MenuItem value={'+ de 60 000 CAD'}>+ de 60 000 CAD</MenuItem>
+                            <MenuItem value={'+ de 80 000 CAD'}>+ de 80 000 CAD</MenuItem>
+                            <MenuItem value={'+ de 100 000 CAD'}>+ de 100 000 CAD</MenuItem>
+                            <MenuItem value={'+ de 120 000 CAD'}>+ de 120 000 CAD</MenuItem>
+                            <MenuItem value={'+ de 140 000 CAD'}>+ de 140 000 CAD</MenuItem>
+                            <MenuItem value={'+ de 160 000 CAD'}>+ de 160 000 CAD</MenuItem>
+                            <MenuItem value={'+ de 180 000 CAD'}>+ de 180 000 CAD</MenuItem>
+                            <MenuItem value={'+ de 200 000 CAD'}>+ de 200 000 CAD</MenuItem>
+                          </Select>
+                        </FormControl>
+                        </Grid>
+                        </Grid>
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="email"
+                          label="Email Address"
+                          type="email"
+                          fullWidth
+                          variant="standard" />
+                      </DialogContent>
+                      <DialogActions
+                        sx={{
+                          backgroundColor: (theme) =>
+                            theme.palette.mode === 'light'
+                              ? theme.palette.grey[200]
+                              : theme.palette.grey[800],
+                        }}>
+                        <Button onClick={handleCloseSubscribe}>Cancel</Button>
+                        <Button onClick={handleCloseSubscribe}>Save</Button>
+                      </DialogActions>
+                    </Dialog>
                   </div>
                 </div>
               </Card>
@@ -171,9 +288,9 @@ export default function Album() {
                     bgcolor: 'white',
                     height: '100%',
                     borderRadius: 2,
-                    pl:5,
-                    pr:5,
-                    pt:1
+                    pl: 5,
+                    pr: 5,
+                    pt: 1
                   }}>
                   <Box
                     id='test'

@@ -32,28 +32,28 @@ export default function SignUp() {
     const password = data.get("password")
     const accountType = data.get("controlled-radio-buttons-group")
 
-    if (!ValidateEmail(email)){
+    if (!ValidateEmail(email)) {
       alert("email not valid")
-    }  else if (!validatePassword(password)){
+    } else if (!validatePassword(password)) {
       alert("password must be at least 5 characters!")
-    } else if(accountType === "employee"){
-alert("employee account created!")
+    } else if (accountType === "employee") {
+      alert("employee account created!")
       createUser(
         email,
         password
-        );
-        navigate("/signin")
-      }  else if ((accountType === "company")){
-        alert("business account created!")
-        createBusiness(
-          email,
-          password
-        );
-navigate("/signin")
-      }
-        else {
-          alert("Please chose the account type you wish to create")
-        } 
+      );
+      navigate("/signin")
+    } else if ((accountType === "company")) {
+      alert("business account created!")
+      createBusiness(
+        email,
+        password
+      );
+      navigate("/signin")
+    }
+    else {
+      alert("Please chose the account type you wish to create")
+    }
   };
 
   return (
@@ -78,19 +78,18 @@ navigate("/signin")
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+            sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={12}>
                 <fieldset>
                   <legend>Account Type</legend>
                   <RadioGroup
-                   /*  sx={{alignContent: 'center', justifyContent: 'center'}} */
+                    /*  sx={{alignContent: 'center', justifyContent: 'center'}} */
                     row
                     aria-labelledby="demo-controlled-radio-buttons-group"
                     name="controlled-radio-buttons-group"
-                        /* value={value} */
-  /*   onChange={handleChange} */
+                  /* value={value} */
+                  /*   onChange={handleChange} */
                   >
                     <FormControlLabel
                       value="company"
