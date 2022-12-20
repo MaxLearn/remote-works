@@ -7,26 +7,25 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Card, CardMedia, CardContent, Divider } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom"
-import { getUserProfile } from '../hooks/getUserProfile';
-import { User } from "../models/User";
+import { getBusinessProfile } from '../hooks/getBusinessProfile';
+import { Business } from "../models/Business";
 
 
 
 
-export default function ProfileUser(props: { user: User }) {
+export default function ProfileBusiness(props: { business: Business }) {
 
     const theme = createTheme();
     const navigate = useNavigate();
-    const [userInfo, setUserInfo] = useState<User>(props.user!);
+    const [businessInfo, setBusinessInfo] = useState<Business>(props.business!);
 
     useEffect(() => {
         ((async () => {
-            const value = await getUserProfile();
+            const value = await getBusinessProfile();
             console.log(value);
-            setUserInfo(value!);
+            setBusinessInfo(value!);
         })()).catch(console.error);
     }, []);
-
     const [items, setItems] = useState([
         {
             itemJob: '',
@@ -34,7 +33,7 @@ export default function ProfileUser(props: { user: User }) {
             itemYear: '',
         },
     ]);
-    if (!userInfo) return <div>Loading...</div>;
+    if (!businessInfo) return <div>nothing...</div>;
 
     return (
         <ThemeProvider theme={theme}>
@@ -74,11 +73,11 @@ export default function ProfileUser(props: { user: User }) {
                                             height: '200px',
                                             borderRadius: '50%',
                                             mt: 7,
-                                            ml: 25,
+                                            ml:25,
                                         }}
                                         image="https://source.unsplash.com/random" />
                                 </Card>
-                            </Box>
+                                </Box>
                             <Box
                                 sx={{
                                     width: '95%',
@@ -101,13 +100,11 @@ export default function ProfileUser(props: { user: User }) {
                                             textAlign: 'center',
                                             mt: 15
                                         }}>
-                                        {userInfo && (
+                                        {businessInfo && (
                                             <span>
-                                                {userInfo.first_name}  {userInfo.last_name}<br></br>
-                                                {userInfo.timezone}<br></br>
-                                                {userInfo.country}<br></br>
-                                                {userInfo.website}<br></br>
-                                                {userInfo.git_url}<br></br>
+                                                {businessInfo.name}<br></br>
+                                                {businessInfo.email}<br></br>
+                                                {businessInfo.description}<br></br>
                                             </span>
                                         )}
                                     </CardContent>
@@ -136,7 +133,7 @@ export default function ProfileUser(props: { user: User }) {
                                     component="h1"
                                     variant="h5"
                                     sx={{ mb: 2, color: 'white', textAlign: 'center' }}>
-                                    Experience
+                                    Jobs 
                                 </Typography>
 
                                 <Grid container spacing={2}>
@@ -149,7 +146,7 @@ export default function ProfileUser(props: { user: User }) {
                                                 width: '100%',
 
                                             }}>
-                                           <CardContent sx={{ flexGrow: 1, width: '450px', }}>
+                                            <CardContent sx={{ flexGrow: 1, width: '450px', }}>
                                                 {items.map((item) => (
                                                     <span>
                                                         <p>{item.itemJob}</p>

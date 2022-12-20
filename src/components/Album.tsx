@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Avatar, CardActionArea, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, FormControl, FormControlLabel, FormGroup, IconButton, InputBase, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material';
+import { Avatar, CardActionArea, Checkbox, Dialog, DialogActions, DialogContent,DialogTitle, Divider, FormControl, FormControlLabel, FormGroup, IconButton, InputBase, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import banner from "../assets/images/banner.jpg";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
@@ -21,6 +21,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 export default function Album() {
 
   const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 
   const theme = createTheme();
 

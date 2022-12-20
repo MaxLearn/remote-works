@@ -6,26 +6,21 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {FormControl, InputLabel, MenuItem, Select} from '@mui/material';
-import { getUserId } from '../hooks/getUserId.ts';
-import { updateUser } from '../hooks/updateUser.ts';
-import { getUserProfile } from '../hooks/getUserProfile';
-import ProfileUser from './ProfileUser';
-import { User } from "../models/User";
+import { getBusinessId } from '../hooks/getBusinessId.ts';
+import { updateBusiness } from '../hooks/updateBusiness.ts';
+import { getBusinessProfile } from '../hooks/getBusinessProfile';
+import ProfileBusiness from './ProfileBusiness';
+import { Business } from "../models/Business";
 
 
 const theme = createTheme();
 
 export default function Profile() {
     
-    const [userInfo, setUserInfo] = useState<User>();
+    const [businessInfo, setBusinessInfo] = useState<Business>();
     
-    const [inputFirstName, setInputFirstName] = useState('');
-    const [inputLastName, setInputLastName] = useState('');
-    const [inputtimeZone, setInputtimeZone] = useState('');
-    const [inputCountry, setInputCountry] = useState('');
-    const [inputWebsite, setInputWebsite] = useState('');
-    const [inputGit, setInputGit] = useState('');
-    const[inputExperiences, setInputExperiences] = useState ('');
+    const [inputName, setInputName] = useState('');
+  
     
     const [inputValJob, setInputValJob] = useState('');
     const [inputValCie, setInputValCie] = useState('');
@@ -37,9 +32,9 @@ export default function Profile() {
     
     useEffect(() => {
                ((async () => {
-            const userInfo = await getUserProfile();
-            console.log(userInfo);
-            setUserInfo(userInfo);
+            const businessInfo = await getBusinessProfile();
+            console.log(businessInfo);
+            setBusinessInfo(businessInfo);
       /*      userInfo?.first_name? setInputFirstName(userInfo?.first_name);
             setInputLastName(userInfo?.last_name)
             setInputtimeZone(userInfo?.timezone)
@@ -50,18 +45,13 @@ export default function Profile() {
       },[]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        window.location.reload();
         event.preventDefault();
         const newUserInfo = {
-            first_name: inputFirstName,
-            last_name: inputLastName,
-            timezone: inputtimeZone,
-            country: inputCountry,
-            website: inputWebsite,
-            git_url: inputGit,
+            name: inputName,
+       
         };
 
-        updateUser(getUserId(), newUserInfo);
+        // updateBusiness(getBusinessId(), newUserInfo);
 
         setUpdate(update++);
 
@@ -167,11 +157,11 @@ export default function Profile() {
                                             label="First Name"
                                             name="first_name"
                                             autoComplete="First Name"
-                                            value={inputFirstName}
-                                            onChange={(event) => setInputFirstName(event.target.value)}
+                                            value={inputName}
+                                            onChange={(event) => setInputName(event.target.value)}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    {/* <Grid item xs={12} sm={6}>
                                         <TextField
                                             required
                                             fullWidth
@@ -297,8 +287,8 @@ export default function Profile() {
                                             label="Job Title"
                                             name="jobTitle"
                                             autoComplete="jobTitle"
-                                            value={inputExperiences}
-                                            onChange={(event) => setInputExperiences(event.target.value)}
+                                            value={inputValJob}
+                                            onChange={(event) => setInputValJob(event.target.value)}
                                         />
 
                                     </Grid>
@@ -351,14 +341,15 @@ export default function Profile() {
                                                 Add your resume
                                             </Button>
                                         </label>
-                                    </Grid>
+                                    </Grid> */}
                                 </Grid>
                             </Box>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={3} md={5}>
 
-                        <ProfileUser user={userInfo!}/>
+                        {/* <ProfileUser user={userInfo!}/> */}
+                        <ProfileBusiness business={businessInfo!}/>
 
                         {/* <Box
                             sx={{

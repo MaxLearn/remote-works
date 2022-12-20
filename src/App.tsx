@@ -6,6 +6,8 @@ import StickyFooter from "./components/StickyFooter.tsx";
 import Home from "./pages/Home.tsx";
 import EditProfile from "./pages/EditProfileUser.tsx"
 import ProfileUser from "./pages/ProfileUser.tsx"
+import ProfileBusiness from "./pages/ProfileBusiness.tsx"
+import EditProfileBusiness from "./pages/EditProfileBusiness"
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/EditProfile" element={<EditProfile />} />
         <Route path="/ProfileUser" element={<ProfileUser />} />
+        <Route path="/ProfileBusiness" element={<ProfileBusiness />} />
+        <Route path="/EditProfileBusiness" element={<EditProfileBusiness />} />
       </Routes>
       <StickyFooter />
     </BrowserRouter>
