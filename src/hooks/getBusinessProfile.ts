@@ -7,8 +7,10 @@ import { Business } from '../models/Business';
     try {
         let myToken = getJwtToken();
         let businessId = getBusinessId();
+        console.log("in getBusinessProfile" + businessId)
         let url = `http://localhost:4000/business/${businessId}`
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
+
       let res = await axios.get(url, headers)
       .catch( function (error) {
         console.log(error)
