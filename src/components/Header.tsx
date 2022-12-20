@@ -165,8 +165,8 @@ function Header() {
             }}
             open={Boolean(anchorEl)}
             onClick={handleClose}>
-            <MenuItem onClick={(e) => navigate("/ProfileUser")}><AccountCircleIcon /> Profile </MenuItem>
-            <MenuItem onClick={(e) => navigate("/EditProfile")}><SettingsIcon /> Edit Profile </MenuItem>
+            <MenuItem onClick={(e) => navigate("/ProfileBusiness")}><AccountCircleIcon /> Profile </MenuItem>
+            <MenuItem onClick={(e) => navigate("/EditProfileBusiness")}><SettingsIcon /> Edit Profile </MenuItem>
             <MenuItem onClick={handleClose}><FavoriteIcon /> Favorites </MenuItem>
             <MenuItem onClick={handleClose}><LogoutIcon /> Logout </MenuItem>
           </Menu>
