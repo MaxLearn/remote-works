@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom"
 import EmailIcon from '@mui/icons-material/Email';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { getAccountType } from "../hooks/accountType";
+import ArticleIcon from '@mui/icons-material/Article';
 
 
 
@@ -189,6 +190,7 @@ function Header() {
             onClick={handleClose}>
             <MenuItem onClick={(e) => navigateProfile()}><AccountCircleIcon /> Profile </MenuItem>
             <MenuItem onClick={(e) => navigateEditProfile()}><SettingsIcon /> Edit Profile </MenuItem>
+            <MenuItem onClick={(e) => navigateEditProfile()}><ArticleIcon /> Edit Postings </MenuItem>
             <MenuItem onClick={handleClose}><FavoriteIcon /> Favorites </MenuItem>
             <MenuItem onClick={handleClose}><LogoutIcon /> Logout </MenuItem>
           </Menu>
