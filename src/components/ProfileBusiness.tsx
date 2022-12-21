@@ -54,12 +54,12 @@ export default function ProfileBusiness(props: { business: Business }) {
                                 borderRadius: 2,
                                 mt: 10,
                                 bgcolor: "rgb(16, 70, 123)",
-                                maxWidth: 'sm',
-                                height: 500,
+                                maxWidth: 'lg',
+                                height: 800,
                                 width: '100%',
                             }}>
                             <Box>
-                                <Button onClick={(e) => navigate("/EditProfile")}>
+                                <Button onClick={(e) => navigate("/EditProfileBusiness")}>
                                     <Typography sx={{ mr: 1 }}>Edit Profile</Typography><EditIcon />
                                 </Button>
                             </Box>
@@ -73,19 +73,20 @@ export default function ProfileBusiness(props: { business: Business }) {
                                             height: '200px',
                                             borderRadius: '50%',
                                             mt: 7,
-                                            ml:25,
+                                            ml: 25,
                                         }}
                                         image="https://source.unsplash.com/random" />
                                 </Card>
-                                </Box>
+                            </Box>
+                           
                             <Box
                                 sx={{
                                     width: '95%',
-                                    mb: 2,
-                                    height: '55%',
+                                    height: '70%',
                                     ml: 2,
                                     mt: 20,
                                 }}>
+                            
                                 <Card
                                     sx={{
                                         height: '100%',
@@ -93,18 +94,24 @@ export default function ProfileBusiness(props: { business: Business }) {
                                         flexDirection: 'column',
                                         alignItems: 'center'
                                     }}>
+                        
                                     <CardContent
                                         sx={{
                                             flexGrow: 1,
-                                            width: '450px',
-                                            textAlign: 'center',
-                                            mt: 15
+                                            width: '90%',
+                                            textAlign: 'justify',
+                                            mt: 15,
+                                            overflowY: 'scroll',
                                         }}>
                                         {businessInfo && (
                                             <span>
-                                                {businessInfo.name}<br></br>
-                                                {businessInfo.email}<br></br>
-                                                {businessInfo.description}<br></br>
+                                                Company Name: {businessInfo.name} 
+                                                <br></br>
+                                                <br></br>
+                                                Contact: {businessInfo.email}
+                                                <br></br>
+                                                <br></br>
+                                                Description: {businessInfo.description}<br></br>
                                             </span>
                                         )}
                                     </CardContent>
@@ -133,7 +140,7 @@ export default function ProfileBusiness(props: { business: Business }) {
                                     component="h1"
                                     variant="h5"
                                     sx={{ mb: 2, color: 'white', textAlign: 'center' }}>
-                                    Jobs 
+                                    Jobs
                                 </Typography>
 
                                 <Grid container spacing={2}>

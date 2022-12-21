@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {FormControl, InputLabel, MenuItem, Select} from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { getBusinessId } from '../hooks/getBusinessId.ts';
 import { updateBusiness } from '../hooks/updateBusiness.ts';
 import { getBusinessProfile } from '../hooks/getBusinessProfile';
@@ -16,42 +16,46 @@ import { Business } from "../models/Business";
 const theme = createTheme();
 
 export default function Profile() {
-    
+
     const [businessInfo, setBusinessInfo] = useState<Business>();
-    
+
     const [inputName, setInputName] = useState('');
-  
-    
+    const [inputDescription, setInputDescription] = useState('');
+    const [inputWebsite, setInputWebsite] = useState('');
+
+
+
     const [inputValJob, setInputValJob] = useState('');
     const [inputValCie, setInputValCie] = useState('');
     const [inputValYear, setInputValYear] = useState('');
 
     let [update, setUpdate] = useState(1);
-        
-    
-    
+
+
+
     useEffect(() => {
-               ((async () => {
+        ((async () => {
             const businessInfo = await getBusinessProfile();
             console.log(businessInfo);
             setBusinessInfo(businessInfo);
-      /*      userInfo?.first_name? setInputFirstName(userInfo?.first_name);
-            setInputLastName(userInfo?.last_name)
-            setInputtimeZone(userInfo?.timezone)
-            setInputCountry(userInfo?.country)
-            setInputWebsite(userInfo?.website)
-            setInputGit(userInfo?.git_url) */
-        })()).catch(console.error); 
-      },[]);
+            /*      userInfo?.first_name? setInputFirstName(userInfo?.first_name);
+                  setInputLastName(userInfo?.last_name)
+                  setInputtimeZone(userInfo?.timezone)
+                  setInputCountry(userInfo?.country)
+                  setInputWebsite(userInfo?.website)
+                  setInputGit(userInfo?.git_url) */
+        })()).catch(console.error);
+    }, []);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        window.location.reload();
         event.preventDefault();
-        const newUserInfo = {
+        const newBusinessInfo = {
             name: inputName,
-       
+            description: inputDescription,
         };
 
-        // updateBusiness(getBusinessId(), newUserInfo);
+        updateBusiness(getBusinessId(), newBusinessInfo);
 
         setUpdate(update++);
 
@@ -147,34 +151,38 @@ export default function Profile() {
                                     sx={{ mt: 5, mb: 2 }}>
                                     General Informations
                                 </Typography>
-
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            id="first_name"
-                                            label="First Name"
-                                            name="first_name"
-                                            autoComplete="First Name"
-                                            value={inputName}
-                                            onChange={(event) => setInputName(event.target.value)}
-                                        />
+                                <Grid container>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="Business_name"
+                                                label="Business Name"
+                                                name="Business_name"
+                                                autoComplete="Business Name"
+                                                value={inputName}
+                                                onChange={(event) => setInputName(event.target.value)}
+                                            />
+                                        </Grid>
                                     </Grid>
-                                    {/* <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            id="last_name"
-                                            label="Last Name"
-                                            name="last_name"
-                                            autoComplete="Last name"
-                                            value={inputLastName}
-                                            onChange={(event) => setInputLastName(event.target.value)}
-                                        />
-                                    </Grid>
+                                    
+                                    <Grid container spacing={2} mt={2}>
+                                        <Grid item xs={12} sm={12}>
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="description"
+                                                label=" Company Description"
+                                                multiline rows={10}
+                                                name="description"
+                                                autoComplete="description"
+                                                value={inputDescription}
+                                                onChange={(event) => setInputDescription(event.target.value)}
+                                            />
+                                        </Grid>
 
-                                    <Grid item xs={12} sm={6}>
+                                        {/* <Grid item xs={12} sm={6}>
                                         <FormControl fullWidth>
                                             <InputLabel>Time Zone</InputLabel>
                                             <Select
@@ -260,23 +268,23 @@ export default function Profile() {
                                             value={inputGit}
                                             onChange={(event) => setInputGit(event.target.value)}
                                         />
-                                    </Grid>
-                                    <Grid item xs={8} sm={12}>
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            //onClick={() => handleUpdateProfile()}
-                                            sx={{ mt: 3, mb: 2 }}>
-                                            Save changes
-                                        </Button>
-                                    </Grid>
-                                    <Grid item xs={8} sm={12}>
+                                    </Grid> */}
+                                        <Grid item xs={8} sm={12}>
+                                            <Button
+                                                type="submit"
+                                                variant="contained"
+                                                //onClick={() => handleUpdateProfile()}
+                                                sx={{ mt: 3, mb: 2 }}>
+                                                Save changes
+                                            </Button>
+                                        </Grid>
+                                        {/* <Grid item xs={8} sm={12}>
 
                                         <Typography
                                             component="h1"
                                             variant="h6"
                                             sx={{ mt: 1, mb: 1 }}>
-                                            Add your experience(s)
+                                            Add Job offers
                                         </Typography>
 
                                     </Grid>
@@ -326,30 +334,19 @@ export default function Profile() {
                                             +
                                         </Button>
 
-                                    </Grid>
-
-
-                                    <Grid item xs={8} sm={12}>
-                                        <label htmlFor="addResume">
-                                            <input
-                                                style={{ display: 'none' }}
-                                                id="addResume"
-                                                name="addResume"
-                                                type="file"
-                                            />
-                                            <Button color="primary" variant="contained" component="span">
-                                                Add your resume
-                                            </Button>
-                                        </label>
                                     </Grid> */}
+
+
+
+
+                                    </Grid>
                                 </Grid>
                             </Box>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={3} md={5}>
 
-                        {/* <ProfileUser user={userInfo!}/> */}
-                        <ProfileBusiness business={businessInfo!}/>
+                        <ProfileBusiness business={businessInfo!} />
 
                         {/* <Box
                             sx={{
