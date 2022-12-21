@@ -1,5 +1,3 @@
-let accountType = "" ;
+export const getAccountType = () => sessionStorage.getItem("accountType");
 
-export const getAccountType = () => accountType;
-
-export const setAccountType = (type: string) => accountType = type;
+export const setAccountType = (type: string) => sessionStorage.setItem("accountType", type);

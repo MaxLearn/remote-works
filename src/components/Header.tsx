@@ -17,7 +17,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom"
 import EmailIcon from '@mui/icons-material/Email';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { navigateProfile } from "../hooks/navigateProfile";
+import { getAccountType } from "../hooks/accountType";
 
 
 
@@ -34,6 +34,27 @@ function Header() {
   const handleMenu2 = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorE2(event.currentTarget);
   };
+
+  const navigateProfile = () => {
+    let accountType = getAccountType();
+    if (!accountType){
+        alert("Please sign in to access your profile")
+        return navigate("/signin")
+    } 
+    else if (accountType === "employee") return navigate("/ProfileUser")
+    else if (accountType === "business") return navigate("/ProfileBusiness")
+    else return "" ;
+    }
+    const navigateEditProfile = () => {
+      let accountType = getAccountType();
+      if (!accountType){
+          alert("Please sign in to edit your profile")
+          return navigate("/signin")
+      } 
+      else if (accountType === "employee") return navigate("/EditProfileUser")
+      else if (accountType === "business") return navigate("/EditProfileBusiness")
+      else return "" ;
+      }
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -166,8 +187,8 @@ function Header() {
             }}
             open={Boolean(anchorEl)}
             onClick={handleClose}>
-            <MenuItem onClick={(e) => navigateProfile}><AccountCircleIcon /> Profile </MenuItem>
-            <MenuItem onClick={(e) => navigate("/EditProfileBusiness")}><SettingsIcon /> Edit Profile </MenuItem>
+            <MenuItem onClick={(e) => navigateProfile()}><AccountCircleIcon /> Profile </MenuItem>
+            <MenuItem onClick={(e) => navigateEditProfile()}><SettingsIcon /> Edit Profile </MenuItem>
             <MenuItem onClick={handleClose}><FavoriteIcon /> Favorites </MenuItem>
             <MenuItem onClick={handleClose}><LogoutIcon /> Logout </MenuItem>
           </Menu>
