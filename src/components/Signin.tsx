@@ -17,6 +17,7 @@ import { validatePassword } from "../hooks/validatePassword.ts";
 import { useNavigate } from "react-router-dom"
 import { signInUser } from "../hooks/signInUser.ts";
 import { signInBusiness } from "../hooks/signInBusiness.ts";
+import { setAccountType } from "../hooks/accountType";
 
 
 const theme = createTheme();
@@ -37,10 +38,12 @@ export default function SignUp() {
     } else if (!validatePassword(password)) {
       alert("password must be at least 5 characters!")
     } else if (accountType === "employee") {
+      setAccountType(accountType)
       signInUser(email, password)
       navigate("/")
 
     } else if (accountType === "company") {
+      setAccountType(accountType)
       signInBusiness(email, password)
       navigate("/")
     }
