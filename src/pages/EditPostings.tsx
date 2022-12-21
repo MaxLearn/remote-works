@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
+import EditPosting from '../components/EditPostingBusiness';
 
-function EditPostings() {
+function EditPostingBusiness() {
   return (
-    <div>Y
-<h1>Your postings</h1>
-
+    <div>
+        <EditPosting />
     </div>
   )
 }
-
-export default EditPostings
+export default EditPostingBusiness

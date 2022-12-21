@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Card, CardContent, CardMedia, Divider, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Card, CardContent, CardMedia, Checkbox, Divider, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select } from '@mui/material';
 import { getBusinessId } from '../hooks/getBusinessId.ts';
 import { updateBusiness } from '../hooks/updateBusiness.ts';
 import { getBusinessProfile } from '../hooks/getBusinessProfile';
@@ -15,7 +15,7 @@ import { Business } from "../models/Business";
 
 const theme = createTheme();
 
-export default function Profile() {
+export default function EditPosting() {
 
     const [businessInfo, setBusinessInfo] = useState<Business>();
 
@@ -67,7 +67,7 @@ export default function Profile() {
                 sx={{
                     display: 'flex',
                     flexDirection: 'row',
-                    alignItems: 'center',                 
+                    alignItems: 'center',
                 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={8} md={6}>
@@ -112,7 +112,7 @@ export default function Profile() {
                                     component="h1"
                                     variant="h5"
                                     sx={{ mt: 5, mb: 2 }}>
-                                    General Informations
+                                    Offer Informations
                                 </Typography>
                                 <Grid container>
                                     <Grid container spacing={2}>
@@ -120,16 +120,81 @@ export default function Profile() {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="Business_name"
-                                                label="Business Name"
-                                                name="Business_name"
-                                                autoComplete="Business Name"
+                                                id="job_title"
+                                                label="Job Title"
+                                                name="job_title"
+                                                autoComplete="Job Title"
                                                 value={inputName}
                                                 onChange={(event) => setInputName(event.target.value)}
                                             />
                                         </Grid>
+
+
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="timezone"
+                                                label="Timezone"
+                                                name="timezone"
+                                                autoComplete="Timezone"
+                                                value={inputName}
+                                                onChange={(event) => setInputName(event.target.value)}
+                                            />
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="country"
+                                                label="Country"
+                                                name="country"
+                                                autoComplete="Country"
+                                                value={inputName}
+                                                onChange={(event) => setInputName(event.target.value)}
+                                            />
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="salary"
+                                                label="Salary"
+                                                name="salary"
+                                                autoComplete="salary"
+                                                value={inputName}
+                                                onChange={(event) => setInputName(event.target.value)}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="salary"
+                                                label="Salary"
+                                                name="salary"
+                                                autoComplete="salary"
+                                                value={inputName}
+                                                onChange={(event) => setInputName(event.target.value)}
+                                            />
+                                        </Grid>
+
+
+                                        <Grid item xs={12} sm={6}>
+
+
+                                            <FormGroup sx={{ flexDirection: 'row' , ml:5 }}>
+                                                <FormControlLabel control={<Checkbox />} label="Contract" />
+                                                <FormControlLabel control={<Checkbox />} label="Full time" />
+                                                <FormControlLabel control={<Checkbox />} label="Part time" />
+                                            </FormGroup>
+
+
+                                        </Grid>
                                     </Grid>
-                                    
+
                                     <Grid container spacing={2} mt={2}>
                                         <Grid item xs={12} sm={12}>
                                             <TextField
@@ -176,7 +241,7 @@ export default function Profile() {
                                     flexDirection: 'column',
                                     alignItems: 'center',
                                     borderRadius: 2,
-                                    mt: 10,
+                                    mt: 20,
                                     bgcolor: "rgb(16, 70, 123)",
                                     maxWidth: 'sm'
                                 }}>
@@ -193,7 +258,7 @@ export default function Profile() {
                                         component="h1"
                                         variant="h5"
                                         sx={{ mb: 2, color: 'white', textAlign: 'center' }}>
-                                        Current profile
+                                        Current Jobs
                                     </Typography>
 
                                     <Card
@@ -203,35 +268,19 @@ export default function Profile() {
                                             flexDirection: 'column',
                                             alignItems: 'center'
                                         }}>
-                                        <CardMedia
-                                            component='img'
+
+                                        <CardContent
                                             sx={{
-                                                width: '200px',
-                                                height: '200px',
-                                                borderRadius: '50%',
-                                                mt: 2
-                                            }}
-                                            image="https://source.unsplash.com/random" />
-
-
-                                        <CardContent 
-                                        sx={{
-                                            width: '450px',
-                                            height:'450px',
-                                            textAlign: 'justify',
-                                            overflowY: 'scroll',
-                                        }}>
-                                        {businessInfo && (
-                                            <span>
-                                                Company Name: {businessInfo.name} 
-                                                <br></br>
-                                                <br></br>
-                                                Contact: {businessInfo.email}
-                                                <br></br>
-                                                <br></br>
-                                                Description: {businessInfo.description}<br></br>
-                                            </span>
-                                        )}
+                                                width: '450px',
+                                                height: '450px',
+                                                textAlign: 'justify',
+                                                overflowY: 'scroll',
+                                            }}>
+                                            {businessInfo && (
+                                                <span>
+                                                    Jobs: {businessInfo.job_posting}
+                                                </span>
+                                            )}
                                         </CardContent>
                                     </Card>
                                 </Box>

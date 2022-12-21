@@ -51,7 +51,7 @@ function Header() {
           alert("Please sign in to edit your profile")
           return navigate("/signin")
       } 
-      else if (accountType === "employee") return navigate("/EditProfileUser")
+      else if (accountType === "employee") return navigate("/EditProfile")
       else if (accountType === "company") return navigate("/EditProfileBusiness")
       else return "" ;
     }

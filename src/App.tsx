@@ -8,6 +8,7 @@ import EditProfile from "./pages/EditProfileUser.tsx"
 import ProfileUser from "./pages/ProfileUser.tsx"
 import ProfileBusiness from "./pages/ProfileBusiness.tsx"
 import EditProfileBusiness from "./pages/EditProfileBusiness"
+import EditPostingBusiness from "./pages/EditPostings"
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/ProfileUser" element={<ProfileUser />} />
         <Route path="/ProfileBusiness" element={<ProfileBusiness />} />
         <Route path="/EditProfileBusiness" element={<EditProfileBusiness />} />
+        <Route path="/EditPostingBusiness" element={<EditPostingBusiness />} />
       </Routes>
       <StickyFooter />
     </BrowserRouter>
