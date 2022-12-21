@@ -42,20 +42,19 @@ function Header() {
         alert("Please sign in to access your profile")
         return navigate("/signin")
     } 
-    else if (accountType === "employee") return navigate("/ProfileUser")
-    else if (accountType === "business") return navigate("/ProfileBusiness")
-    else return "" ;
-    }
-    const navigateEditProfile = () => {
+    else if (accountType === "employee") {return navigate("/ProfileUser")}
+    else if (accountType === "company"){ return navigate("/ProfileBusiness")}
+  }
+  const navigateEditProfile = () => {
       let accountType = getAccountType();
       if (!accountType){
           alert("Please sign in to edit your profile")
           return navigate("/signin")
       } 
       else if (accountType === "employee") return navigate("/EditProfileUser")
-      else if (accountType === "business") return navigate("/EditProfileBusiness")
+      else if (accountType === "company") return navigate("/EditProfileBusiness")
       else return "" ;
-      }
+    }
 
   const handleClose = () => {
     setAnchorEl(null);
