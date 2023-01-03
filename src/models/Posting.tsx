@@ -1,0 +1,15 @@
+export interface Posting {
+    job_title: String,
+    timezone: String,
+    field: String,
+    country: String,
+    created_date: Date,
+    description: String,
+    salary: String,
+    start_date: Date,
+    isContract: Boolean,
+    contract_length_in_months: Number,
+    isRenewable: Boolean,
+    isPromoted: Boolean,
+    requirement: String,
+}

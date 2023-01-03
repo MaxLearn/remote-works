@@ -15,6 +15,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import banner from "../assets/images/banner.jpg";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Posting } from '../models/Posting';
+import PostingBox from './PostingBox';
+import SearchBanner from './SearchBanner';
 
 
 
@@ -24,221 +27,31 @@ export default function Album() {
 
   const theme = createTheme();
 
-  const [items] = useState([
-    {
-      itemJobTitle: 'Full Stack dev',
-      itemDate: '2022-12-15',
-      itemCie: 'National Bank',
-      itemCountry: 'CA',
-      itemCity: 'Montréal,Qc',
-      itemSalary: '$55,000 - $120,000 a year',
-      itemJobType: 'Part time job',
-      itemRequirement: 'Deep working knowledge of Shopify platforms',
-      itemShortDesc: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming[...]',
-      itemLongDesc: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming'
-    },
-  ]);
+  const [currentPosting, setCurrentPosting] = useState<Posting>({
+    job_title: 'Full Stack dev',
+    timezone: '',
+    field: 'Software Devlopment',
+    country: 'Canada',
+    created_date: new Date(),
+    description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
+    salary: '$55,000 - $120,000 a year',
+    start_date: new Date(),
+    isContract: true,
+    contract_length_in_months: 12,
+    isRenewable: true,
+    isPromoted: false,
+    requirement: 'Deep working knowledge of Shopify platforms'
+})
+  const [postingArray, setPostingArray] = useState<Posting[]>();
 
   const [show, setShow] = useState(false);
-
-  const [subscribe, setSubscribe] = React.useState(false);
-
-  const handleClicSubscribe = () => {
-    setSubscribe(true);
-  };
-
-  const handleCloseSubscribe = () => {
-    setSubscribe(false);
-  };
-
-  const [inputtimeZone, setInputtimeZone] = useState('');
-  const [inputSalary, setInputSalary] = useState('');
 
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <main>
-        <Box
-          sx={{
-            pt: 8,
-            mt: 10,
-          }}>
-          <Container maxWidth="lg">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom>
-
-              <Card>
-                <div style={{ width: '100%', position: "relative" }}>
-                  <CardMedia component="img" image={banner} title="Pancakes" alt="" />
-                  <div
-                    style={{
-                      position: "absolute",
-                      color: "black",
-                      top: "30%",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                    }}>
-                    Remote Works
-                    <Stack
-                      direction="row"
-                      spacing={2}
-                      justifyContent="center">
-                      <Paper
-                        component="form"
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          width: 300,
-                          borderRadius: 5,
-                          border: 1
-                        }}>
-                        <InputBase sx={{ ml: 1, flex: 1 }} inputProps={{ 'aria-label': 'search' }} />
-                        <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-                          <SearchIcon />
-                        </IconButton>
-                      </Paper>
-                      <Avatar sx={{ m: 1, bgcolor: "rgb(255, 255, 255)" }}>
-                        <IconButton>
-                          <FilterAltIcon onClick={handleClicSubscribe} color='info' fontSize='large' sx={{ pt: 1 }} />
-                        </IconButton>
-                      </Avatar>
-                    </Stack>
-                    <Box >
-                      <Dialog sx={{ flex: 1 }} open={subscribe} onClose={handleClicSubscribe}>
-                        <DialogTitle sx={{
-                          width: 600,
-                          backgroundColor: (theme) =>
-                            theme.palette.mode === 'light'
-                              ? theme.palette.grey[200]
-                              : theme.palette.grey[800],
-                        }}>
-                          Filter
-                        </DialogTitle>
-                        <DialogContent sx={{ width: 600, }}>
-                          <Grid container spacing={1}>
-                            <Grid item xs={12} sm={12} md={6}>
-                              <FormControl sx={{ mt: 2 }} fullWidth>
-                                <InputLabel>Time Zone</InputLabel>
-                                <Select
-                                  required
-                                  id="timezone"
-                                  value={inputtimeZone}
-                                  label="timezone"
-                                  onChange={(event) => setInputtimeZone(event.target.value)}>
-                                  <MenuItem value={'UTC -12:00'}>UTC -12:00 </MenuItem>
-                                  <MenuItem value={'UTC -11:00'}>UTC -11:00</MenuItem>
-                                  <MenuItem value={'UTC -10:00'}>UTC -10:00</MenuItem>
-                                  <MenuItem value={'UTC -09:30'}>UTC -09:30</MenuItem>
-                                  <MenuItem value={'UTC -09:00'}>UTC -09:00</MenuItem>
-                                  <MenuItem value={'UTC -08:00'}>UTC -08:00</MenuItem>
-                                  <MenuItem value={'UTC -07:00'}>UTC -07:00</MenuItem>
-                                  <MenuItem value={'UTC -06:00'}>UTC -06:00</MenuItem>
-                                  <MenuItem value={'UTC -05:00'}>UTC -05:00</MenuItem>
-                                  <MenuItem value={'UTC -04:00'}>UTC -04:00</MenuItem>
-                                  <MenuItem value={'UTC -03:30'}>UTC -03:30</MenuItem>
-                                  <MenuItem value={'UTC -03:00'}>UTC -03:00</MenuItem>
-                                  <MenuItem value={'UTC -02:00'}>UTC -02:00</MenuItem>
-                                  <MenuItem value={'UTC -01:00'}>UTC -01:00</MenuItem>
-                                  <MenuItem value={'UTC  00:00'}>UTC  00:00</MenuItem>
-                                  <MenuItem value={'UTC +01:00'}>UTC +01:00</MenuItem>
-                                  <MenuItem value={'UTC +02:00'}>UTC +02:00</MenuItem>
-                                  <MenuItem value={'UTC +03:00'}>UTC +03:00</MenuItem>
-                                  <MenuItem value={'UTC +03:30'}>UTC +03:30</MenuItem>
-                                  <MenuItem value={'UTC +04:00'}>UTC +04:00</MenuItem>
-                                  <MenuItem value={'UTC +04:30'}>UTC +04:30</MenuItem>
-                                  <MenuItem value={'UTC +05:00'}>UTC +05:00</MenuItem>
-                                  <MenuItem value={'UTC +05:30'}>UTC +05:30</MenuItem>
-                                  <MenuItem value={'UTC +05:45'}>UTC +05:45</MenuItem>
-                                  <MenuItem value={'UTC +06:00'}>UTC +06:00</MenuItem>
-                                  <MenuItem value={'UTC +06:30'}>UTC +06:30</MenuItem>
-                                  <MenuItem value={'UTC +07:00'}>UTC +07:00</MenuItem>
-                                  <MenuItem value={'UTC +08:00'}>UTC +08:00</MenuItem>
-                                  <MenuItem value={'UTC +08:45'}>UTC +08:45</MenuItem>
-                                  <MenuItem value={'UTC +09:00'}>UTC +09:00</MenuItem>
-                                  <MenuItem value={'UTC +09:30'}>UTC +09:30</MenuItem>
-                                  <MenuItem value={'UTC +10:00'}>UTC +10:00</MenuItem>
-                                  <MenuItem value={'UTC +10:30'}>UTC +10:30</MenuItem>
-                                  <MenuItem value={'UTC +11:00'}>UTC +11:00</MenuItem>
-                                  <MenuItem value={'UTC +12:00'}>UTC +12:00</MenuItem>
-                                  <MenuItem value={'UTC +12:45'}>UTC +12:45</MenuItem>
-                                  <MenuItem value={'UTC +13:00'}>UTC +13:00</MenuItem>
-                                  <MenuItem value={'UTC +14:00'}>UTC +14:00</MenuItem>
-                                </Select>
-                              </FormControl>
-                            </Grid>
-
-                            <Grid item xs={12} sm={12} md={6}>
-                              <FormControl sx={{ mt: 2 }} fullWidth>
-                                <InputLabel>Salary</InputLabel>
-                                <Select
-                                  required
-                                  id="salary"
-                                  value={inputSalary}
-                                  label="Salary"
-                                  onChange={(event) => setInputSalary(event.target.value)}>
-                                  <MenuItem value={'+ de 40 000 CAD'}>+ de 40 000 CAD </MenuItem>
-                                  <MenuItem value={'+ de 60 000 CAD'}>+ de 60 000 CAD</MenuItem>
-                                  <MenuItem value={'+ de 80 000 CAD'}>+ de 80 000 CAD</MenuItem>
-                                  <MenuItem value={'+ de 100 000 CAD'}>+ de 100 000 CAD</MenuItem>
-                                  <MenuItem value={'+ de 120 000 CAD'}>+ de 120 000 CAD</MenuItem>
-                                  <MenuItem value={'+ de 140 000 CAD'}>+ de 140 000 CAD</MenuItem>
-                                  <MenuItem value={'+ de 160 000 CAD'}>+ de 160 000 CAD</MenuItem>
-                                  <MenuItem value={'+ de 180 000 CAD'}>+ de 180 000 CAD</MenuItem>
-                                  <MenuItem value={'+ de 200 000 CAD'}>+ de 200 000 CAD</MenuItem>
-                                </Select>
-                              </FormControl>
-                            </Grid>
-                          </Grid>
-                          <TextField
-                            autoFocus
-                            margin="dense"
-                            id="job_title"
-                            label="Job Title"
-                            type="string"
-                            fullWidth
-                            variant="standard" />
-
-                          <TextField
-                            autoFocus
-                            margin="dense"
-                            id="country"
-                            label="Country"
-                            type="string"
-                            fullWidth
-                            variant="standard" />
-
-                          <FormGroup sx={{flexDirection:'row'}}>
-                            <FormControlLabel control={<Checkbox  />} label="Contract" />
-                            <FormControlLabel control={<Checkbox />} label="Full time" />
-                            <FormControlLabel control={<Checkbox />} label="Part time" />
-                          </FormGroup>
-
-
-                        </DialogContent>
-                        <DialogActions
-                          sx={{
-                            width: 600,
-                            backgroundColor: (theme) =>
-                              theme.palette.mode === 'light'
-                                ? theme.palette.grey[200]
-                                : theme.palette.grey[800],
-                          }}>
-                          <Button onClick={handleCloseSubscribe}>Cancel</Button>
-                          <Button onClick={handleCloseSubscribe}>Save</Button>
-                        </DialogActions>
-                      </Dialog>
-                    </Box>
-                  </div>
-                </div>
-              </Card>
-            </Typography>
-          </Container>
-        </Box>
+        <SearchBanner />
 
         <Container
           sx={{
@@ -283,7 +96,7 @@ export default function Album() {
                               display: 'flex',
                               flexDirection: 'column'
                             }}>
-                            <CardContent sx={{ flexGrow: 1 }}>
+{/*                             <CardContent sx={{ flexGrow: 1 }}>
                               {items.map((item) => (
                                 <span>
                                   <h1>{item.itemJobTitle}</h1>
@@ -294,7 +107,7 @@ export default function Album() {
                                 </span>
                               ))}
                               <Button>more detail...</Button>
-                            </CardContent>
+                            </CardContent> */}
                           </Card>
                         </CardActionArea>
                       </Grid>
@@ -318,25 +131,7 @@ export default function Album() {
                       mt: 7,
                       bgcolor: 'white'
                     }}>
-                    {show && <Box>
-                      {items.map((item) => (
-                        <span>
-                          <h1>{item.itemJobTitle}</h1>
-                          <p>{item.itemCie}<br></br>
-                            {item.itemCity}<br></br>
-                            {item.itemCountry}<br></br>
-                            <Button>Apply now</Button><IconButton><FavoriteIcon fontSize='large' /></IconButton>
-                          </p>
-                          <Divider />
-                          <p>Created date<br></br>{item.itemDate}</p>
-                          <p>Salary<br></br>{item.itemSalary}</p>
-                          <p>Job Type<br></br>{item.itemJobType}</p>
-                          <p>Full job Description:<br></br>{item.itemLongDesc}</p>
-                          <p>What you'll need<br></br><li>{item.itemRequirement}</li></p>
-                          <Divider />
-                        </span>
-                      ))}
-                    </Box>}
+      <PostingBox {...currentPosting}/>
                   </Box>
                 </Box>
               </Grid>
