@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Avatar, CardActionArea, Checkbox, Dialog, DialogActions, DialogContent,DialogTitle, Divider, FormControl, FormControlLabel, FormGroup, IconButton, InputBase, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material';
+import { Avatar, Checkbox, Dialog, DialogActions, DialogContent,DialogTitle, FormControl, FormControlLabel, FormGroup, IconButton, InputBase, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import banner from "../assets/images/banner.jpg";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Posting } from '../models/Posting';
-import PostingBox from './PostingBox';
-
 
 function SearchBanner() {
+    
     const [subscribe, setSubscribe] = React.useState(false);
 
     const [inputtimeZone, setInputtimeZone] = useState('');
