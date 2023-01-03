@@ -11,17 +11,30 @@ import { updateBusiness } from '../hooks/updateBusiness.ts';
 import { getBusinessProfile } from '../hooks/getBusinessProfile';
 import ProfileBusiness from './ProfileBusiness';
 import { Business } from "../models/Business";
-
+import { Dayjs } from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { grey } from '@mui/material/colors';
 
 const theme = createTheme();
 
 export default function EditPosting() {
 
+
+
     const [businessInfo, setBusinessInfo] = useState<Business>();
-
-    const [inputName, setInputName] = useState('');
+    const [inputCreatedDate, setCreatedDate] = React.useState<Dayjs | null>(null);
+    const [inputStartDate, setStartDate] = React.useState<Dayjs | null>(null);
+    const [inputJobTitle, setInputJobTitle] = useState('');
+    const [inputTimeZone, setInputTimeZone] = useState('');
+    const [inputCountry, setInputCountry] = useState('');
+    const [inputSalary, setInputSalary] = useState('');
+    const [inputContract, setInputContract] = useState('');
+    const [inputFullTime, setInputFullTime] = useState('');
+    const [inputPartTime, setInputPartTime] = useState('');
     const [inputDescription, setInputDescription] = useState('');
-
+    const [inputRequirement, setInputRequirement] = useState('');
     let [update, setUpdate] = useState(1);
 
 
@@ -38,7 +51,11 @@ export default function EditPosting() {
         window.location.reload();
         event.preventDefault();
         const newBusinessInfo = {
-            name: inputName,
+            jobTitle: inputJobTitle,
+            timeZone: inputTimeZone,
+            country: inputCountry,
+            salary: inputSalary,
+
             description: inputDescription,
         };
 
@@ -91,23 +108,61 @@ export default function EditPosting() {
                                                 label="Job Title"
                                                 name="job_title"
                                                 autoComplete="Job Title"
-                                                value={inputName}
-                                                onChange={(event) => setInputName(event.target.value)}
+                                                value={inputJobTitle}
+                                                onChange={(event) => setInputJobTitle(event.target.value)}
                                             />
                                         </Grid>
 
 
                                         <Grid item xs={12} sm={6}>
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="timezone"
-                                                label="Timezone"
-                                                name="timezone"
-                                                autoComplete="Timezone"
-                                                value={inputName}
-                                                onChange={(event) => setInputName(event.target.value)}
-                                            />
+                                            <FormControl fullWidth>
+                                                <InputLabel>Time Zone</InputLabel>
+                                                <Select
+                                                    required
+                                                    id="timezone"
+                                                    value={inputTimeZone}
+                                                    label="Time Zone"
+                                                    onChange={(event) => setInputTimeZone(event.target.value)}>
+                                                    <MenuItem value={'UTC -12:00'}>UTC -12:00 </MenuItem>
+                                                    <MenuItem value={'UTC -11:00'}>UTC -11:00</MenuItem>
+                                                    <MenuItem value={'UTC -10:00'}>UTC -10:00</MenuItem>
+                                                    <MenuItem value={'UTC -09:30'}>UTC -09:30</MenuItem>
+                                                    <MenuItem value={'UTC -09:00'}>UTC -09:00</MenuItem>
+                                                    <MenuItem value={'UTC -08:00'}>UTC -08:00</MenuItem>
+                                                    <MenuItem value={'UTC -07:00'}>UTC -07:00</MenuItem>
+                                                    <MenuItem value={'UTC -06:00'}>UTC -06:00</MenuItem>
+                                                    <MenuItem value={'UTC -05:00'}>UTC -05:00</MenuItem>
+                                                    <MenuItem value={'UTC -04:00'}>UTC -04:00</MenuItem>
+                                                    <MenuItem value={'UTC -03:30'}>UTC -03:30</MenuItem>
+                                                    <MenuItem value={'UTC -03:00'}>UTC -03:00</MenuItem>
+                                                    <MenuItem value={'UTC -02:00'}>UTC -02:00</MenuItem>
+                                                    <MenuItem value={'UTC -01:00'}>UTC -01:00</MenuItem>
+                                                    <MenuItem value={'UTC  00:00'}>UTC  00:00</MenuItem>
+                                                    <MenuItem value={'UTC +01:00'}>UTC +01:00</MenuItem>
+                                                    <MenuItem value={'UTC +02:00'}>UTC +02:00</MenuItem>
+                                                    <MenuItem value={'UTC +03:00'}>UTC +03:00</MenuItem>
+                                                    <MenuItem value={'UTC +03:30'}>UTC +03:30</MenuItem>
+                                                    <MenuItem value={'UTC +04:00'}>UTC +04:00</MenuItem>
+                                                    <MenuItem value={'UTC +04:30'}>UTC +04:30</MenuItem>
+                                                    <MenuItem value={'UTC +05:00'}>UTC +05:00</MenuItem>
+                                                    <MenuItem value={'UTC +05:30'}>UTC +05:30</MenuItem>
+                                                    <MenuItem value={'UTC +05:45'}>UTC +05:45</MenuItem>
+                                                    <MenuItem value={'UTC +06:00'}>UTC +06:00</MenuItem>
+                                                    <MenuItem value={'UTC +06:30'}>UTC +06:30</MenuItem>
+                                                    <MenuItem value={'UTC +07:00'}>UTC +07:00</MenuItem>
+                                                    <MenuItem value={'UTC +08:00'}>UTC +08:00</MenuItem>
+                                                    <MenuItem value={'UTC +08:45'}>UTC +08:45</MenuItem>
+                                                    <MenuItem value={'UTC +09:00'}>UTC +09:00</MenuItem>
+                                                    <MenuItem value={'UTC +09:30'}>UTC +09:30</MenuItem>
+                                                    <MenuItem value={'UTC +10:00'}>UTC +10:00</MenuItem>
+                                                    <MenuItem value={'UTC +10:30'}>UTC +10:30</MenuItem>
+                                                    <MenuItem value={'UTC +11:00'}>UTC +11:00</MenuItem>
+                                                    <MenuItem value={'UTC +12:00'}>UTC +12:00</MenuItem>
+                                                    <MenuItem value={'UTC +12:45'}>UTC +12:45</MenuItem>
+                                                    <MenuItem value={'UTC +13:00'}>UTC +13:00</MenuItem>
+                                                    <MenuItem value={'UTC +14:00'}>UTC +14:00</MenuItem>
+                                                </Select>
+                                            </FormControl>
                                         </Grid>
 
                                         <Grid item xs={12} sm={6}>
@@ -118,47 +173,97 @@ export default function EditPosting() {
                                                 label="Country"
                                                 name="country"
                                                 autoComplete="Country"
-                                                value={inputName}
-                                                onChange={(event) => setInputName(event.target.value)}
+                                                value={inputCountry}
+                                                onChange={(event) => setInputCountry(event.target.value)}
                                             />
                                         </Grid>
 
                                         <Grid item xs={12} sm={6}>
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="salary"
-                                                label="Salary"
-                                                name="salary"
-                                                autoComplete="salary"
-                                                value={inputName}
-                                                onChange={(event) => setInputName(event.target.value)}
-                                            />
-                                        </Grid>
-                                        <Grid item xs={12} sm={6}>
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="salary"
-                                                label="Salary"
-                                                name="salary"
-                                                autoComplete="salary"
-                                                value={inputName}
-                                                onChange={(event) => setInputName(event.target.value)}
-                                            />
+                                            <FormControl fullWidth>
+                                                <InputLabel>Salary</InputLabel>
+                                                <Select
+                                                    required
+                                                    id="salary"
+                                                    value={inputSalary}
+                                                    label="Salary"
+                                                    onChange={(event) => setInputSalary(event.target.value)}>
+                                                    <MenuItem value={'+ de 40 000 CAD'}>+ de 40 000 CAD </MenuItem>
+                                                    <MenuItem value={'+ de 60 000 CAD'}>+ de 60 000 CAD</MenuItem>
+                                                    <MenuItem value={'+ de 80 000 CAD'}>+ de 80 000 CAD</MenuItem>
+                                                    <MenuItem value={'+ de 100 000 CAD'}>+ de 100 000 CAD</MenuItem>
+                                                    <MenuItem value={'+ de 120 000 CAD'}>+ de 120 000 CAD</MenuItem>
+                                                    <MenuItem value={'+ de 140 000 CAD'}>+ de 140 000 CAD</MenuItem>
+                                                    <MenuItem value={'+ de 160 000 CAD'}>+ de 160 000 CAD</MenuItem>
+                                                    <MenuItem value={'+ de 180 000 CAD'}>+ de 180 000 CAD</MenuItem>
+                                                    <MenuItem value={'+ de 200 000 CAD'}>+ de 200 000 CAD</MenuItem>
+                                                </Select>
+                                            </FormControl>
                                         </Grid>
 
-
-                                        <Grid item xs={12} sm={6}>
-
-
-                                            <FormGroup sx={{ flexDirection: 'row' , ml:5 }}>
-                                                <FormControlLabel control={<Checkbox />} label="Contract" />
-                                                <FormControlLabel control={<Checkbox />} label="Full time" />
-                                                <FormControlLabel control={<Checkbox />} label="Part time" />
+                                        <Grid item xs={12} sm={12} >
+                                            <fieldset style={{color:'#ababab'}}>
+                                                <legend>Contract Type</legend>                                            
+                                                <FormGroup sx={{ flexDirection: 'row'}}>
+                                                <FormControlLabel value={inputFullTime} sx={{ ml: 15 }} control={<Checkbox />} label="Full time" />
+                                                <FormControlLabel value={inputPartTime} sx={{ ml: 15 }} control={<Checkbox />} label="Part time" />
+                                                <FormControlLabel value={inputContract} sx={{ ml: 15 }} control={<Checkbox />} label="Contract" />
                                             </FormGroup>
+                                            </fieldset>
+                                        </Grid>
 
+                                        <Grid item xs={12} sm={4}>
+                                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                <DatePicker
+                                                    label="Created date"
+                                                    value={inputCreatedDate}
+                                                    onChange={(newValue) => {
+                                                        setCreatedDate(newValue);
+                                                    }}
+                                                    renderInput={(params) => <TextField {...params} />}
+                                                />
+                                            </LocalizationProvider>
+                                        </Grid>
 
+                                        <Grid item xs={12} sm={4}>
+                                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                <DatePicker
+                                                    label="Start date"
+                                                    value={inputStartDate}
+                                                    onChange={(newValue) => {
+                                                        setStartDate(newValue);
+                                                    }}
+                                                    renderInput={(params) => <TextField {...params} />}
+                                                />
+                                            </LocalizationProvider>
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={4}>
+                                        <FormControl fullWidth>
+                                                <InputLabel>Salary</InputLabel>
+                                                <Select
+                                                    required
+                                                    id="salary"
+                                                    value={inputContract}
+                                                    label="Contract lenght"
+                                                    onChange={(event) => setInputContract(event.target.value)}>
+                                                    <MenuItem value={'1 week'}>1 week </MenuItem>
+                                                    <MenuItem value={'2 weeks'}>2 weeks </MenuItem>
+                                                    <MenuItem value={'3 weeks'}>3 weeks </MenuItem>
+                                                    <MenuItem value={'1 Month'}>1 Months </MenuItem>
+                                                    <MenuItem value={'2 Months'}>2 Months </MenuItem>
+                                                    <MenuItem value={'3 Months'}>3 Months </MenuItem>
+                                                    <MenuItem value={'4 Months'}>4 Months </MenuItem>
+                                                    <MenuItem value={'5 Months'}>5 Months </MenuItem>
+                                                    <MenuItem value={'6 Months'}>6 Months </MenuItem>
+                                                    <MenuItem value={'7 Months'}>7 Months </MenuItem>
+                                                    <MenuItem value={'8 Months'}>8 Months </MenuItem>
+                                                    <MenuItem value={'9 Months'}>9 Months </MenuItem>
+                                                    <MenuItem value={'10 Months'}>10 Months </MenuItem>
+                                                    <MenuItem value={'11 Months'}>11 Months </MenuItem>
+                                                    <MenuItem value={'1 Year'}>1 Year </MenuItem>
+                                                   
+                                                </Select>
+                                            </FormControl>
                                         </Grid>
                                     </Grid>
 
@@ -174,6 +279,20 @@ export default function EditPosting() {
                                                 autoComplete="description"
                                                 value={inputDescription}
                                                 onChange={(event) => setInputDescription(event.target.value)}
+                                            />
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={12}>
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="requirement"
+                                                label=" Requirements"
+                                                multiline rows={10}
+                                                name="requirement"
+                                                autoComplete="requirement"
+                                                value={inputRequirement}
+                                                onChange={(event) => setInputRequirement(event.target.value)}
                                             />
                                         </Grid>
 

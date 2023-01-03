@@ -17,6 +17,7 @@ const theme = createTheme();
 
 export default function Profile() {
 
+
     const [businessInfo, setBusinessInfo] = useState<Business>();
 
     const [inputName, setInputName] = useState('');

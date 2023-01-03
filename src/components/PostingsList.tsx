@@ -31,19 +31,19 @@ const [postingArray, setPostingArray] = useState<Posting[]>([{
   isPromoted: false,
   requirement: 'Deep working knowledge of Shopify platforms'
 },{
-job_title: 'Full Stack dev',
+job_title: 'Front end Developer',
 timezone: '',
 field: 'Software Devlopment',
-country: 'Canada',
+country: 'Australia',
 created_date: new Date(),
 description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
-salary: '$55,000 - $120,000 a year',
+salary: '$60,000 - $120,000 a year',
 start_date: new Date(),
-isContract: true,
+isContract: false,
 contract_length_in_months: 12,
 isRenewable: true,
 isPromoted: false,
-requirement: 'Deep working knowledge of Shopify platforms'
+requirement: 'Deep working knowledge of front end developpement'
 },{
 job_title: 'Full Stack dev',
 timezone: '',
