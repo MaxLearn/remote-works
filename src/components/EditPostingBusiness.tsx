@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Card, CardContent, CardMedia, Checkbox, Divider, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select } from '@mui/material';
+import { Card, CardContent, CardMedia, Checkbox, Divider, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select } from '@mui/material';
 import { getBusinessId } from '../hooks/getBusinessId.ts';
 import { updateBusiness } from '../hooks/updateBusiness.ts';
 import { getBusinessProfile } from '../hooks/getBusinessProfile';
@@ -15,7 +15,6 @@ import { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { grey } from '@mui/material/colors';
 
 const theme = createTheme();
 
@@ -24,6 +23,7 @@ export default function EditPosting() {
 
 
     const [businessInfo, setBusinessInfo] = useState<Business>();
+
     const [inputCreatedDate, setCreatedDate] = React.useState<Dayjs | null>(null);
     const [inputStartDate, setStartDate] = React.useState<Dayjs | null>(null);
     const [inputJobTitle, setInputJobTitle] = useState('');
@@ -31,8 +31,6 @@ export default function EditPosting() {
     const [inputCountry, setInputCountry] = useState('');
     const [inputSalary, setInputSalary] = useState('');
     const [inputContract, setInputContract] = useState('');
-    const [inputFullTime, setInputFullTime] = useState('');
-    const [inputPartTime, setInputPartTime] = useState('');
     const [inputDescription, setInputDescription] = useState('');
     const [inputRequirement, setInputRequirement] = useState('');
     let [update, setUpdate] = useState(1);
@@ -50,16 +48,23 @@ export default function EditPosting() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         window.location.reload();
         event.preventDefault();
-        const newBusinessInfo = {
+        const data = new FormData(event.currentTarget);
+        const inputJobType = data.get("controlled-radio-buttons-group")
+
+        const newPostingJob = {
             jobTitle: inputJobTitle,
             timeZone: inputTimeZone,
             country: inputCountry,
             salary: inputSalary,
-
+            createdDate: inputCreatedDate,
+            starDate: inputStartDate,
+            contractLenght: inputContract,
             description: inputDescription,
+            requirements: inputRequirement,
+            jobType: inputJobType,
         };
 
-        updateBusiness(getBusinessId(), newBusinessInfo);
+        updateBusiness(getBusinessId(), newPostingJob);
 
         setUpdate(update++);
 
@@ -201,13 +206,17 @@ export default function EditPosting() {
                                         </Grid>
 
                                         <Grid item xs={12} sm={12} >
-                                            <fieldset style={{color:'#ababab'}}>
-                                                <legend>Contract Type</legend>                                            
-                                                <FormGroup sx={{ flexDirection: 'row'}}>
-                                                <FormControlLabel value={inputFullTime} sx={{ ml: 15 }} control={<Checkbox />} label="Full time" />
-                                                <FormControlLabel value={inputPartTime} sx={{ ml: 15 }} control={<Checkbox />} label="Part time" />
-                                                <FormControlLabel value={inputContract} sx={{ ml: 15 }} control={<Checkbox />} label="Contract" />
-                                            </FormGroup>
+                                            <fieldset style={{ color: '#ababab' }}>
+                                                <legend>Job Type</legend>                   
+                                                <RadioGroup
+                                                    row
+                                                    aria-labelledby="demo-controlled-radio-buttons-group"
+                                                    name="controlled-radio-buttons-group"
+                                                    aria-required>
+                                                    <FormControlLabel sx={{ ml: 15 }} value="fullTime" control={<Radio />} label="Full time" />
+                                                    <FormControlLabel sx={{ ml: 15 }} value="PartTime" control={<Radio />} label="Part time"/>
+                                                    <FormControlLabel sx={{ ml: 15 }} value="Contract" control={<Radio />} label="Contract"/>
+                                                </RadioGroup>
                                             </fieldset>
                                         </Grid>
 
@@ -238,18 +247,17 @@ export default function EditPosting() {
                                         </Grid>
 
                                         <Grid item xs={12} sm={4}>
-                                        <FormControl fullWidth>
-                                                <InputLabel>Salary</InputLabel>
+                                            <FormControl fullWidth>
+                                                <InputLabel>Contract Lenght</InputLabel>
                                                 <Select
-                                                    required
-                                                    id="salary"
+                                                    id="contract"
                                                     value={inputContract}
                                                     label="Contract lenght"
                                                     onChange={(event) => setInputContract(event.target.value)}>
                                                     <MenuItem value={'1 week'}>1 week </MenuItem>
                                                     <MenuItem value={'2 weeks'}>2 weeks </MenuItem>
                                                     <MenuItem value={'3 weeks'}>3 weeks </MenuItem>
-                                                    <MenuItem value={'1 Month'}>1 Months </MenuItem>
+                                                    <MenuItem value={'1 Month'}>1 Month </MenuItem>
                                                     <MenuItem value={'2 Months'}>2 Months </MenuItem>
                                                     <MenuItem value={'3 Months'}>3 Months </MenuItem>
                                                     <MenuItem value={'4 Months'}>4 Months </MenuItem>
@@ -261,7 +269,6 @@ export default function EditPosting() {
                                                     <MenuItem value={'10 Months'}>10 Months </MenuItem>
                                                     <MenuItem value={'11 Months'}>11 Months </MenuItem>
                                                     <MenuItem value={'1 Year'}>1 Year </MenuItem>
-                                                   
                                                 </Select>
                                             </FormControl>
                                         </Grid>
@@ -273,7 +280,7 @@ export default function EditPosting() {
                                                 required
                                                 fullWidth
                                                 id="description"
-                                                label=" Company Description"
+                                                label=" Job Description"
                                                 multiline rows={10}
                                                 name="description"
                                                 autoComplete="description"

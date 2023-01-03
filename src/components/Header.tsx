@@ -189,7 +189,7 @@ function Header() {
             onClick={handleClose}>
             <MenuItem onClick={(e) => navigateProfile()}><AccountCircleIcon /> Profile </MenuItem>
             <MenuItem onClick={(e) => navigateEditProfile()}><SettingsIcon /> Edit Profile </MenuItem>
-            <MenuItem onClick={(e) => navigateEditProfile()}><ArticleIcon /> Edit Postings </MenuItem>
+            <MenuItem onClick={(e) => navigate("/EditPostingBusiness")}><ArticleIcon /> Edit Postings </MenuItem>
             <MenuItem onClick={handleClose}><FavoriteIcon /> Favorites </MenuItem>
             <MenuItem onClick={handleClose}><LogoutIcon /> Logout </MenuItem>
           </Menu>
