@@ -138,6 +138,7 @@ requirement: 'Deep working knowledge of Shopify platforms'
 
 
   return (
+    <>
     <Container
             sx={{
               py: 2,
@@ -163,11 +164,11 @@ requirement: 'Deep working knowledge of Shopify platforms'
                   <Typography
                     component="h1"
                     variant="h4"
-                    align="left"
+                    align="center"
                     color="text.primary"
                     gutterBottom
                   >
-                    Lastest announcements
+                    Job Postings
                   </Typography>
                   <Box
                     sx={{
@@ -212,7 +213,7 @@ requirement: 'Deep working knowledge of Shopify platforms'
                   <Box
                     sx={{
                       bgcolor: "white",
-                      height: "100%",
+                      height: "auto",
                       borderRadius: 2,
                       pl: 5,
                       pr: 5,
@@ -233,5 +234,7 @@ requirement: 'Deep working knowledge of Shopify platforms'
               </Grid>
             </Box>
           </Container>
+                
+                </>
   );
 }
