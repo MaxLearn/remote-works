@@ -9,7 +9,6 @@ import { Card, CardContent, CardMedia, Checkbox, Divider, FormControl, FormContr
 import { getBusinessId } from '../hooks/getBusinessId.ts';
 import { updateBusiness } from '../hooks/updateBusiness.ts';
 import { getBusinessProfile } from '../hooks/getBusinessProfile';
-import ProfileBusiness from './ProfileBusiness';
 import { Business } from "../models/Business";
 import { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
