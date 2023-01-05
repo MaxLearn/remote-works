@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import { CardActionArea} from '@mui/material';
 import { Posting } from '../models/Posting';
 import PostingBox from './PostingBox';
+import { getPostings } from '../hooks/getPostings';
 
 
 
@@ -40,6 +41,12 @@ const [postingArray, setPostingArray] = useState<Posting[]>([{
     setCurrentPosting(postingArray[0]);
   }, [postingArray]);
 
+  useEffect(() => {
+    ((async () => {
+        const value = await getPostings();
+        setPostingArray(value!);
+    })()).catch(console.error);
+}, []);
 
   return (
     <>
