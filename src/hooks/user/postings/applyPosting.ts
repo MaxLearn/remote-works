@@ -1,5 +1,5 @@
-import { getJwtToken } from '../../global/accessToken'; 
-import { getUserId } from '../account/getUserId';
+import { getJwtToken } from '../../global/accessToken.ts'; 
+import { getUserId } from '../account/getUserId.ts';
 import axios from 'axios';
  export const applyPosting = async (postingID: any) => {
     try {

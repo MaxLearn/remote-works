@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import { CardActionArea} from '@mui/material';
 import { Posting } from '../models/Posting';
 import PostingBox from './PostingBox';
-import { getPostings } from '../hooks/getPostings';
+import { getPostings } from '../hooks/getPostings.ts'; 
 
 
 

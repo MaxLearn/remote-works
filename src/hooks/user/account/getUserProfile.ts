@@ -1,5 +1,5 @@
-import { getJwtToken } from '../../global/accessToken'; 
-import { getUserId } from './getUserId'; 
+import { getJwtToken } from '../../global/accessToken.ts'; 
+import { getUserId } from './getUserId.ts'; 
 import axios from 'axios';
 import { User } from '../../../models/User';
 

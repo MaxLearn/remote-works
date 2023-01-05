@@ -1,5 +1,5 @@
-import { getJwtToken } from '../../global/accessToken';
-import { getBusinessId } from './getBusinessId';
+import { getJwtToken } from '../../global/accessToken.ts';
+import { getBusinessId } from './getBusinessId.ts';
 import axios from 'axios';
 import { Business } from '../../../models/Business';
 
