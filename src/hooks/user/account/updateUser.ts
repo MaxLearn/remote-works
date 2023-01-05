@@ -1,4 +1,4 @@
-import { getJwtToken } from './accessToken.ts';
+import { getJwtToken } from '../../global/accessToken'; 
 import axios from 'axios';
 
  export const updateUser = async (userId: String, userInfo: Object) => {

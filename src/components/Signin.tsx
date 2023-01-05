@@ -12,8 +12,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Radio, RadioGroup } from "@mui/material";
-import { ValidateEmail } from "../hooks/validateEmail.ts";
-import { validatePassword } from "../hooks/validatePassword.ts";
+import { ValidateEmail } from "../hooks/validation/validateEmail";
+import { validatePassword } from "../hooks/validation/validatePassword";
 import { useNavigate } from "react-router-dom"
 import { signInUser } from "../hooks/user/account/signInUser.ts";
 import { signInBusiness } from "../hooks/business/account/signInBusiness.ts";
@@ -24,13 +24,12 @@ const theme = createTheme();
 
 export default function SignUp() {
   const navigate = useNavigate();
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(data.get("email"))
-    const email = data.get("email")
-    const password = data.get("password")
+    const email: any = data.get("email")
+    const password: any = data.get("password")
     const accountType = data.get("controlled-radio-buttons-group")
 
     if (!ValidateEmail(email)) {

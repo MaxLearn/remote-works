@@ -1,5 +1,5 @@
 import jwt_decode, { JwtPayload } from "jwt-decode";
-import { getJwtToken } from './accessToken.ts';
+import { getJwtToken } from "../../global/accessToken";
 
 type customJwtPayload = JwtPayload & { userId: string };
 
@@ -9,3 +9,5 @@ const decoded = jwt_decode<customJwtPayload>(token);
 return decoded.userId; 
 
 }
+
+

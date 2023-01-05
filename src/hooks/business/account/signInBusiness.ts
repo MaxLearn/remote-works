@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setJwtToken, setRefreshToken } from './accessToken.ts';
+import { setJwtToken, setRefreshToken } from '../../global/accessToken'; 
 
  export const signInBusiness = async (email: String, password: String) => {
   console.log("this is password: " + password)
