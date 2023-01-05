@@ -17,34 +17,40 @@ export default function PostingsList() {
 
 const [currentPosting, setCurrentPosting] = useState<Posting>()
 
-const [postingArray, setPostingArray] = useState<Posting[]>([{
-  _id: '',
-  business_name: 'Tech.io',
-  job_title: 'Full Stack dev',
-  timezone: '',
-  field: 'Software Devlopment',
-  country: 'Canada',
-  created_date: new Date(),
-  description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
-  salary: '$55,000 - $120,000 a year',
-  start_date: new Date(),
-  isContract: true,
-  contract_length_in_months: 12,
-  isRenewable: true,
-  isPromoted: false,
-  requirement: 'Deep working knowledge of Shopify platforms'
-}]);
+const [postingArray, setPostingArray] = useState<Array<any>>([
+//   {
+//   _id: '',
+//   business_name: 'Tech.io',
+//   job_title: 'Full Stack dev',
+//   timezone: '',
+//   field: 'Software Devlopment',
+//   country: 'Canada',
+//   created_date: new Date(),
+//   description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
+//   salary: '$55,000 - $120,000 a year',
+//   start_date: new Date(),
+//   isContract: true,
+//   contract_length_in_months: 12,
+//   isRenewable: true,
+//   isPromoted: false,
+//   requirement: 'Deep working knowledge of Shopify platforms'
+// }
+]
+);
 
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    setCurrentPosting(postingArray[0]);
-  }, [postingArray]);
+  // useEffect(() => {
+  //   setCurrentPosting(postingArray[0]);
+  // }, [postingArray]);
 
   useEffect(() => {
     ((async () => {
         const value = await getPostings();
-        setPostingArray(value!);
+        console.log(value)
+        for ( let val of value) {
+          setPostingArray(postingArray => [...postingArray, val]);
+        }
     })()).catch(console.error);
 }, []);
 
@@ -108,7 +114,7 @@ const [postingArray, setPostingArray] = useState<Posting[]>([{
                                     <p>{posting.country}</p>
                                     <p>{posting.salary}</p>
                                     <p>
-                                      {posting.description.substring(0, 150)}..
+                                      {/* {posting.description.substring(0, 150)}.. */}
                                     </p>
                                   </>
                                   <Button>more detail...</Button>
