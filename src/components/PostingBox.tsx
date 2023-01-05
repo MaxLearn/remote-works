@@ -1,18 +1,17 @@
 import { Button, Divider, IconButton } from '@mui/material'
-import React from 'react'
 import { Posting } from '../models/Posting'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import styled from "styled-components";
 
 const CategoryTitle = styled.h4`
-    
+
 `
 
 const JobTitle = styled.h1`
 
 `
 const CategoryText = styled.p`
-    
+
 `
 function PostingBox(props: Posting) {
   return (
