@@ -7,7 +7,7 @@ import { Posting } from '../../../models/Posting';
     try {
         let myToken = getJwtToken();
         let businessId = getBusinessId();
-        let url = `http://localhost:4000/postings/apply/${postingID}`
+        let url = `http://localhost:4000/postings/${postingID}`
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
 
       let res = await axios.patch(url, posting, headers)
