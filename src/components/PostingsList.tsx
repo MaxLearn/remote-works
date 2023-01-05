@@ -38,7 +38,7 @@ const [postingArray, setPostingArray] = useState<Array<any>>([
 ]
 );
 
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
 
   // useEffect(() => {
   //   setCurrentPosting(postingArray[0]);
@@ -99,7 +99,7 @@ const [postingArray, setPostingArray] = useState<Array<any>>([
                         postingArray.map((posting) => (
                           <Grid item xs={12} sm={12}>
                             <CardActionArea
-                              onClick={() => setCurrentPosting(posting)}
+                              onClick={() => setPostingArray(postingArray)}
                             >
                               <Card
                                 sx={{
@@ -142,6 +142,7 @@ const [postingArray, setPostingArray] = useState<Array<any>>([
                       sx={{
                         mt: 7,
                         bgcolor: "white",
+                        border:1
                       }}
                     >
                       {currentPosting && <PostingBox {...currentPosting} />}

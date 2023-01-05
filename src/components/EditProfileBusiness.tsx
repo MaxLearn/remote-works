@@ -13,8 +13,6 @@ import ProfileBusiness from './ProfileBusiness';
 import { Business } from "../models/Business";
 
 
-const theme = createTheme();
-
 export default function Profile() {
 
 
@@ -63,7 +61,6 @@ export default function Profile() {
     // }
 
     return (
-        <ThemeProvider theme={theme}>
             <Box
                 sx={{
                     display: 'flex',
@@ -254,6 +251,5 @@ export default function Profile() {
                     </Grid>
                 </Grid>
             </Box>
-        </ThemeProvider>
     );
 }
