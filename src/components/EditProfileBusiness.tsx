@@ -6,9 +6,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Card, CardContent, CardMedia, Divider, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { getBusinessId } from '../hooks/getBusinessId.ts';
-import { updateBusiness } from '../hooks/updateBusiness.ts';
-import { getBusinessProfile } from '../hooks/getBusinessProfile';
+import { getBusinessId } from '../hooks/business/account/getBusinessId.ts';
+import { updateBusiness } from '../hooks/business/account/updateBusiness.ts';
+import { getBusinessProfile } from '../hooks/business/account/getBusinessProfile';
 import ProfileBusiness from './ProfileBusiness';
 import { Business } from "../models/Business";
 

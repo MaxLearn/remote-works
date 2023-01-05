@@ -1,24 +1,21 @@
 import { getJwtToken } from './accessToken.ts';
 import { getBusinessId } from './getBusinessId.ts';
 import axios from 'axios';
-import { Business } from '../models/Business';
+import { Posting } from '../../../models/Posting';
 
- export const getBusinessProfile = async () => {
+ export const getBusinessPostings = async (postingID: any, posting: Posting) => {
     try {
         let myToken = getJwtToken();
         let businessId = getBusinessId();
-        console.log("in getBusinessProfile" + businessId)
-        let url = `http://localhost:4000/business/${businessId}`
+        let url = `http://localhost:4000/postings/apply/${postingID}`
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
 
-      let res = await axios.get(url, headers)
+      let res = await axios.patch(url, posting, headers)
       .catch( function (error) {
         console.log(error)
       })
       if (res) 
-      { let data: Business = res.data ;
-     return data;
-      }
+    console.log(res)
       
     } catch (e) {
       console.log(e)

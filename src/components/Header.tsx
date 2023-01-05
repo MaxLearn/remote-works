@@ -17,7 +17,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom"
 import EmailIcon from '@mui/icons-material/Email';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { getAccountType } from "../hooks/accountType";
+import { getAccountType } from "../hooks/global/accountType";
 import ArticleIcon from '@mui/icons-material/Article';
 
 

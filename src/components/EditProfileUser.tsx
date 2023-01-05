@@ -6,9 +6,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {FormControl, InputLabel, MenuItem, Select} from '@mui/material';
-import { getUserId } from '../hooks/getUserId.ts';
-import { updateUser } from '../hooks/updateUser.ts';
-import { getUserProfile } from '../hooks/getUserProfile';
+import { getUserId } from '../hooks/user/account/getUserId';
+import { updateUser } from '../hooks/user/account/updateUser.ts';
+import { getUserProfile } from '../hooks/user/account/getUserProfile';
 import ProfileUser from './ProfileUser';
 import { User } from "../models/User";
 

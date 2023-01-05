@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Card, CardMedia, CardContent, Divider } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom"
-import { getUserProfile } from '../hooks/getUserProfile';
+import { getUserProfile } from '../hooks/user/account/getUserProfile';
 import { User } from "../models/User";
 
 

@@ -1,7 +1,7 @@
 import { getJwtToken } from './accessToken.ts';
 import { getUserId } from './getUserId.ts';
 import axios from 'axios';
-import { User } from '../models/User';
+import { User } from '../../../models/User';
 
  export const getUserProfile = async () => {
     try {

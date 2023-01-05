@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Card, CardMedia, CardContent, Divider, autocompleteClasses } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom"
-import { getBusinessProfile } from '../hooks/getBusinessProfile';
+import { getBusinessProfile } from '../hooks/business/account/getBusinessProfile';
 import { Business } from "../models/Business";
 
 

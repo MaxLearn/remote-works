@@ -1,5 +1,5 @@
 import { validatePassword } from './../hooks/validatePassword';
-import { ValidateEmail } from "../hooks/validateEmail";
+import { ValidateEmail } from "../hooks/validation/validateEmail";
 
 describe("Validation of email", () => {
     test("it should validate the email format (testing@hotmail.com)", () => {

@@ -15,9 +15,9 @@ import { Radio, RadioGroup } from "@mui/material";
 import { ValidateEmail } from "../hooks/validateEmail.ts";
 import { validatePassword } from "../hooks/validatePassword.ts";
 import { useNavigate } from "react-router-dom"
-import { signInUser } from "../hooks/signInUser.ts";
-import { signInBusiness } from "../hooks/signInBusiness.ts";
-import { setAccountType } from "../hooks/accountType";
+import { signInUser } from "../hooks/user/account/signInUser.ts";
+import { signInBusiness } from "../hooks/business/account/signInBusiness.ts";
+import { setAccountType } from "../hooks/global/accountType";
 
 
 const theme = createTheme();
