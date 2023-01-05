@@ -11,8 +11,6 @@ import { getUserProfile } from '../hooks/user/account/getUserProfile';
 import { User } from "../models/User";
 
 
-
-
 export default function ProfileUser(props: { user: User }) {
 
     const theme = createTheme();
