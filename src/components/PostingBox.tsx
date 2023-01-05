@@ -2,6 +2,8 @@ import { Button, Divider, IconButton } from '@mui/material'
 import { Posting } from '../models/Posting'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import styled from "styled-components";
+import { applyPosting } from '../hooks/user/postings/applyPosting';
+import { Box } from '@mui/system';
 
 const CategoryTitle = styled.h4`
 
@@ -14,12 +16,26 @@ const CategoryText = styled.p`
 
 `
 function PostingBox(props: Posting) {
+
+  const handleSubmit = (event: { preventDefault: () => void; currentTarget: HTMLFormElement | undefined; }) =>{
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const postingID: any = data.get("postingID");
+    applyPosting(postingID);
+    alert("You have applied!")
+  }
+
   return (
-    <>
+    <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+    >
             <JobTitle>{props.job_title}</JobTitle>
-            <p>Got to add company name here<br></br>
+            <p>{props.business_name}<br></br>
               {props.country}<br></br>
-              <Button>Apply now</Button><IconButton><FavoriteIcon fontSize='large' /></IconButton>
+            <input name="postingID" id="postingID"type="hidden">{props._id}</input>
+              <Button type="submit">Apply now</Button><IconButton><FavoriteIcon fontSize='large' /></IconButton>
             </p>
             <Divider />
             <CategoryTitle>Created date</CategoryTitle>
@@ -34,7 +50,7 @@ function PostingBox(props: Posting) {
             <CategoryText>{props.requirement}</CategoryText>
           <Divider />
         
-    </>
+    </Box>
   )
 }
 

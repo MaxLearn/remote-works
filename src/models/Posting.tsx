@@ -1,4 +1,6 @@
 export interface Posting {
+    _id: String,
+    business_name: String,
     job_title: String,
     timezone: String,
     field: String,

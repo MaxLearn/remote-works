@@ -17,6 +17,8 @@ export default function PostingsList() {
 const [currentPosting, setCurrentPosting] = useState<Posting>()
 
 const [postingArray, setPostingArray] = useState<Posting[]>([{
+  _id: '',
+  business_name: 'Tech.io',
   job_title: 'Full Stack dev',
   timezone: '',
   field: 'Software Devlopment',
@@ -30,104 +32,6 @@ const [postingArray, setPostingArray] = useState<Posting[]>([{
   isRenewable: true,
   isPromoted: false,
   requirement: 'Deep working knowledge of Shopify platforms'
-},{
-job_title: 'Front end Developer',
-timezone: '',
-field: 'Software Devlopment',
-country: 'Australia',
-created_date: new Date(),
-description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
-salary: '$60,000 - $120,000 a year',
-start_date: new Date(),
-isContract: false,
-contract_length_in_months: 12,
-isRenewable: true,
-isPromoted: false,
-requirement: 'Deep working knowledge of front end developpement'
-},{
-job_title: 'Full Stack dev',
-timezone: '',
-field: 'Software Devlopment',
-country: 'Canada',
-created_date: new Date(),
-description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
-salary: '$55,000 - $120,000 a year',
-start_date: new Date(),
-isContract: true,
-contract_length_in_months: 12,
-isRenewable: true,
-isPromoted: false,
-requirement: 'Deep working knowledge of Shopify platforms'
-},{
-job_title: 'Full Stack dev',
-timezone: '',
-field: 'Software Devlopment',
-country: 'Canada',
-created_date: new Date(),
-description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
-salary: '$55,000 - $120,000 a year',
-start_date: new Date(),
-isContract: true,
-contract_length_in_months: 12,
-isRenewable: true,
-isPromoted: false,
-requirement: 'Deep working knowledge of Shopify platforms'
-},{
-job_title: 'Full Stack dev',
-timezone: '',
-field: 'Software Devlopment',
-country: 'Canada',
-created_date: new Date(),
-description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
-salary: '$55,000 - $120,000 a year',
-start_date: new Date(),
-isContract: true,
-contract_length_in_months: 12,
-isRenewable: true,
-isPromoted: false,
-requirement: 'Deep working knowledge of Shopify platforms'
-},{
-job_title: 'Full Stack dev',
-timezone: '',
-field: 'Software Devlopment',
-country: 'Canada',
-created_date: new Date(),
-description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
-salary: '$55,000 - $120,000 a year',
-start_date: new Date(),
-isContract: true,
-contract_length_in_months: 12,
-isRenewable: true,
-isPromoted: false,
-requirement: 'Deep working knowledge of Shopify platforms'
-},{
-job_title: 'Full Stack dev',
-timezone: '',
-field: 'Software Devlopment',
-country: 'Canada',
-created_date: new Date(),
-description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
-salary: '$55,000 - $120,000 a year',
-start_date: new Date(),
-isContract: true,
-contract_length_in_months: 12,
-isRenewable: true,
-isPromoted: false,
-requirement: 'Deep working knowledge of Shopify platforms'
-},{
-job_title: 'Full Stack dev',
-timezone: '',
-field: 'Software Devlopment',
-country: 'Canada',
-created_date: new Date(),
-description: 'You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming You are passionate about technology issues. You have an interest in creating and developing new applications and you are familiar with Java programming',
-salary: '$55,000 - $120,000 a year',
-start_date: new Date(),
-isContract: true,
-contract_length_in_months: 12,
-isRenewable: true,
-isPromoted: false,
-requirement: 'Deep working knowledge of Shopify platforms'
 }]);
 
   const [show, setShow] = useState(false);
