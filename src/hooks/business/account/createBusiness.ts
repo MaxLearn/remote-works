@@ -2,7 +2,12 @@ import axios from 'axios';
 
  export const createBusiness = async (email: String, password: String) => {
     try {
-      let res = await axios.post(`http://localhost:4000/business`, {'email' : email, 'password' : password})
+      let address =  "https://remote-works-backend-production.up.railway.app"
+      let route = `/business`
+      let url = address + route
+      let body ={'email' : email, 'password' : password}
+      
+      let res = await axios.post(url, body)
       .catch( function (error) {
         console.log(error)
       })

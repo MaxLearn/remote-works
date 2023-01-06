@@ -8,7 +8,9 @@ import { Business } from '../../../models/Business';
         let myToken = getJwtToken();
         let businessId = getBusinessId();
         console.log("in getBusinessProfile" + businessId)
-        let url = `http://localhost:4000/business/${businessId}`
+        let address =  "https://remote-works-backend-production.up.railway.app"
+        let route = `/business/${businessId}`
+        let url = address + route
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
 
       let res = await axios.get(url, headers)

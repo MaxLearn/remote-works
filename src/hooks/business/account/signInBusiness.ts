@@ -4,7 +4,11 @@ import { setJwtToken, setRefreshToken } from '../../global/accessToken.ts';
  export const signInBusiness = async (email: String, password: String) => {
   console.log("this is password: " + password)
     try {
-      let res = await axios.post(`http://localhost:4000/auth/business`, {'email' : email, 'password' : password})
+      let address =  "https://remote-works-backend-production.up.railway.app"
+      let route = `/auth/business`
+      let url = address + route
+      let body =  {'email' : email, 'password' : password}
+      let res = await axios.post(url, body)
       .catch( function (error) {
         console.log(error)
       })
