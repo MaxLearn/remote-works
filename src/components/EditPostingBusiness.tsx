@@ -6,14 +6,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Card, CardContent, CardMedia, Checkbox, Divider, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select } from '@mui/material';
-import { getBusinessId } from '../hooks/business/account/getBusinessId';
-import { updateBusiness } from '../hooks/business/account/updateBusiness.ts';
 import { getBusinessProfile } from '../hooks/business/account/getBusinessProfile';
 import { Business } from "../models/Business";
 import { Dayjs } from "dayjs";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { createBusinessPostings } from '../hooks/business/postings/createBusinessPostings';
 
 const theme = createTheme();
 
@@ -51,19 +50,18 @@ export default function EditPosting() {
         const inputJobType = data.get("controlled-radio-buttons-group")
 
         const newPostingJob = {
-            jobTitle: inputJobTitle,
+            job_title: inputJobTitle,
             timeZone: inputTimeZone,
             country: inputCountry,
             salary: inputSalary,
-            createdDate: inputCreatedDate,
             starDate: inputStartDate,
             contractLenght: inputContract,
             description: inputDescription,
-            requirements: inputRequirement,
+            requirement: inputRequirement,
             jobType: inputJobType,
         };
 
-        updateBusiness(getBusinessId(), newPostingJob);
+        createBusinessPostings(newPostingJob);
 
         setUpdate(update++);
 
@@ -219,20 +217,8 @@ export default function EditPosting() {
                                             </fieldset>
                                         </Grid>
 
-                                        <Grid item xs={12} sm={4}>
-                                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                                <DatePicker
-                                                    label="Created date"
-                                                    value={inputCreatedDate}
-                                                    onChange={(newValue) => {
-                                                        setCreatedDate(newValue);
-                                                    }}
-                                                    renderInput={(params) => <TextField {...params} />}
-                                                />
-                                            </LocalizationProvider>
-                                        </Grid>
-
-                                        <Grid item xs={12} sm={4}>
+                        
+                                        <Grid item xs={12} sm={5}>
                                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                 <DatePicker
                                                     label="Start date"
@@ -245,7 +231,7 @@ export default function EditPosting() {
                                             </LocalizationProvider>
                                         </Grid>
 
-                                        <Grid item xs={12} sm={4}>
+                                        <Grid item xs={12} sm={5}>
                                             <FormControl fullWidth>
                                                 <InputLabel>Contract Lenght</InputLabel>
                                                 <Select
