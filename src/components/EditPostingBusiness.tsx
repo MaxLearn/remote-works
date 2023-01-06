@@ -10,7 +10,7 @@ import { getBusinessId } from '../hooks/business/account/getBusinessId';
 import { updateBusiness } from '../hooks/business/account/updateBusiness.ts';
 import { getBusinessProfile } from '../hooks/business/account/getBusinessProfile';
 import { Business } from "../models/Business";
-import { Dayjs } from 'dayjs';
+import { Dayjs } from "dayjs";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
