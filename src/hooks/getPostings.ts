@@ -3,8 +3,11 @@ import { Posting } from '../models/Posting';
 
  export const getPostings = async () => {
     try {
-        let url = `http://localhost:4000/postings`
 
+      let address =  "https://remote-works-backend-production.up.railway.app"
+      let route = `/postings`
+      let url = address + route
+      
       let res = await axios.get(url)
       .catch( function (error) {
         console.log(error)

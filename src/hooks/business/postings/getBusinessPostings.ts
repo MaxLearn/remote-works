@@ -7,7 +7,9 @@ import { Posting } from '../../../models/Posting';
     try {
         let myToken = getJwtToken();
         let businessId = getBusinessId();
-        let url = `http://localhost:4000/business/postings/${businessId}`
+        let address =  "https://remote-works-backend-production.up.railway.app"
+        let route = `/business/postings/${businessId}`
+        let url = address + route
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
 
       let res = await axios.get(url, headers)

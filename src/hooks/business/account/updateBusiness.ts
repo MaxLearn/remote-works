@@ -5,8 +5,11 @@ import axios from 'axios';
     try {
         console.log('in updateBusiness ' + businessInfo)
         let myToken = getJwtToken();
+        let address =  "https://remote-works-backend-production.up.railway.app"
+        let route = `/business/${businessId}`
+        let url = address + route
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
-      let res = await axios.patch(`http://localhost:4000/business/${businessId}`, businessInfo, headers)
+      let res = await axios.patch(url, businessInfo, headers)
       .catch( function (error) {
         console.log(error)
       })

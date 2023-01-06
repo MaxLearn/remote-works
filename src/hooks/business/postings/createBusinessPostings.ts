@@ -5,7 +5,9 @@ import { Posting } from '../../../models/Posting';
  export const createBusinessPostings = async (newPosting: Posting) => {
     try {
         let myToken = getJwtToken();
-        let url = `http://localhost:4000/business/postings`
+        let address =  "https://remote-works-backend-production.up.railway.app"
+        let route = `/postings`
+        let url = address + route
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
 
       let res = await axios.post(url, newPosting, headers)

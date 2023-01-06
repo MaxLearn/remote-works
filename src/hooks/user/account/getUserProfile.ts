@@ -7,7 +7,9 @@ import { User } from '../../../models/User';
     try {
         let myToken = getJwtToken();
         let userId = getUserId();
-        let url = `http://localhost:4000/users/${userId}`
+        let address =  "https://remote-works-backend-production.up.railway.app"
+        let route = `/users/${userId}`
+        let url = address + route
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
       let res = await axios.get(url, headers)
       .catch( function (error) {

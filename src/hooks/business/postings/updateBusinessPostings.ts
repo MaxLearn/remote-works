@@ -1,13 +1,14 @@
 import { getJwtToken } from '../../global/accessToken.ts'; 
-import { getBusinessId } from '../account/getBusinessId.ts'; 
 import axios from 'axios';
 import { Posting } from '../../../models/Posting';
 
  export const getBusinessPostings = async (postingID: any, posting: Posting) => {
     try {
+      
         let myToken = getJwtToken();
-        let businessId = getBusinessId();
-        let url = `http://localhost:4000/postings/${postingID}`
+        let address =  "https://remote-works-backend-production.up.railway.app"
+        let route = `/postings/${postingID}`
+        let url = address + route
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
 
       let res = await axios.patch(url, posting, headers)
