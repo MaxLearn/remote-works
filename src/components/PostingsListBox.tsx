@@ -18,15 +18,19 @@ export default function PostingsList() {
 const [currentPosting, setCurrentPosting] = useState<Posting>()
 
 const [postingArray, setPostingArray] = useState<Array<any>>([]);
-
+/* 
 useEffect(() => {
 setCurrentPosting(postingArray[0])
-}, [postingArray] ) 
+}, [postingArray] ) */
 
   useEffect(() => {
     ((async () => {
         const value = await getPostings();
         setPostingArray(value)
+    /*     for ( let val of value) {
+          setPostingArray(postingArray => [...postingArray, val]);
+        } */
+      
     })()).catch(console.error);
 }, []);
 
@@ -75,7 +79,7 @@ setCurrentPosting(postingArray[0])
                         postingArray.map((posting) => (
                           <Grid item xs={12} sm={12}>
                             <CardActionArea
-                              onClick={() => setCurrentPosting(posting)}
+                              onClick={() => setPostingArray(postingArray)}
                             >
                               <Card
                                 sx={{
@@ -90,7 +94,7 @@ setCurrentPosting(postingArray[0])
                                     <p>{posting.country}</p>
                                     <p>{posting.salary}</p>
                                     <p>
-                                      {posting.description && posting.description.substring(0, 150)}
+                                      {/* {posting.description.substring(0, 150)}.. */}
                                     </p>
                                   </>
                                   <Button>more detail...</Button>

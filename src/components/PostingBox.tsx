@@ -26,31 +26,32 @@ function PostingBox(props: Posting) {
   }
 
   return (
+    <>
     <Box
             component="form"
-            noValidate
             onSubmit={handleSubmit}
-    >
+            >
             <JobTitle>{props.job_title}</JobTitle>
-            <p>{props.business_name}<br></br>
-              {props.country}<br></br>
-            <input name="postingID" id="postingID"type="hidden">{props._id}</input>
+            <p>{props.business_name && props.business_name}<br></br>
+              {props.country && props.country}<br></br>
+            <input name="postingID" id="postingID"type="hidden" value={props._id}/>
               <Button type="submit">Apply now</Button><IconButton><FavoriteIcon fontSize='large' /></IconButton>
             </p>
             <Divider />
             <CategoryTitle>Created date</CategoryTitle>
-            <CategoryText>{props.created_date.toString()}</CategoryText>
+            <CategoryText>{props.created_date && props.created_date.toString()}</CategoryText>
             <CategoryTitle>Salary</CategoryTitle>
-            <CategoryText>{props.salary}</CategoryText>
+            <CategoryText>{props.salary && props.salary}</CategoryText>
             <CategoryTitle>Job Type</CategoryTitle>
-            <CategoryText>{props.field}</CategoryText>
+            <CategoryText>{props.field && props.field}</CategoryText>
             <CategoryTitle>Full job Description:</CategoryTitle>
-            <CategoryText>{props.description}</CategoryText>
+            <CategoryText>{props.description && props.description}</CategoryText>
             <CategoryTitle>What you'll need</CategoryTitle>
-            <CategoryText>{props.requirement}</CategoryText>
+            <CategoryText>{props.requirement && props.requirement}</CategoryText>
           <Divider />
         
     </Box>
+      </>
   )
 }
 
