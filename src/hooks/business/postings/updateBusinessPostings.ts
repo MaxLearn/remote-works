@@ -2,9 +2,9 @@ import { getJwtToken } from '../../global/accessToken.ts';
 import axios from 'axios';
 import { Posting } from '../../../models/Posting';
 
- export const getBusinessPostings = async (postingID: any, posting: Posting) => {
+ export const updateBusinessPosting = async (postingID: any, posting: Posting) => {
     try {
-      
+
         let myToken = getJwtToken();
         let address =  "https://remote-works-backend-production.up.railway.app"
         let route = `/postings/${postingID}`

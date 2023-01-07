@@ -10,6 +10,7 @@ import { CardActionArea} from '@mui/material';
 import { Posting } from '../models/Posting';
 import PostingBox from './PostingBox';
 import { getPostings } from '../hooks/getPostings.ts'; 
+import { getBusinessPostings } from '../hooks/business/postings/getBusinessPostings';
 
 
 
@@ -25,8 +26,8 @@ setCurrentPosting(postingArray[0])
 
   useEffect(() => {
     ((async () => {
-        const value = await getPostings();
-        setPostingArray(value)
+        const value = await getBusinessPostings();
+      //  setPostingArray(value)
     /*     for ( let val of value) {
           setPostingArray(postingArray => [...postingArray, val]);
         } */
@@ -94,10 +95,10 @@ setCurrentPosting(postingArray[0])
                                     <p>{posting.country}</p>
                                     <p>{posting.salary}</p>
                                     <p>
-                                      {/* {posting.description.substring(0, 150)}.. */}
+                                    {posting.description && posting.description.substring(0, 150)}
                                     </p>
                                   </>
-                                  <Button>more detail...</Button>
+                                  <Button>delete</Button>
                                 </CardContent>
                               </Card>
                             </CardActionArea>
