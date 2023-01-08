@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Card, CardContent, CardMedia, Checkbox, Divider, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select } from '@mui/material';
+import { Card, CardContent, CardMedia, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select } from '@mui/material';
 import { getBusinessProfile } from '../hooks/business/account/getBusinessProfile';
 import { Business } from "../models/Business";
 import { Dayjs } from "dayjs";
@@ -13,13 +13,15 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { createBusinessPostings } from '../hooks/business/postings/createBusinessPostings';
+import { getBusinessPostings } from '../hooks/business/postings/getBusinessPostings';
+import { Posting } from '../models/Posting';
 
 const theme = createTheme();
 
 export default function EditPosting() {
 
 
-
+    const [postingArray, setPostingArray] = useState<Array<Posting>>();
     const [businessInfo, setBusinessInfo] = useState<Business>();
 
     const [inputCreatedDate, setCreatedDate] = React.useState<Dayjs | null>(null);
@@ -38,8 +40,10 @@ export default function EditPosting() {
     useEffect(() => {
         ((async () => {
             const businessInfo = await getBusinessProfile();
+            const post = await getBusinessPostings();
             console.log(businessInfo);
             setBusinessInfo(businessInfo);
+            setPostingArray(post);
         })()).catch(console.error);
     }, []);
 
@@ -204,20 +208,20 @@ export default function EditPosting() {
 
                                         <Grid item xs={12} sm={12} >
                                             <fieldset style={{ color: '#ababab' }}>
-                                                <legend>Job Type</legend>                   
+                                                <legend>Job Type</legend>
                                                 <RadioGroup
                                                     row
                                                     aria-labelledby="demo-controlled-radio-buttons-group"
                                                     name="controlled-radio-buttons-group"
                                                     aria-required>
                                                     <FormControlLabel sx={{ ml: 15 }} value="fullTime" control={<Radio />} label="Full time" />
-                                                    <FormControlLabel sx={{ ml: 15 }} value="PartTime" control={<Radio />} label="Part time"/>
-                                                    <FormControlLabel sx={{ ml: 15 }} value="Contract" control={<Radio />} label="Contract"/>
+                                                    <FormControlLabel sx={{ ml: 15 }} value="PartTime" control={<Radio />} label="Part time" />
+                                                    <FormControlLabel sx={{ ml: 15 }} value="Contract" control={<Radio />} label="Contract" />
                                                 </RadioGroup>
                                             </fieldset>
                                         </Grid>
 
-                        
+
                                         <Grid item xs={12} sm={5}>
                                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                 <DatePicker
@@ -305,7 +309,7 @@ export default function EditPosting() {
 
                     <Grid item xs={12} sm={3} md={5} >
 
-                        {/* <ProfileBusiness business={businessInfo!} /> */}
+
 
                         <Box
                             sx={{
@@ -341,7 +345,7 @@ export default function EditPosting() {
 
                                     <Card
                                         sx={{
-                                            height: '100%',
+                                            height: 700,
                                             display: 'flex',
                                             flexDirection: 'column',
                                             alignItems: 'center'
@@ -349,16 +353,43 @@ export default function EditPosting() {
 
                                         <CardContent
                                             sx={{
-                                                width: '450px',
-                                                height: '450px',
+                                                flexGrow: 1,
+                                                width: '100%',
                                                 textAlign: 'justify',
-                                                overflowY: 'scroll',
+                                                mt: 5,
+                                                overflowY: 'scroll'
                                             }}>
-                                            {businessInfo && (
-                                                <span>
-                                                    Jobs: {businessInfo.job_posting}
-                                                </span>
-                                            )}
+
+
+                                            <Grid container spacing={4}>
+                                                {postingArray &&
+                                                    postingArray.map((posting) => (
+                                                        <Grid item xs={12} sm={12}>
+
+                                                            <Card
+                                                                sx={{
+                                                                    height: "100%",
+                                                                    display: "flex",
+                                                                    flexDirection: "column",
+                                                                }}
+                                                            >
+                                                                <CardContent sx={{ flexGrow: 1 }}>
+                                                                    <>
+                                                                        <h1>{posting.job_title}</h1>
+                                                                        <p>{posting.country}</p>
+                                                                        <p>{posting.salary}</p>
+                                                                        <p>
+                                                                            {/* {posting.description.substring(0, 150)}.. */}
+                                                                        </p>
+                                                                    </>
+
+                                                                </CardContent>
+                                                            </Card>
+
+                                                        </Grid>
+                                                    ))}
+                                            </Grid>
+
                                         </CardContent>
                                     </Card>
                                 </Box>

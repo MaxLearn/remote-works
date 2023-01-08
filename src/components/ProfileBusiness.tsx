@@ -4,11 +4,13 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Card, CardMedia, CardContent, Divider, autocompleteClasses } from '@mui/material';
+import { Card, CardMedia, CardContent, Divider, autocompleteClasses, CardActionArea, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom"
-import { getBusinessProfile } from '../hooks/business/account/getBusinessProfile';
+import { getBusinessProfile } from '../hooks/business/account/getBusinessProfile.ts';
 import { Business } from "../models/Business";
+import { Posting } from '../models/Posting';
+import { getBusinessPostings } from '../hooks/business/postings/getBusinessPostings.ts';
 
 
 export default function ProfileBusiness(props: { business: Business }) {
@@ -16,21 +18,35 @@ export default function ProfileBusiness(props: { business: Business }) {
     const theme = createTheme();
     const navigate = useNavigate();
     const [businessInfo, setBusinessInfo] = useState<Business>(props.business!);
+    const [postingArray, setPostingArray] = useState<Array<any>>([]);
+    const [moreDetail, setMoreDetail] = React.useState(false);
+    const [currentPosting, setCurrentPosting] = useState<Posting>()
+
+    const handleClicDetail = () => {
+        setMoreDetail(true);
+    };
+
+    const handleCloseDetail = () => {
+        setMoreDetail(false);
+    };
+
+    useEffect(() => {
+        setCurrentPosting(postingArray[0])
+        }, [postingArray] ) 
 
     useEffect(() => {
         ((async () => {
+            const post = await getBusinessPostings();
             const value = await getBusinessProfile();
+
+            console.log(post);
             console.log(value);
+
             setBusinessInfo(value!);
+            setPostingArray(post);
         })()).catch(console.error);
     }, []);
-    const [items, setItems] = useState([
-        {
-            itemJob: '',
-            itemCie: '',
-            itemYear: '',
-        },
-    ]);
+   
     if (!businessInfo) return <div>nothing...</div>;
 
     return (
@@ -97,7 +113,7 @@ export default function ProfileBusiness(props: { business: Business }) {
                                     <CardContent
                                         sx={{
                                             flexGrow: 1,
-                                            width: '90%',
+                                            width: '100%',
                                             textAlign: 'justify',
                                             mt: 15,
                                             overflowY: 'scroll',
@@ -140,9 +156,11 @@ export default function ProfileBusiness(props: { business: Business }) {
                             <Box
                                 sx={{
                                     width: '95%',
-                                    height: '90%',
+                                    height: 700,
                                     ml: 2,
                                     mt: 2,
+
+
                                 }}>
 
                                 <Card
@@ -151,20 +169,61 @@ export default function ProfileBusiness(props: { business: Business }) {
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center'
+
                                     }}>
 
                                     <CardContent
                                         sx={{
                                             flexGrow: 1,
-                                            width: '90%',
+                                            width: '100%',
                                             textAlign: 'justify',
                                             mt: 5,
+                                            overflowY: 'scroll'
                                         }}>
-                                        {businessInfo && (
-                                            <span>
-                                                Job: {businessInfo.job_posting}
-                                            </span>
-                                        )}
+
+
+                                        <Grid container spacing={4}>
+                                            {postingArray &&
+                                                postingArray.map((posting) => (
+                                                    <Grid item xs={12} sm={12}>
+
+                                                        <Card
+                                                            sx={{
+                                                                height: "100%",
+                                                                display: "flex",
+                                                                flexDirection: "column",
+                                                            }}
+                                                        >
+                                                            <CardContent sx={{ flexGrow: 1 }}>
+                                                                <>
+                                                                    <h1>{posting.job_title}</h1>
+                                                                    <p>{posting.country}</p>
+                                                                    <p>{posting.salary}</p>
+                                                                </>
+                                                                <Button onClick={handleClicDetail}>more detail...</Button>
+                                                                {/* <Dialog open={moreDetail} onClose={handleClicDetail}>
+                                                                    <DialogTitle> <h4>{posting.job_title}</h4></DialogTitle>
+                                                                    <DialogContent>
+                                                                        <DialogContentText>
+                                                                            Country: {posting.country}
+                                                                            <br></br>
+                                                                            <br></br>
+                                                                            Salary: {posting.salary}
+                                                                            <h5>Description:</h5>{posting.description}
+                                                                            <h5>Requirement:</h5>{posting.requirement}
+                                                                        </DialogContentText>
+                                                                    </DialogContent>
+                                                                    <DialogActions>
+                                                                        <Button onClick={handleCloseDetail}>Close</Button>
+                                                                    </DialogActions>
+                                                                </Dialog> */}
+                                                            </CardContent>
+                                                        </Card>
+
+                                                    </Grid>
+                                                ))}
+                                        </Grid>
+
                                     </CardContent>
                                 </Card>
                             </Box>
