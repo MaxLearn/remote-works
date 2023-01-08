@@ -43,8 +43,6 @@ function PostingBox(props: Posting) {
             }
             </p>
             <Divider />
-            <CategoryTitle>Created date</CategoryTitle>
-            <CategoryText>{props.created_date && props.created_date.toString()}</CategoryText>
             <CategoryTitle>Salary</CategoryTitle>
             <CategoryText>{props.salary && props.salary}</CategoryText>
             <CategoryTitle>Job Type</CategoryTitle>

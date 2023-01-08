@@ -24,8 +24,6 @@ export default function EditPosting() {
 
     const [postingArray, setPostingArray] = useState<Array<Posting>>();
     const [businessInfo, setBusinessInfo] = useState<Business>();
-
-    const [inputCreatedDate, setCreatedDate] = React.useState<Dayjs | null>(null);
     const [inputStartDate, setStartDate] = React.useState<Dayjs | null>(null);
     const [inputJobTitle, setInputJobTitle] = useState('');
     const [inputTimeZone, setInputTimeZone] = useState('');
