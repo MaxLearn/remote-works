@@ -14,24 +14,15 @@ import { getBusinessPostings } from '../hooks/business/postings/getBusinessPosti
 
 
 
-export default function PostingsList() {
+export default function PostingsListBusiness() {
 
-const [currentPosting, setCurrentPosting] = useState<Posting>()
-
-const [postingArray, setPostingArray] = useState<Array<any>>([]);
-/* 
-useEffect(() => {
-setCurrentPosting(postingArray[0])
-}, [postingArray] ) */
+const [postingArray, setPostingArray] = useState<Array<any>>();
 
   useEffect(() => {
     ((async () => {
         const value = await getBusinessPostings();
-      //  setPostingArray(value)
-    /*     for ( let val of value) {
-          setPostingArray(postingArray => [...postingArray, val]);
-        } */
-      
+        setPostingArray(value)
+
     })()).catch(console.error);
 }, []);
 
@@ -66,7 +57,7 @@ setCurrentPosting(postingArray[0])
                     color="text.primary"
                     gutterBottom
                   >
-                    Job Postings
+                    My current postings
                   </Typography>
                   <Box
                     sx={{
@@ -126,7 +117,6 @@ setCurrentPosting(postingArray[0])
                         border:1
                       }}
                     >
-                      {currentPosting && <PostingBox {...currentPosting} />}
                     </Box>
                   </Box>
                 </Grid>

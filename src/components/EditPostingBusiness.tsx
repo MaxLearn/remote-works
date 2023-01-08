@@ -15,6 +15,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { createBusinessPostings } from '../hooks/business/postings/createBusinessPostings';
 import { getBusinessPostings } from '../hooks/business/postings/getBusinessPostings';
 import { Posting } from '../models/Posting';
+import PostingsListBusiness from './PostingsListBusiness';
 
 const theme = createTheme();
 
@@ -394,7 +395,7 @@ export default function EditPosting() {
                                     </Card>
                                 </Box>
                             </Box>
-
+<PostingsListBusiness />
                             <Box
                                 sx={{
                                     margin: 'auto',
