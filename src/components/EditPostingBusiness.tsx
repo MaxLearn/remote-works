@@ -329,7 +329,7 @@ export default function EditPosting() {
                                     maxWidth: 'sm'
                                 }}>
 
-                                {/*
+                            
                                 <Box
                                     sx={{
                                         mt: 3,
@@ -407,8 +407,7 @@ export default function EditPosting() {
                                 bgcolor: "rgb(16, 70, 123)",
                                 maxWidth: 'sm'
                             }}>
-                        */}
-                            <PostingsListBusiness />
+         
                             </Box>
                             </Box>
                         </Grid> 
