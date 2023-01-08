@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.e6c13ad2.css",
-    "main.js": "/static/js/main.a9ccf36d.js",
-    "static/js/787.24aaf8e0.chunk.js": "/static/js/787.24aaf8e0.chunk.js",
-    "static/media/banner.jpg": "/static/media/banner.4ef850ecac7bbb1f4a05.jpg",
-    "static/media/LogoRemoteWorks.png": "/static/media/LogoRemoteWorks.4eb9f8a43a20c46c33c5.png",
-    "index.html": "/index.html",
-    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
-    "main.a9ccf36d.js.map": "/static/js/main.a9ccf36d.js.map",
-    "787.24aaf8e0.chunk.js.map": "/static/js/787.24aaf8e0.chunk.js.map"
+    "main.css": "/remote-works/static/css/main.e6c13ad2.css",
+    "main.js": "/remote-works/static/js/main.058b9518.js",
+    "static/js/787.24aaf8e0.chunk.js": "/remote-works/static/js/787.24aaf8e0.chunk.js",
+    "static/media/banner.jpg": "/remote-works/static/media/banner.4ef850ecac7bbb1f4a05.jpg",
+    "static/media/LogoRemoteWorks.png": "/remote-works/static/media/LogoRemoteWorks.4eb9f8a43a20c46c33c5.png",
+    "index.html": "/remote-works/index.html",
+    "main.e6c13ad2.css.map": "/remote-works/static/css/main.e6c13ad2.css.map",
+    "main.058b9518.js.map": "/remote-works/static/js/main.058b9518.js.map",
+    "787.24aaf8e0.chunk.js.map": "/remote-works/static/js/787.24aaf8e0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.a9ccf36d.js"
+    "static/js/main.058b9518.js"
   ]
 }
