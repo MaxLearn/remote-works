@@ -4,6 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import styled from "styled-components";
 import { applyPosting } from '../hooks/user/postings/applyPosting';
 import { Box } from '@mui/system';
+import { getAccountType } from '../hooks/global/accountType';
 
 const CategoryTitle = styled.h4`
 
@@ -35,7 +36,11 @@ function PostingBox(props: Posting) {
             <p>{props.business_name && props.business_name}<br></br>
               {props.country && props.country}<br></br>
             <input name="postingID" id="postingID"type="hidden" value={props._id}/>
-              <Button type="submit">Apply now</Button><IconButton><FavoriteIcon fontSize='large' /></IconButton>
+            { getAccountType() === 'employee' &&
+            <>
+            <Button type="submit">Apply now</Button><IconButton><FavoriteIcon fontSize='large' /></IconButton>
+            </>
+            }
             </p>
             <Divider />
             <CategoryTitle>Created date</CategoryTitle>
