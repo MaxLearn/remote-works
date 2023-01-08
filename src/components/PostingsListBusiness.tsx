@@ -48,8 +48,8 @@ const [postingArray, setPostingArray] = useState<Array<any>>();
                 alignItems: "center",
               }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={12} md={4}>
+              
+               
                   <Typography
                     component="h1"
                     variant="h4"
@@ -71,7 +71,7 @@ const [postingArray, setPostingArray] = useState<Array<any>>();
                         postingArray.map((posting) => (
                           <Grid item xs={12} sm={12}>
                             <CardActionArea
-                              onClick={() => setPostingArray(postingArray)}
+                             // onClick={() => deletePosting(posting._id)}
                             >
                               <Card
                                 sx={{
@@ -97,30 +97,7 @@ const [postingArray, setPostingArray] = useState<Array<any>>();
                         ))}
                     </Grid>
                   </Box>
-                </Grid>
-                <Grid item xs={12} sm={12} md={8}>
-                  <Box
-                    sx={{
-                      bgcolor: "white",
-                      height: "auto",
-                      borderRadius: 2,
-                      pl: 5,
-                      pr: 5,
-                      pt: 1,
-                    }}
-                  >
-                    <Box
-                      id="test"
-                      sx={{
-                        mt: 7,
-                        bgcolor: "white",
-                        border:1
-                      }}
-                    >
-                    </Box>
-                  </Box>
-                </Grid>
-              </Grid>
+                   
             </Box>
           </Container>
                 

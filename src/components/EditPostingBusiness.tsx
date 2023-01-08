@@ -308,7 +308,7 @@ export default function EditPosting() {
                         </Box>
                     </Grid>
 
-                    <Grid item xs={12} sm={3} md={5} >
+                     <Grid item xs={12} sm={3} md={5} >
 
 
 
@@ -329,6 +329,7 @@ export default function EditPosting() {
                                     maxWidth: 'sm'
                                 }}>
 
+                                {/*
                                 <Box
                                     sx={{
                                         mt: 3,
@@ -380,7 +381,7 @@ export default function EditPosting() {
                                                                         <p>{posting.country}</p>
                                                                         <p>{posting.salary}</p>
                                                                         <p>
-                                                                            {/* {posting.description.substring(0, 150)}.. */}
+                                                                            {posting.description && posting.description.substring(0, 150)}.. 
                                                                         </p>
                                                                     </>
 
@@ -394,22 +395,23 @@ export default function EditPosting() {
                                         </CardContent>
                                     </Card>
                                 </Box>
-                            </Box>
-<PostingsListBusiness />
+                            </Box> 
                             <Box
-                                sx={{
-                                    margin: 'auto',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    borderRadius: 2,
-                                    mt: 2,
-                                    bgcolor: "rgb(16, 70, 123)",
-                                    maxWidth: 'sm'
-                                }}>
+                            sx={{
+                                margin: 'auto',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                borderRadius: 2,
+                                mt: 2,
+                                bgcolor: "rgb(16, 70, 123)",
+                                maxWidth: 'sm'
+                            }}>
+                        */}
+                            <PostingsListBusiness />
                             </Box>
-                        </Box>
-                    </Grid>
+                            </Box>
+                        </Grid> 
                 </Grid>
             </Box>
         </ThemeProvider>
