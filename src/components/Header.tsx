@@ -78,7 +78,7 @@ function Header() {
 
   const url = "https://github.us21.list-manage.com/subscribe/post?u=483285ea997522b2afba9707c&amp;id=6c328d5f23&amp;f_id=00aed9e1f0";
   const {loading,error,success,message,handleSubmit} = useMailChimpForm(url);
-  const { fields, handleFieldChange } = useFormFields({email: "",});
+  const { fields, handleFieldChange } = useFormFields({EMAIL: "",});
 
   return (
     <AppBar position="fixed">
@@ -118,11 +118,11 @@ function Header() {
                   }}
                 >
                   <input
-                    id="email"
+                    id="EMAIL"
                     autoFocus
                     placeholder="Email Address"
                     type="email"
-                    value={fields.email}
+                    value={fields.EMAIL}
                     onChange={handleFieldChange}
                   />
                   <br></br>
