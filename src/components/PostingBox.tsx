@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { applyPosting } from '../hooks/user/postings/applyPosting';
 import { Box } from '@mui/system';
 import { getAccountType } from '../hooks/global/accountType';
+import { addToFav } from '../hooks/user/postings/addTofav';
 
 const CategoryTitle = styled.h4`
 
@@ -25,13 +26,17 @@ function PostingBox(props: Posting) {
     applyPosting(postingID);
     alert("You have applied!")
   }
-
+const handleClicAddtoFav = (postingID: any) => {
+  addToFav(postingID);
+  alert("added to favorites!");
+}
   return (
     <>
     <Box
             component="form"
             onSubmit={handleSubmit}
             >
+              {props._id && <Button onClick={() => handleClicAddtoFav(props._id)}>Add to favorites</Button>}
             <JobTitle>{props.job_title}</JobTitle>
             <p>{props.business_name && props.business_name}<br></br>
               {props.country && props.country}<br></br>
