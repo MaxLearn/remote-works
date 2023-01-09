@@ -5,7 +5,7 @@ import axios from 'axios';
         let myToken = getJwtToken();
         let address =  "https://remote-works-backend-production.up.railway.app"
         //CHANGE ROUTE 
-        let route = `to figure out`
+        let route = `/users/applications/favorite/:postingId`
         let url = address + route
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
       let res = await axios.get(url, headers)
