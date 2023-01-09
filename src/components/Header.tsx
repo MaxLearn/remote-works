@@ -10,15 +10,16 @@ import LogoRemoteWorks from "../assets/images/LogoRemoteWorks.png";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, InputBase, Menu, MenuItem, Paper, TextField } from "@mui/material";
+import { Box, colors, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, InputBase, Menu, MenuItem, Paper, TextField } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
-import { useNavigate } from "react-router-dom"
+import { Form, useNavigate } from "react-router-dom"
 import EmailIcon from '@mui/icons-material/Email';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { getAccountType } from "../hooks/global/accountType";
 import ArticleIcon from '@mui/icons-material/Article';
+import { useFormFields, useMailChimpForm } from "use-mailchimp-form";
 
 
 
@@ -38,23 +39,23 @@ function Header() {
 
   const navigateProfile = () => {
     let accountType = getAccountType();
-    if (!accountType){
-        alert("Please sign in to access your profile")
-        return navigate("/signin")
-    } 
-    else if (accountType === "employee") {return navigate("/ProfileUser")}
-    else if (accountType === "company"){ return navigate("/ProfileBusiness")}
+    if (!accountType) {
+      alert("Please sign in to access your profile")
+      return navigate("/signin")
+    }
+    else if (accountType === "employee") { return navigate("/ProfileUser") }
+    else if (accountType === "company") { return navigate("/ProfileBusiness") }
   }
   const navigateEditProfile = () => {
-      let accountType = getAccountType();
-      if (!accountType){
-          alert("Please sign in to edit your profile")
-          return navigate("/signin")
-      } 
-      else if (accountType === "employee") return navigate("/EditProfile")
-      else if (accountType === "company") return navigate("/EditProfileBusiness")
-      else return "" ;
+    let accountType = getAccountType();
+    if (!accountType) {
+      alert("Please sign in to edit your profile")
+      return navigate("/signin")
     }
+    else if (accountType === "employee") return navigate("/EditProfile")
+    else if (accountType === "company") return navigate("/EditProfileBusiness")
+    else return "";
+  }
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -73,10 +74,11 @@ function Header() {
   const handleCloseSubscribe = () => {
     setSubscribe(false);
   };
-  const handleSubscribe = () => {
-    alert("You are now subscribed!")
-    setSubscribe(false);
-  };
+
+
+  const url = "https://github.us21.list-manage.com/subscribe/post?u=483285ea997522b2afba9707c&amp;id=6c328d5f23&amp;f_id=00aed9e1f0";
+  const {loading,error,success,message,handleSubmit} = useMailChimpForm(url);
+  const { fields, handleFieldChange } = useFormFields({email: "",});
 
   return (
     <AppBar position="fixed">
@@ -99,26 +101,40 @@ function Header() {
           <Button color="inherit" onClick={handleClicSubscribe}>
             Subscribe
           </Button>
-          <Dialog open={subscribe} onClose={handleClicSubscribe}>
+         
+          <Dialog open={subscribe}>
             <DialogTitle>Subscribe</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 To subscribe to our newlsetter, please enter your email address here. We
                 will send updates occasionally.
               </DialogContentText>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="email"
-                label="Email Address"
-                type="email"
-                fullWidth
-                variant="standard" />
+              <div>
+                <br></br>
+                <form
+                  onSubmit={event => {
+                    event.preventDefault();
+                    handleSubmit(fields);
+                  }}
+                >
+                  <input
+                    id="email"
+                    autoFocus
+                    placeholder="Email Address"
+                    type="email"
+                    value={fields.email}
+                    onChange={handleFieldChange}
+                  />
+                  <br></br>
+                  <br></br>
+                  <button>Submit</button>
+                  <button onClick={handleCloseSubscribe}>Cancel</button>
+                </form>
+                {loading && "submitting"}
+                {error && message}
+                {success && message}
+              </div>
             </DialogContent>
-            <DialogActions>
-              <Button onClick={handleCloseSubscribe}>Cancel</Button>
-              <Button onClick={handleSubscribe}>Subscribe</Button>
-            </DialogActions>
           </Dialog>
         </Typography>
 

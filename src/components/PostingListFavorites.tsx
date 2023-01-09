@@ -31,7 +31,7 @@ function PostingListFavorites() {
         flexDirection: 'column',
         alignItems: 'center',
         borderRadius: 2,
-        mt: 5,
+        mt: 15,
         bgcolor: "rgb(16, 70, 123)",
         maxWidth: 'lg',
         height: 800,
@@ -42,10 +42,8 @@ function PostingListFavorites() {
         sx={{
             width: '95%',
             height: 700,
-            ml: 2,
-            mt: 2,
-
-
+            ml: 3,
+         paddingTop:5
         }}>
 
         <Card
@@ -53,8 +51,7 @@ function PostingListFavorites() {
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
-
+                alignItems: 'center',
             }}>
 
             <CardContent
@@ -62,7 +59,6 @@ function PostingListFavorites() {
                     flexGrow: 1,
                     width: '100%',
                     textAlign: 'justify',
-                    mt: 5,
                     overflowY: 'scroll'
                 }}>
 

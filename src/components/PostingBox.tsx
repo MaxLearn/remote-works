@@ -36,14 +36,14 @@ const handleClicAddtoFav = (postingID: any) => {
             component="form"
             onSubmit={handleSubmit}
             >
-              {props._id && <Button onClick={() => handleClicAddtoFav(props._id)}>Add to favorites</Button>}
+            
             <JobTitle>{props.job_title}</JobTitle>
             <p>{props.business_name && props.business_name}<br></br>
               {props.country && props.country}<br></br>
             <input name="postingID" id="postingID"type="hidden" value={props._id}/>
             { getAccountType() === 'employee' &&
             <>
-            <Button type="submit">Apply now</Button><IconButton><FavoriteIcon fontSize='large' /></IconButton>
+            <Button type="submit">Apply now</Button>  {props._id && <IconButton><FavoriteIcon fontSize='large' onClick={() => handleClicAddtoFav(props._id)}/></IconButton>}
             </>
             }
             </p>
