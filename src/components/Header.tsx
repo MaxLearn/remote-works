@@ -73,7 +73,10 @@ function Header() {
   const handleCloseSubscribe = () => {
     setSubscribe(false);
   };
-
+  const handleSubscribe = () => {
+    alert("You are now subscribed!")
+    setSubscribe(false);
+  };
 
   return (
     <AppBar position="fixed">
@@ -114,7 +117,7 @@ function Header() {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleCloseSubscribe}>Cancel</Button>
-              <Button onClick={handleCloseSubscribe}>Subscribe</Button>
+              <Button onClick={handleSubscribe}>Subscribe</Button>
             </DialogActions>
           </Dialog>
         </Typography>
