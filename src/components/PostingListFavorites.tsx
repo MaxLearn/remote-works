@@ -24,7 +24,7 @@ function PostingListFavorites() {
         removeFromFav(postingID);
     }
   return (
-    
+<>
     <Box
     sx={{
         margin: 'auto',
@@ -37,8 +37,6 @@ function PostingListFavorites() {
         height: 800,
         width: '100%',
     }}>
-    <Box>
-    </Box>
 
     <Box
         sx={{
@@ -116,6 +114,7 @@ function PostingListFavorites() {
         </Card>
     </Box>
     </Box>
+    </>
   )
 }
 
