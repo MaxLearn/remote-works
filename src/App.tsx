@@ -9,6 +9,7 @@ import ProfileUser from "./pages/ProfileUser.tsx"
 import ProfileBusiness from "./pages/ProfileBusiness.tsx"
 import EditProfileBusiness from "./pages/EditProfileBusiness"
 import EditPostingBusiness from "./pages/EditPostingBusiness"
+import Favorites from "./pages/Favorites";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/remote-works" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignInPage />} />
+        <Route path="/Favorites" element={<Favorites />} />
         <Route path="/EditProfile" element={<EditProfile />} />
         <Route path="/ProfileUser" element={<ProfileUser />} />
         <Route path="/ProfileBusiness" element={<ProfileBusiness />} />

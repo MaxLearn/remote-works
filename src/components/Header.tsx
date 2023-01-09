@@ -146,7 +146,7 @@ function Header() {
             open={Boolean(anchorE2)}
             onClick={handleClose2}>
 
-            <MenuItem onClick={(e) => navigate("/")}><HomeIcon /> Home </MenuItem>
+            <MenuItem onClick={(e) => navigate("/remote-works")}><HomeIcon /> Home </MenuItem>
             <MenuItem onClick={handleClicSubscribe}><EmailIcon /> Subscribe </MenuItem>
           </Menu>
         </Box>
@@ -190,7 +190,7 @@ function Header() {
             <MenuItem onClick={(e) => navigateProfile()}><AccountCircleIcon /> Profile </MenuItem>
             <MenuItem onClick={(e) => navigateEditProfile()}><SettingsIcon /> Edit Profile </MenuItem>
             <MenuItem onClick={(e) => navigate("/EditPostingBusiness")}><ArticleIcon /> Edit Postings </MenuItem>
-            <MenuItem onClick={handleClose}><FavoriteIcon /> Favorites </MenuItem>
+            <MenuItem onClick={() => navigate("/Favorites")}><FavoriteIcon /> Favorites </MenuItem>
             <MenuItem onClick={handleClose}><LogoutIcon /> Logout </MenuItem>
           </Menu>
         </Box>
