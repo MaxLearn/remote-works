@@ -92,7 +92,7 @@ function Header() {
           variant="h6"
           component="div"
           sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          <Button onClick={(e) => navigate("/")} color="inherit">Home</Button>
+          <Button onClick={(e) => navigate("/remote-works")} color="inherit">Home</Button>
           <Button color="inherit" onClick={handleClicSubscribe}>
             Subscribe
           </Button>
