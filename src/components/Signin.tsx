@@ -39,12 +39,12 @@ export default function SignUp() {
     } else if (accountType === "employee") {
       setAccountType(accountType)
       signInUser(email, password)
-      navigate("/")
+      navigate("/remote-works")
 
     } else if (accountType === "company") {
       setAccountType(accountType)
       signInBusiness(email, password)
-      navigate("/")
+      navigate("/remote-works")
     }
     else {
       alert("Please chose the account type to log in")
