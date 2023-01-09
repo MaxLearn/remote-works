@@ -15,6 +15,7 @@ export default function App() {
     <BrowserRouter>
     <Header />
       <Routes>
+      <Route path="/remote-works" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignInPage />} />
