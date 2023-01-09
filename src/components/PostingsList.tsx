@@ -20,7 +20,7 @@ const [currentPosting, setCurrentPosting] = useState<Posting>()
 const [postingArray, setPostingArray] = useState<Array<any>>([]);
 
 useEffect(() => {
-setCurrentPosting(postingArray[0])
+postingArray && setCurrentPosting(postingArray[0])
 }, [postingArray] ) 
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import { Box, Button, Card, CardContent, Grid } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { getFavorites } from '../hooks/user/postings/getFavorites';
 import { removeFromFav } from '../hooks/user/postings/removeFromFav';
 
 function PostingListFavorites() {
@@ -8,7 +9,12 @@ function PostingListFavorites() {
     const handleClicDetail = () => {
         setMoreDetail(true);
     };
-
+    useEffect(() => {
+        ((async () => {
+            const value: any = await getFavorites();
+            setPostingArray(value)
+        })()).catch(console.error);
+    }, []);
     const handleCloseDetail = () => {
         setMoreDetail(false);
     };
