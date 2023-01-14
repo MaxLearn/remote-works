@@ -50,7 +50,7 @@ export default function EditPosting() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const inputJobType = data.get("controlled-radio-buttons-group")
-
+        const answerPromoted = data.get("isPromoted")
         const newPostingJob = {
             job_title: inputJobTitle,
             timeZone: inputTimeZone,
@@ -61,6 +61,7 @@ export default function EditPosting() {
             description: inputDescription,
             requirement: inputRequirement,
             jobType: inputJobType,
+            isPromoted: answerPromoted
         };
 
         createBusinessPostings(newPostingJob);
@@ -288,6 +289,17 @@ export default function EditPosting() {
                                                 value={inputRequirement}
                                                 onChange={(event) => setInputRequirement(event.target.value)}
                                             />
+                                        </Grid>
+                                        <Grid item xs={12} sm={12} >
+                                            <fieldset style={{ color: '#ababab' }}>
+                                                <legend>I want to promote this Posting</legend>
+                                                <RadioGroup
+                                                    name="isPromoted"
+                                                    aria-required>
+                                                    <FormControlLabel sx={{ ml: 15 }} value={true} control={<Radio />} label="Yes" />
+                                                    <FormControlLabel sx={{ ml: 15 }} value={false} control={<Radio />} label="No" />
+                                                </RadioGroup>
+                                            </fieldset>
                                         </Grid>
 
                                         <Grid item xs={8} sm={12}>
