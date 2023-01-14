@@ -92,57 +92,6 @@ function SearchBanner() {
                         <Grid container spacing={1}>
                           <Grid item xs={12} sm={12} md={6}>
                             <FormControl sx={{ mt: 2 }} fullWidth>
-                              <InputLabel>Time Zone</InputLabel>
-                              <Select
-                                required
-                                id="timezone"
-                                value={inputtimeZone}
-                                label="timezone"
-                                onChange={(event) => setInputtimeZone(event.target.value)}>
-                                <MenuItem value={'UTC -12:00'}>UTC -12:00 </MenuItem>
-                                <MenuItem value={'UTC -11:00'}>UTC -11:00</MenuItem>
-                                <MenuItem value={'UTC -10:00'}>UTC -10:00</MenuItem>
-                                <MenuItem value={'UTC -09:30'}>UTC -09:30</MenuItem>
-                                <MenuItem value={'UTC -09:00'}>UTC -09:00</MenuItem>
-                                <MenuItem value={'UTC -08:00'}>UTC -08:00</MenuItem>
-                                <MenuItem value={'UTC -07:00'}>UTC -07:00</MenuItem>
-                                <MenuItem value={'UTC -06:00'}>UTC -06:00</MenuItem>
-                                <MenuItem value={'UTC -05:00'}>UTC -05:00</MenuItem>
-                                <MenuItem value={'UTC -04:00'}>UTC -04:00</MenuItem>
-                                <MenuItem value={'UTC -03:30'}>UTC -03:30</MenuItem>
-                                <MenuItem value={'UTC -03:00'}>UTC -03:00</MenuItem>
-                                <MenuItem value={'UTC -02:00'}>UTC -02:00</MenuItem>
-                                <MenuItem value={'UTC -01:00'}>UTC -01:00</MenuItem>
-                                <MenuItem value={'UTC  00:00'}>UTC  00:00</MenuItem>
-                                <MenuItem value={'UTC +01:00'}>UTC +01:00</MenuItem>
-                                <MenuItem value={'UTC +02:00'}>UTC +02:00</MenuItem>
-                                <MenuItem value={'UTC +03:00'}>UTC +03:00</MenuItem>
-                                <MenuItem value={'UTC +03:30'}>UTC +03:30</MenuItem>
-                                <MenuItem value={'UTC +04:00'}>UTC +04:00</MenuItem>
-                                <MenuItem value={'UTC +04:30'}>UTC +04:30</MenuItem>
-                                <MenuItem value={'UTC +05:00'}>UTC +05:00</MenuItem>
-                                <MenuItem value={'UTC +05:30'}>UTC +05:30</MenuItem>
-                                <MenuItem value={'UTC +05:45'}>UTC +05:45</MenuItem>
-                                <MenuItem value={'UTC +06:00'}>UTC +06:00</MenuItem>
-                                <MenuItem value={'UTC +06:30'}>UTC +06:30</MenuItem>
-                                <MenuItem value={'UTC +07:00'}>UTC +07:00</MenuItem>
-                                <MenuItem value={'UTC +08:00'}>UTC +08:00</MenuItem>
-                                <MenuItem value={'UTC +08:45'}>UTC +08:45</MenuItem>
-                                <MenuItem value={'UTC +09:00'}>UTC +09:00</MenuItem>
-                                <MenuItem value={'UTC +09:30'}>UTC +09:30</MenuItem>
-                                <MenuItem value={'UTC +10:00'}>UTC +10:00</MenuItem>
-                                <MenuItem value={'UTC +10:30'}>UTC +10:30</MenuItem>
-                                <MenuItem value={'UTC +11:00'}>UTC +11:00</MenuItem>
-                                <MenuItem value={'UTC +12:00'}>UTC +12:00</MenuItem>
-                                <MenuItem value={'UTC +12:45'}>UTC +12:45</MenuItem>
-                                <MenuItem value={'UTC +13:00'}>UTC +13:00</MenuItem>
-                                <MenuItem value={'UTC +14:00'}>UTC +14:00</MenuItem>
-                              </Select>
-                            </FormControl>
-                          </Grid>
-
-                          <Grid item xs={12} sm={12} md={6}>
-                            <FormControl sx={{ mt: 2 }} fullWidth>
                               <InputLabel>Salary</InputLabel>
                               <Select
                                 required
@@ -172,21 +121,11 @@ function SearchBanner() {
                           fullWidth
                           variant="standard" />
 
-                        <TextField
-                          autoFocus
-                          margin="dense"
-                          id="country"
-                          label="Country"
-                          type="string"
-                          fullWidth
-                          variant="standard" />
-
                         <FormGroup sx={{flexDirection:'row'}}>
                           <FormControlLabel control={<Checkbox  />} label="Contract" />
                           <FormControlLabel control={<Checkbox />} label="Full time" />
                           <FormControlLabel control={<Checkbox />} label="Part time" />
                         </FormGroup>
-
 
                       </DialogContent>
                       <DialogActions
