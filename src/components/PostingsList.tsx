@@ -26,6 +26,7 @@ postingArray && setCurrentPosting(postingArray[0])
   useEffect(() => {
     ((async () => {
         const value = await getPostings();
+        value.sort((a: Posting,b: Posting) => a.isPromoted > b.isPromoted);
         setPostingArray(value)
     })()).catch(console.error);
 }, []);

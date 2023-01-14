@@ -22,6 +22,11 @@ const ValidateEmail = (input) => {
   }
   
   
+  const testBool = (a,b) => {
+    if(a>b){ return a};
+    if(b>a){ return b};
+  }
+  
   console.log("testing email validation (bob) should return false")
   console.log(ValidateEmail("bob"))
   console.log("testing email validation (bob@hotmail.com) should return true")
@@ -30,3 +35,6 @@ const ValidateEmail = (input) => {
   console.log(validatePassword("123"))
   console.log("testing password validation (12345) should return true")
   console.log(validatePassword("12345"))
+
+
+  console.log(testBool(true, false));
