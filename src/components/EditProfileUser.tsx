@@ -79,7 +79,7 @@ export default function Profile() {
     };
 
     return (
-        <ThemeProvider theme={theme}>
+        <>
             <Box
                 sx={{
                     display: 'flex',
@@ -104,6 +104,7 @@ export default function Profile() {
                                     ml: 3,
                                     mr: 3
                                 }}>
+                                    </Box>
                                 {/* <Box
                                     sx={{
                                         display: 'flex',
@@ -254,6 +255,7 @@ export default function Profile() {
                                             Save changes
                                         </Button>
                                     </Grid>
+                        
                                     <Grid item xs={8} sm={12}>
 
                                         <Typography
@@ -273,7 +275,7 @@ export default function Profile() {
                                             autoComplete="jobTitle"
                                             value={inputExperiences}
                                             onChange={(event) => setInputExperiences(event.target.value)}
-                                        />
+                                            />
 
                                     </Grid>
                                     <Grid item xs={8} sm={3}>
@@ -342,7 +344,6 @@ export default function Profile() {
                                         </label>
                                     </Grid>
                                 </Grid>
-                            </Box>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={3} md={5}>
@@ -352,6 +353,6 @@ export default function Profile() {
                     </Grid>
                 </Grid>
             </Box>
-        </ThemeProvider>
+      </>
     );
 }
