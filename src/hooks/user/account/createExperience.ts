@@ -1,3 +1,4 @@
+import { Experience } from './../../../models/Experiences';
 import { getJwtToken } from '../../global/accessToken.ts'; 
 import axios from 'axios';
 
