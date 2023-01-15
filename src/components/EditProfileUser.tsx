@@ -39,10 +39,10 @@ export default function Profile() {
     useEffect(() => {
                ((async () => {
             const userInfo = await getUserProfile();
-            console.log(userInfo);
+            console.log("UPDATING!");
             setUserInfo(userInfo);
         })()).catch(console.error); 
-      },[]);
+      },[update]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -56,11 +56,12 @@ export default function Profile() {
         };
         
         updateUser(getUserId(), newUserInfo);
-        setUpdate(update++);
+        setUpdate(update+1);
     };
     
-    const handleSaveExperiences = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSaveExperiences = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        alert("DANG BOI SO MUCH EXPERIENCE SHEEEEEEEESH!")
         const newExperienceInfo = {
             jobTitle: inputValJob,
             company: inputValCie,
@@ -68,13 +69,13 @@ export default function Profile() {
             endDate: inputValEndDate
         };
 
-
         createExperience(getUserId(), newExperienceInfo);
         setInputValJob('');
         setInputValCie('');
         setInputValStartDate('');
         setInputValEndDate('');
-        setUpdate(update++);
+        setUpdate(update+1);
+        alert("DANG BOI SO MUCH EXPERIENCE SHEEEEEEEESH!")
     };
 
     return (
