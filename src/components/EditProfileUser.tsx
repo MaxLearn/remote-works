@@ -11,6 +11,7 @@ import { updateUser } from '../hooks/user/account/updateUser.ts';
 import { getUserProfile } from '../hooks/user/account/getUserProfile';
 import ProfileUser from './ProfileUser';
 import { User } from "../models/User";
+import { createExperience } from '../hooks/user/account/createExperience';
 
 
 const theme = createTheme();
@@ -18,7 +19,6 @@ const theme = createTheme();
 export default function Profile() {
     
     const [userInfo, setUserInfo] = useState<User>();
-    
     const [inputFirstName, setInputFirstName] = useState('');
     const [inputLastName, setInputLastName] = useState('');
     const [inputtimeZone, setInputtimeZone] = useState('');
@@ -29,7 +29,8 @@ export default function Profile() {
     
     const [inputValJob, setInputValJob] = useState('');
     const [inputValCie, setInputValCie] = useState('');
-    const [inputValYear, setInputValYear] = useState('');
+    const [inputValStartDate, setInputValStartDate] = useState('');
+    const [inputValEndDate, setInputValEndDate] = useState('');
 
     let [update, setUpdate] = useState(1);
         
@@ -40,17 +41,10 @@ export default function Profile() {
             const userInfo = await getUserProfile();
             console.log(userInfo);
             setUserInfo(userInfo);
-      /*      userInfo?.first_name? setInputFirstName(userInfo?.first_name);
-            setInputLastName(userInfo?.last_name)
-            setInputtimeZone(userInfo?.timezone)
-            setInputCountry(userInfo?.country)
-            setInputWebsite(userInfo?.website)
-            setInputGit(userInfo?.git_url) */
         })()).catch(console.error); 
       },[]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        window.location.reload();
         event.preventDefault();
         const newUserInfo = {
             first_name: inputFirstName,
@@ -60,47 +54,27 @@ export default function Profile() {
             website: inputWebsite,
             git_url: inputGit,
         };
-
+        
         updateUser(getUserId(), newUserInfo);
-
         setUpdate(update++);
-
-
     };
-
-    // const [file, setFile] = useState();
-    // function handleChange(e) {
-
-    //     setFile(URL.createObjectURL(e.target.files[0]));
-    // };
-
-    // const imageStyles = {
-    //     flex: 1,
-    //     width: 250,
-    //     height: 250,
-    // }
-
-    const [items, setItems] = useState([
-        {
-            itemJob: 'Full Stack dev',
-            itemCie: 'UbiSoft',
-            itemYear: '2002-2008',
-        },
-    ]);
-
-    const handleAddButtonClick = () => {
-        const newItem = {
-            itemJob: inputValJob,
-            itemCie: inputValCie,
-            itemYear: inputValYear,
+    
+    const handleSaveExperiences = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const newExperienceInfo = {
+            jobTitle: inputValJob,
+            company: inputValCie,
+            startDate: inputValStartDate,
+            endDate: inputValEndDate
         };
 
-        const newItems = [...items, newItem];
 
-        setItems(newItems);
+        createExperience(getUserId(), newExperienceInfo);
         setInputValJob('');
         setInputValCie('');
-        setInputValYear('');
+        setInputValStartDate('');
+        setInputValEndDate('');
+        setUpdate(update++);
     };
 
     return (
@@ -275,7 +249,6 @@ export default function Profile() {
                                         <Button
                                             type="submit"
                                             variant="contained"
-                                            //onClick={() => handleUpdateProfile()}
                                             sx={{ mt: 3, mb: 2 }}>
                                             Save changes
                                         </Button>
@@ -316,25 +289,40 @@ export default function Profile() {
                                     </Grid>
                                     <Grid item xs={8} sm={3}>
                                         <TextField
-                                            id="year"
+                                            id="startDate"
                                             fullWidth
-                                            label="Year"
-                                            name="year"
-                                            autoComplete="year"
-                                            value={inputValYear}
-                                            onChange={(event) => setInputValYear(event.target.value)}
+                                            label="Start date"
+                                            name="startDate"
+                                            autoComplete="date"
+                                            value={inputValStartDate}
+                                            onChange={(event) => setInputValStartDate(event.target.value)}
                                         />
 
                                     </Grid>
                                     <Grid item xs={8} sm={3}>
+                                        <TextField
+                                            id="endDate"
+                                            fullWidth
+                                            label="End date"
+                                            name="endDate"
+                                            autoComplete="date"
+                                            value={inputValEndDate}
+                                            onChange={(event) => setInputValEndDate(event.target.value)}
+                                        />
+
+                                    </Grid>
+                                    <Grid item xs={8} sm={3}>
+                                        <form 
+                                        onSubmit={handleSaveExperiences}
+                                        >
                                         <Button
+                                            type="submit"
                                             color="primary"
                                             variant="contained"
-                                            component="span"
-                                            onClick={() => handleAddButtonClick()}
                                             sx={{ fontSize: '18pt', fontFamily: 'bold', fontWeight: 'bold' }}>
                                             +
                                         </Button>
+                                        </form>
 
                                     </Grid>
 
@@ -360,125 +348,6 @@ export default function Profile() {
 
                         <ProfileUser user={userInfo!}/>
 
-                        {/* <Box
-                            sx={{
-                                alignItems: 'center',
-                                flexDirection: 'colum',
-                            }}>
-                            <Box
-                                sx={{
-                                    margin: 'auto',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    borderRadius: 2,
-                                    mt: 10,
-                                    bgcolor: "rgb(16, 70, 123)",
-                                    maxWidth: 'sm'
-                                }}>
-
-                                <Box
-                                    sx={{
-                                        mt: 3,
-                                        ml: 10,
-                                        mr: 10,
-                                        mb: 3,
-                                    }}>
-
-                                    <Typography
-                                        component="h1"
-                                        variant="h5"
-                                        sx={{ mb: 2, color: 'white', textAlign: 'center' }}>
-                                        Current profile
-                                    </Typography>
-
-                                    <Card
-                                        sx={{
-                                            height: '100%',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            alignItems: 'center'
-                                        }}>
-                                        <CardMedia
-                                            component='img'
-                                            sx={{
-                                                width: '200px',
-                                                height: '200px',
-                                                borderRadius: '50%',
-                                                mt: 2
-                                            }}
-                                            image="https://source.unsplash.com/random" />
-
-
-                                        <CardContent sx={{ flexGrow: 1, width: '450px', textAlign: 'center' }}>
-                                            {items1.map((item) => (
-                                                <span>
-                                                    {item.firstName}  {item.lastName}<br></br>
-                                                    {item.timezone}<br></br>
-                                                    {item.country}<br></br>
-                                                    {item.website}<br></br>
-                                                    {item.gitUrl}<br></br>
-                                                </span>
-                                            ))}
-                                        </CardContent>
-                                    </Card>
-                                </Box>
-                            </Box>
-
-                            <Box
-                                sx={{
-                                    margin: 'auto',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    borderRadius: 2,
-                                    mt: 2,
-                                    bgcolor: "rgb(16, 70, 123)",
-                                    maxWidth: 'sm'
-                                }}>
-
-                                <Box
-                                    sx={{
-                                        mt: 3,
-                                        ml: 10,
-                                        mr: 10,
-                                        mb: 3,
-                                    }}>
-
-                                    <Typography
-                                        component="h1"
-                                        variant="h5"
-                                        sx={{ mb: 2, color: 'white', textAlign: 'center' }}>
-                                        Experience
-                                    </Typography>
-
-                                    <Grid container spacing={2}>
-                                        <Grid item xs={12} sm={12}>
-                                            <Card
-                                                sx={{
-                                                    alignContent: 'center',
-                                                    display: 'flex',
-                                                    flexDirection: 'column'
-                                                }}>
-                                                <CardContent sx={{ flexGrow: 1, width: '450px', }}>
-                                                    <IconButton sx={{position:'absolute', ml:45}}>
-                                                        <DeleteIcon fontSize='medium' />
-                                                    </IconButton>
-                                                    {items.map((item) => (
-                                                        <span>
-                                                            <p>Job Title: {item.itemJob}</p>
-                                                            <p>Company: {item.itemCie} </p>
-                                                            <p>Year: {item.itemYear}</p>
-                                                            <Divider />
-                                                        </span>
-                                                    ))}
-                                                </CardContent>
-                                            </Card>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                            </Box>
-                        </Box> */}
                     </Grid>
                 </Grid>
             </Box>

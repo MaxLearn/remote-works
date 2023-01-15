@@ -1,3 +1,4 @@
+import { Experience } from "./Experiences";
 
 
 export interface User {
@@ -12,7 +13,7 @@ country: String,
 
 email: String,
 
-experiences: Array<Object>,
+experiences: Array<Experience>,
 
 first_name: String,
 
@@ -25,4 +26,5 @@ permissionFlags: Number,
 timezone: String,
 
 website: String
+
 }

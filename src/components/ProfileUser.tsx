@@ -9,6 +9,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom"
 import { getUserProfile } from '../hooks/user/account/getUserProfile';
 import { User } from "../models/User";
+import { removeExperience } from '../hooks/user/account/removeExperience';
+import { getUserId } from '../hooks/user/account/getUserId';
 
 
 export default function ProfileUser(props: { user: User }) {
@@ -16,6 +18,7 @@ export default function ProfileUser(props: { user: User }) {
     const theme = createTheme();
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState<User>(props.user!);
+    const [update, setUpdate] = useState(0);
 
     useEffect(() => {
         ((async () => {
@@ -23,7 +26,16 @@ export default function ProfileUser(props: { user: User }) {
             console.log(value);
             setUserInfo(value!);
         })()).catch(console.error);
-    }, []);
+    }, [update]);
+
+    const handleExpDelete = async (event: { preventDefault: () => void; currentTarget: HTMLFormElement | undefined; }) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const expId: any = data.get("expId");
+        removeExperience(getUserId(), expId);
+        setUpdate(update+1);
+
+    }
 
     const [items, setItems] = useState([
         {
@@ -148,13 +160,18 @@ export default function ProfileUser(props: { user: User }) {
 
                                             }}>
                                            <CardContent sx={{ flexGrow: 1, width: '450px', }}>
-                                                {items.map((item) => (
-                                                    <span>
-                                                        <p>{item.itemJob}</p>
-                                                        <p>{item.itemCie} </p>
-                                                        <p>{item.itemYear}</p>
+                                                {userInfo.experiences.map((exp) => (
+                                                   <>
+                                                        <form onSubmit={handleExpDelete}>
+                                                        <input name="expId" id="expId"type="hidden" value={exp.expId}/>
+                                                        <p>Job title: {exp.jobTitle && exp.jobTitle}</p>
+                                                        <p>Company: {exp.company && exp.company} </p>
+                                                        <p>From: {exp.startDate && exp.startDate}</p>
+                                                        <p>To: {exp.endDate && exp.endDate}</p>
                                                         <Divider />
-                                                    </span>
+                                                        { getUserId() === userInfo._id &&
+                                                        <button type='submit'>Remove Experience</button>} </form>
+                                                   </>
                                                 ))}
                                             </CardContent>
                                         </Card>
