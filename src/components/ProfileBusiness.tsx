@@ -11,6 +11,9 @@ import { getBusinessProfile } from '../hooks/business/account/getBusinessProfile
 import { Business } from "../models/Business";
 import { Posting } from '../models/Posting';
 import { getBusinessPostings } from '../hooks/business/postings/getBusinessPostings.ts';
+import { User } from '../models/User';
+import { getApplicants } from '../hooks/business/postings/getApplicants';
+import ApplicantsList from './ApplicantsList';
 
 
 export default function ProfileBusiness(props: { business: Business }) {
@@ -21,6 +24,13 @@ export default function ProfileBusiness(props: { business: Business }) {
     const [postingArray, setPostingArray] = useState<Array<any>>([]);
     const [moreDetail, setMoreDetail] = React.useState(false);
     const [currentPosting, setCurrentPosting] = useState<Posting>()
+    const [currentApplicants, setCurrentApplicants] = useState<Array<any>>();
+
+    const handleSeeApplicants = async (postingID: string) => {
+        const applicants = await getApplicants(postingID);
+        setCurrentApplicants(applicants);
+
+    }
 
     const handleClicDetail = () => {
         setMoreDetail(true);
@@ -217,6 +227,7 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                         <Button onClick={handleCloseDetail}>Close</Button>
                                                                     </DialogActions>
                                                                 </Dialog> */}
+                                                                <Button onClick={()=>handleSeeApplicants(posting._id)}>see applicants</Button>
                                                             </CardContent>
                                                         </Card>
 
@@ -228,7 +239,8 @@ export default function ProfileBusiness(props: { business: Business }) {
                                 </Card>
                             </Box>
                         </Box>
-
+                        <Typography>Applicants:</Typography>
+                        {currentApplicants && <ApplicantsList userList={currentApplicants} />}
 
                     </Grid>
                 </Grid>

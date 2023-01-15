@@ -20,10 +20,14 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { getAccountType } from "../hooks/global/accountType";
 import ArticleIcon from '@mui/icons-material/Article';
 import { useFormFields, useMailChimpForm } from "use-mailchimp-form";
+import { useEffect, useState } from "react";
 
 
 
 function Header() {
+
+  const [businessAccount, setBusinessAccount] = useState(false);
+  const [employeeAccount, setemployeeAccount] = useState(false);
 
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -37,6 +41,15 @@ function Header() {
     setAnchorE2(event.currentTarget);
   };
 
+  let accountType = getAccountType();
+
+  useEffect(() => {
+    if(accountType === 'employee'){
+        setBusinessAccount(true);
+    } else if (accountType === 'company') {setemployeeAccount(true)}
+  
+}, []);
+
   const navigateProfile = () => {
     let accountType = getAccountType();
     if (!accountType) {
@@ -46,6 +59,7 @@ function Header() {
     else if (accountType === "employee") { return navigate("/ProfileUser") }
     else if (accountType === "company") { return navigate("/ProfileBusiness") }
   }
+
   const navigateEditProfile = () => {
     let accountType = getAccountType();
     if (!accountType) {
@@ -54,7 +68,32 @@ function Header() {
     }
     else if (accountType === "employee") return navigate("/EditProfile")
     else if (accountType === "company") return navigate("/EditProfileBusiness")
-    else return "";
+  }
+
+  const navigateFavorites = () => {
+    let accountType = getAccountType();
+    if (!accountType) {
+      alert("Please sign in to access your favorite postings")
+      return navigate("/signin")
+    }
+    else if (accountType === "company"){
+      alert("Please sign in as a employee account to access favorites")
+     return navigate("/signin")
+    }
+    else if (accountType === "employee") return navigate("/Favorites")
+  }
+
+  const navigateMyPostings = () => {
+    let accountType = getAccountType();
+    if (!accountType) {
+      alert("Please sign in to access your postings")
+      return navigate("/signin")
+    }
+    else if (accountType === "employee"){
+      alert("Please sign in as a business account to access favorites")
+     return navigate("/signin")
+    }
+    else if (accountType === "company") return navigate("/MyPostings")
   }
 
   const handleClose = () => {
@@ -209,7 +248,7 @@ function Header() {
             <MenuItem onClick={(e) => navigateProfile()}><AccountCircleIcon /> Profile </MenuItem>
             <MenuItem onClick={(e) => navigateEditProfile()}><SettingsIcon /> Edit Profile </MenuItem>
             <MenuItem onClick={(e) => navigate("/EditPostingBusiness")}><ArticleIcon /> Edit Postings </MenuItem>
-            <MenuItem onClick={() => navigate("/Favorites")}><FavoriteIcon /> Favorites </MenuItem>
+            <MenuItem onClick={() => navigateFavorites()}><FavoriteIcon /> Favorites </MenuItem>
             <MenuItem onClick={handleClose}><LogoutIcon /> Logout </MenuItem>
           </Menu>
         </Box>
