@@ -28,6 +28,8 @@ export default function ProfileBusiness(props: { business: Business }) {
 
     const handleSeeApplicants = async (postingID: string) => {
         const applicants = await getApplicants(postingID);
+        console.log("postingID:" + postingID);
+        console.log(applicants);
         setCurrentApplicants(applicants);
 
     }
