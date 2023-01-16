@@ -61,7 +61,6 @@ export default function Profile() {
     
     const handleSaveExperiences = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        alert("DANG BOI SO MUCH EXPERIENCE SHEEEEEEEESH!")
         const newExperienceInfo = {
             jobTitle: inputValJob,
             company: inputValCie,
@@ -75,7 +74,6 @@ export default function Profile() {
         setInputValStartDate('');
         setInputValEndDate('');
         setUpdate(update+1);
-        alert("DANG BOI SO MUCH EXPERIENCE SHEEEEEEEESH!")
     };
 
     return (
