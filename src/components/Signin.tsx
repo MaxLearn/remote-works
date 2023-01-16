@@ -22,7 +22,7 @@ import { setAccountType } from "../hooks/global/accountType";
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function Signin() {
   const navigate = useNavigate();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

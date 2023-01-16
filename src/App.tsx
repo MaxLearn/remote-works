@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header.tsx";
 import SignInPage from "./pages/SignInPage.tsx";
-import SignUp from "./components/Signup.tsx";
 import StickyFooter from "./components/StickyFooter.tsx";
 import Home from "./pages/Home.tsx";
 import EditProfile from "./pages/EditProfileUser.tsx"
@@ -10,6 +9,7 @@ import ProfileBusiness from "./pages/ProfileBusiness.tsx"
 import EditProfileBusiness from "./pages/EditProfileBusiness"
 import EditPostingBusiness from "./pages/EditPostingBusiness"
 import Favorites from "./pages/Favorites";
+import SignUpPage from "./pages/SignUpPage";
 
 export default function App() {
   return (
@@ -17,7 +17,7 @@ export default function App() {
     <Header />
       <Routes>
         <Route path="/remote-works" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/Favorites" element={<Favorites />} />
         <Route path="/EditProfile" element={<EditProfile />} />
