@@ -271,8 +271,8 @@ export default function Profile() {
                                             label="Job Title"
                                             name="jobTitle"
                                             autoComplete="jobTitle"
-                                            value={inputExperiences}
-                                            onChange={(event) => setInputExperiences(event.target.value)}
+                                            value={inputValJob}
+                                            onChange={(event) => setInputValJob(event.target.value)}
                                             />
 
                                     </Grid>

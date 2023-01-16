@@ -32,6 +32,8 @@ export default function ProfileUser(props: { user: User }) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const expId: any = data.get("expId");
+        console.log("in remove exp")
+        console.log("this is exp ID: " + expId)
         removeExperience(getUserId(), expId);
         setUpdate(update+1);
 
