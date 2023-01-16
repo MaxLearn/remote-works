@@ -69,6 +69,18 @@ function Header() {
     else if (accountType === "employee") return navigate("/EditProfile")
     else if (accountType === "company") return navigate("/EditProfileBusiness")
   }
+  const navigateEditPostings = () => {
+    let accountType = getAccountType();
+    if (!accountType) {
+      alert("Please sign in to edit your postings")
+      return navigate("/signin")
+    }
+    else if (accountType === "employee") {
+      alert("Please sign in as a business account to edit your postings")
+      return navigate("/signin")
+    }
+    else if (accountType === "company") return navigate("/EditPostingsBusiness")
+  }
 
   const navigateFavorites = () => {
     let accountType = getAccountType();
@@ -245,9 +257,9 @@ function Header() {
             }}
             open={Boolean(anchorEl)}
             onClick={handleClose}>
-            <MenuItem onClick={(e) => navigateProfile()}><AccountCircleIcon /> Profile </MenuItem>
-            <MenuItem onClick={(e) => navigateEditProfile()}><SettingsIcon /> Edit Profile </MenuItem>
-            <MenuItem onClick={(e) => navigate("/EditPostingBusiness")}><ArticleIcon /> Edit Postings </MenuItem>
+            <MenuItem onClick={() => navigateProfile()}><AccountCircleIcon /> Profile </MenuItem>
+            <MenuItem onClick={() => navigateEditProfile()}><SettingsIcon /> Edit Profile </MenuItem>
+            <MenuItem onClick={() => navigateEditPostings()}><ArticleIcon /> Edit Postings </MenuItem>
             <MenuItem onClick={() => navigateFavorites()}><FavoriteIcon /> Favorites </MenuItem>
             <MenuItem onClick={handleClose}><LogoutIcon /> Logout </MenuItem>
           </Menu>
