@@ -1,5 +1,4 @@
 import { CardContent } from '@mui/material'
-import React from 'react'
 import { User } from '../models/User'
 
 function ApplicantsList(props: { userList: Array<User>}) {
