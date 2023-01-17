@@ -194,7 +194,7 @@ export default function ProfileBusiness(props: { business: Business }) {
                                         }}>
 
 
-                                        <Grid container spacing={4}>
+                                        {/* <Grid container spacing={4}>
                                             {postingArray &&
                                                 postingArray.map((posting) => (
                                                     <Grid item xs={12} sm={12}>
@@ -212,7 +212,7 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                     <p>{posting.country}</p>
                                                                     <p>{posting.salary}</p>
                                                                 </>
-                                                                <Button onClick={handleClicDetail}>more detail...</Button>
+                                                                <Button onClick={handleClicDetail}>more detail...</Button> */}
                                                                 {/* <Dialog open={moreDetail} onClose={handleClicDetail}>
                                                                     <DialogTitle> <h4>{posting.job_title}</h4></DialogTitle>
                                                                     <DialogContent>
@@ -229,13 +229,13 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                         <Button onClick={handleCloseDetail}>Close</Button>
                                                                     </DialogActions>
                                                                 </Dialog> */}
-                                                                <Button onClick={()=>handleSeeApplicants(posting._id)}>see applicants</Button>
+                                                                {/* <Button onClick={()=>handleSeeApplicants(posting._id)}>see applicants</Button>
                                                             </CardContent>
                                                         </Card>
 
                                                     </Grid>
                                                 ))}
-                                        </Grid>
+                                        </Grid> */}
 
                                     </CardContent>
                                 </Card>

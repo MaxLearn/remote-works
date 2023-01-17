@@ -192,15 +192,15 @@ export default function EditPosting() {
                                                     value={inputSalary}
                                                     label="Salary"
                                                     onChange={(event) => setInputSalary(event.target.value)}>
-                                                    <MenuItem value={'+ de 40 000 CAD'}>+ de 40 000 CAD </MenuItem>
-                                                    <MenuItem value={'+ de 60 000 CAD'}>+ de 60 000 CAD</MenuItem>
-                                                    <MenuItem value={'+ de 80 000 CAD'}>+ de 80 000 CAD</MenuItem>
-                                                    <MenuItem value={'+ de 100 000 CAD'}>+ de 100 000 CAD</MenuItem>
-                                                    <MenuItem value={'+ de 120 000 CAD'}>+ de 120 000 CAD</MenuItem>
-                                                    <MenuItem value={'+ de 140 000 CAD'}>+ de 140 000 CAD</MenuItem>
-                                                    <MenuItem value={'+ de 160 000 CAD'}>+ de 160 000 CAD</MenuItem>
-                                                    <MenuItem value={'+ de 180 000 CAD'}>+ de 180 000 CAD</MenuItem>
-                                                    <MenuItem value={'+ de 200 000 CAD'}>+ de 200 000 CAD</MenuItem>
+                                                    <MenuItem value={'40 000'}>+ de 40 000 CAD </MenuItem>
+                                                    <MenuItem value={'60 000'}>+ de 60 000 CAD</MenuItem>
+                                                    <MenuItem value={'80 000'}>+ de 80 000 CAD</MenuItem>
+                                                    <MenuItem value={'100 000'}>+ de 100 000 CAD</MenuItem>
+                                                    <MenuItem value={'120 000'}>+ de 120 000 CAD</MenuItem>
+                                                    <MenuItem value={'140 000'}>+ de 140 000 CAD</MenuItem>
+                                                    <MenuItem value={'160 000'}>+ de 160 000 CAD</MenuItem>
+                                                    <MenuItem value={'180 000'}>+ de 180 000 CAD</MenuItem>
+                                                    <MenuItem value={'200 000'}>+ de 200 000 CAD</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         </Grid>
@@ -317,7 +317,7 @@ export default function EditPosting() {
                         </Box>
                     </Grid>
 
-                     <Grid item xs={12} sm={3} md={5} >
+                    <Grid item xs={12} sm={3} md={5} >
 
 
 
@@ -338,7 +338,7 @@ export default function EditPosting() {
                                     maxWidth: 'sm'
                                 }}>
 
-                            
+
                                 <Box
                                     sx={{
                                         mt: 3,
@@ -390,7 +390,7 @@ export default function EditPosting() {
                                                                         <p>{posting.country}</p>
                                                                         <p>{posting.salary}</p>
                                                                         <p>
-                                                                            {posting.description && posting.description.substring(0, 150)}.. 
+                                                                            {posting.description && posting.description.substring(0, 150)}..
                                                                         </p>
                                                                     </>
 
@@ -404,22 +404,22 @@ export default function EditPosting() {
                                         </CardContent>
                                     </Card>
                                 </Box>
-                            </Box> 
+                            </Box>
                             <Box
-                            sx={{
-                                margin: 'auto',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                borderRadius: 2,
-                                mt: 2,
-                                bgcolor: "rgb(16, 70, 123)",
-                                maxWidth: 'sm'
-                            }}>
-         
+                                sx={{
+                                    margin: 'auto',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    borderRadius: 2,
+                                    mt: 2,
+                                    bgcolor: "rgb(16, 70, 123)",
+                                    maxWidth: 'sm'
+                                }}>
+
                             </Box>
-                            </Box>
-                        </Grid> 
+                        </Box>
+                    </Grid>
                 </Grid>
             </Box>
         </ThemeProvider>
