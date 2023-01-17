@@ -79,7 +79,7 @@ function PostingListFavorites() {
                                         <>
                                             <h1>{posting.job_title}</h1>
                                             <p>{posting.country}</p>
-                                            <p>{posting.salary}</p>
+                                            <p>+ de {posting.salary} $</p>
                                         </>
                                         <Button onClick={handleClicRemoveFromFav}>Remove from favorites</Button>
                                         <Button onClick={handleClicDetail}>more detail...</Button>

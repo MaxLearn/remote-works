@@ -89,7 +89,7 @@ postingArray && setCurrentPosting(postingArray[0])
                                   <>
                                     <h1>{posting.job_title}</h1>
                                     <p>{posting.country}</p>
-                                    <p>{posting.salary}</p>
+                                    <p>+ de {posting.salary} $</p>
                                     <p>
                                       {posting.description && posting.description.substring(0, 150)}
                                     </p>

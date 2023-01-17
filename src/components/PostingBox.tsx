@@ -49,7 +49,7 @@ const handleClicAddtoFav = (postingID: any) => {
             </p>
             <Divider />
             <CategoryTitle>Salary</CategoryTitle>
-            <CategoryText>{props.salary && props.salary}</CategoryText>
+            <CategoryText>+ de {props.salary && props.salary} $</CategoryText>
             <CategoryTitle>Job Type</CategoryTitle>
             <CategoryText>{props.field && props.field}</CategoryText>
             <CategoryTitle>Full job Description:</CategoryTitle>

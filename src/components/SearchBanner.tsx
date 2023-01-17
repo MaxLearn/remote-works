@@ -99,15 +99,15 @@ function SearchBanner() {
                                 value={inputSalary}
                                 label="Salary"
                                 onChange={(event) => setInputSalary(event.target.value)}>
-                                <MenuItem value={'+ de 40 000 CAD'}>+ de 40 000 CAD </MenuItem>
-                                <MenuItem value={'+ de 60 000 CAD'}>+ de 60 000 CAD</MenuItem>
-                                <MenuItem value={'+ de 80 000 CAD'}>+ de 80 000 CAD</MenuItem>
-                                <MenuItem value={'+ de 100 000 CAD'}>+ de 100 000 CAD</MenuItem>
-                                <MenuItem value={'+ de 120 000 CAD'}>+ de 120 000 CAD</MenuItem>
-                                <MenuItem value={'+ de 140 000 CAD'}>+ de 140 000 CAD</MenuItem>
-                                <MenuItem value={'+ de 160 000 CAD'}>+ de 160 000 CAD</MenuItem>
-                                <MenuItem value={'+ de 180 000 CAD'}>+ de 180 000 CAD</MenuItem>
-                                <MenuItem value={'+ de 200 000 CAD'}>+ de 200 000 CAD</MenuItem>
+                                <MenuItem value={'40 000'}>+ de 40 000 CAD </MenuItem>
+                                <MenuItem value={'60 000'}>+ de 60 000 CAD</MenuItem>
+                                <MenuItem value={'80 000'}>+ de 80 000 CAD</MenuItem>
+                                <MenuItem value={'100 000'}>+ de 100 000 CAD</MenuItem>
+                                <MenuItem value={'120 000'}>+ de 120 000 CAD</MenuItem>
+                                <MenuItem value={'140 000'}>+ de 140 000 CAD</MenuItem>
+                                <MenuItem value={'160 000'}>+ de 160 000 CAD</MenuItem>
+                                <MenuItem value={'180 000'}>+ de 180 000 CAD</MenuItem>
+                                <MenuItem value={'200 000'}>+ de 200 000 CAD</MenuItem>
                               </Select>
                             </FormControl>
                           </Grid>
