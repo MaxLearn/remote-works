@@ -79,7 +79,7 @@ function Header() {
       alert("Please sign in as a business account to edit your postings")
       return navigate("/signin")
     }
-    else if (accountType === "company") return navigate("/EditPostingsBusiness")
+    else if (accountType === "company") return navigate("/EditPostingBusiness")
   }
 
   const navigateFavorites = () => {
