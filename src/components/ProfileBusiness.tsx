@@ -14,6 +14,9 @@ import { getBusinessPostings } from '../hooks/business/postings/getBusinessPosti
 import { User } from '../models/User';
 import { getApplicants } from '../hooks/business/postings/getApplicants';
 import ApplicantsList from './ApplicantsList';
+import PostingBox from './PostingBox';
+import PostingDetailsList from './PostingDetailsList';
+import { getPostingDetails } from '../hooks/business/postings/getPostingDetails.ts';
 
 
 export default function ProfileBusiness(props: { business: Business }) {
@@ -22,10 +25,14 @@ export default function ProfileBusiness(props: { business: Business }) {
     const navigate = useNavigate();
     const [businessInfo, setBusinessInfo] = useState<Business>(props.business!);
     const [postingArray, setPostingArray] = useState<Array<any>>([]);
-    const [moreDetail, setMoreDetail] = React.useState(false);
-    const [seeApplicants, setSeeApplicants] = React.useState(false);
     const [currentPosting, setCurrentPosting] = useState<Posting>()
+
+    const [seeApplicants, setSeeApplicants] = React.useState(false);
     const [currentApplicants, setCurrentApplicants] = useState<Array<any>>();
+
+    const [seeDetails, setSeeDetails] = React.useState(false);
+    const [currentDetails, setCurrentDetails] = useState<Posting>();
+
 
     const handleSeeApplicants = async (postingID: string) => {
         const applicants = await getApplicants(postingID);
@@ -36,12 +43,21 @@ export default function ProfileBusiness(props: { business: Business }) {
 
     }
 
-    const handleClicDetail = () => {
-        setMoreDetail(true);
-    };
+    const handleSeeDetails = async (postingID: string) => {
+        const details = await getPostingDetails(postingID);
+        console.log("postingID:" + postingID);
+        console.log(details);
+        setCurrentDetails(details);
+        setSeeDetails(true);
+
+    }
+
+    // const handleClicDetail = () => {
+    //     setMoreDetail(true);
+    // };
 
     const handleCloseDetail = () => {
-        setMoreDetail(false);
+        setSeeDetails(false);
     };
 
    
@@ -220,17 +236,11 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                     <p>{posting.country && posting.country}</p>
                                                                     <p> + de {posting.salary && posting.salary} $</p>
                                                                 </>
-                                                                <Button onClick={handleClicDetail}>more detail...</Button>                                                   
-                                                                <Dialog sx={{width:'100%'}} open={moreDetail} onClose={handleClicDetail}>
-                                                                    <DialogTitle> <h4>{posting.job_title}</h4></DialogTitle>
+                                                                <Button onClick={()=>handleSeeDetails(posting._id)}>more detail...</Button>                                                   
+                                                                <Dialog sx={{width:'100%'}} open={seeDetails} onClose={handleSeeDetails}>                                    
                                                                     <DialogContent>
                                                                         <DialogContentText>
-                                                                            Country: {posting.country}
-                                                                            <br></br>
-                                                                            <br></br>
-                                                                            Salary: + de {posting.salary} $                                                         
-                                                                            <h5>Description:</h5>{posting.description}
-                                                                            <h5>Requirement:</h5>{posting.requirement}
+                                                                        {currentDetails && <PostingDetailsList detailsList={currentDetails} />}
                                                                         </DialogContentText>
                                                                     </DialogContent>
                                                                     <DialogActions>
@@ -239,7 +249,6 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                 </Dialog>
                                                                  <Button onClick={()=>handleSeeApplicants(posting._id)}>see applicants</Button>
                                                                  <Dialog sx={{width:'100%'}} open={seeApplicants} onClose={handleSeeApplicants}>
-                                                                    <DialogTitle> <h4>Applicant</h4></DialogTitle>
                                                                     <DialogContent>
                                                                         <DialogContentText>
                                                                         {currentApplicants && <ApplicantsList userList={currentApplicants} />}
@@ -251,7 +260,6 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                 </Dialog>
                                                             </CardContent>
                                                         </Card>
-
                                                     </Grid>
                                                 ))}
                                         </Grid>

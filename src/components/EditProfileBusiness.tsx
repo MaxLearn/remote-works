@@ -32,17 +32,17 @@ export default function Profile() {
     }, []);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        window.location.reload();
+        
         event.preventDefault();
         const newBusinessInfo = {
             name: inputName,
             description: inputDescription,
         };
-
+       
         updateBusiness(getBusinessId(), newBusinessInfo);
 
         setUpdate(update++);
-
+      
 
     };
     return (

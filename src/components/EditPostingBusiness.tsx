@@ -15,6 +15,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { createBusinessPostings } from '../hooks/business/postings/createBusinessPostings';
 import { getBusinessPostings } from '../hooks/business/postings/getBusinessPostings';
 import { Posting } from '../models/Posting';
+import { getPostingDetails } from '../hooks/business/postings/getPostingDetails';
+import PostingDetailsList from './PostingDetailsList';
 
 
 const theme = createTheme();
@@ -33,8 +35,21 @@ export default function EditPosting() {
     const [inputDescription, setInputDescription] = useState('');
     const [inputRequirement, setInputRequirement] = useState('');
     let [update, setUpdate] = useState(1);
+    const [seeDetails, setSeeDetails] = React.useState(false);
+    const [currentDetails, setCurrentDetails] = useState<Posting>();
 
+    const handleSeeDetails = async (postingID: string) => {
+        const details = await getPostingDetails(postingID);
+        console.log("postingID:" + postingID);
+        console.log(details);
+        setCurrentDetails(details);
+        setSeeDetails(true);
 
+    }
+
+    const handleCloseDetail = () => {
+        setSeeDetails(false);
+    };
 
     useEffect(() => {
         ((async () => {
@@ -393,7 +408,17 @@ export default function EditPosting() {
                                                                             {posting.description && posting.description.substring(0, 150)}..
                                                                         </p>
                                                                     </>
-
+                                                                    <Button onClick={()=>handleSeeDetails(posting._id)}>more detail...</Button>
+                                                                    <Dialog sx={{width:'100%'}} open={seeDetails} onClose={handleSeeDetails}>                                    
+                                                                    <DialogContent>
+                                                                        <DialogContentText>
+                                                                        {currentDetails && <PostingDetailsList detailsList={currentDetails} />}
+                                                                        </DialogContentText>
+                                                                    </DialogContent>
+                                                                    <DialogActions>
+                                                                        <Button onClick={handleCloseDetail}>Close</Button>
+                                                                    </DialogActions>
+                                                                </Dialog>                       
                                                                 </CardContent>
                                                             </Card>
 
