@@ -7,7 +7,7 @@ import axios from 'axios';
         let address =  "https://remote-works-backend-production.up.railway.app"
         let route = `/users/experiences/remove/${userId}`
         let url = address + route
-        let body = {expID : expID}
+        let body = {expId : expID}
         let headers = { headers : {'Authorization' : `Bearer ${myToken}` }};
       let res = await axios.patch(url, body, headers)
       .catch( function (error) {
