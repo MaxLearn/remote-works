@@ -192,15 +192,15 @@ export default function EditPosting() {
                                                     value={inputSalary}
                                                     label="Salary"
                                                     onChange={(event) => setInputSalary(event.target.value)}>
-                                                    <MenuItem value={'40 000'}>+ de 40 000 CAD </MenuItem>
-                                                    <MenuItem value={'60 000'}>+ de 60 000 CAD</MenuItem>
-                                                    <MenuItem value={'80 000'}>+ de 80 000 CAD</MenuItem>
-                                                    <MenuItem value={'100 000'}>+ de 100 000 CAD</MenuItem>
-                                                    <MenuItem value={'120 000'}>+ de 120 000 CAD</MenuItem>
-                                                    <MenuItem value={'140 000'}>+ de 140 000 CAD</MenuItem>
-                                                    <MenuItem value={'160 000'}>+ de 160 000 CAD</MenuItem>
-                                                    <MenuItem value={'180 000'}>+ de 180 000 CAD</MenuItem>
-                                                    <MenuItem value={'200 000'}>+ de 200 000 CAD</MenuItem>
+                                                    <MenuItem value={40000}>+ de 40 000 CAD </MenuItem>
+                                                    <MenuItem value={60000}>+ de 60 000 CAD</MenuItem>
+                                                    <MenuItem value={80000}>+ de 80 000 CAD</MenuItem>
+                                                    <MenuItem value={100000}>+ de 100 000 CAD</MenuItem>
+                                                    <MenuItem value={120000}>+ de 120 000 CAD</MenuItem>
+                                                    <MenuItem value={140000}>+ de 140 000 CAD</MenuItem>
+                                                    <MenuItem value={160000}>+ de 160 000 CAD</MenuItem>
+                                                    <MenuItem value={180000}>+ de 180 000 CAD</MenuItem>
+                                                    <MenuItem value={200000}>+ de 200 000 CAD</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         </Grid>
