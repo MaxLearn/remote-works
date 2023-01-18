@@ -45,19 +45,6 @@ export default function Profile() {
 
 
     };
-
-    // const [file, setFile] = useState();
-    // function handleChange(e) {
-
-    //     setFile(URL.createObjectURL(e.target.files[0]));
-    // };
-
-    // const imageStyles = {
-    //     flex: 1,
-    //     width: 250,
-    //     height: 250,
-    // }
-
     return (
             <Box
                 sx={{
@@ -82,28 +69,6 @@ export default function Profile() {
                                     ml: 3,
                                     mr: 3
                                 }}>
-                                {/* <Box
-                                    sx={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center'
-                                    }}>
-                                    <input
-                                        type="file"
-                                        style={{ display: 'none' }}
-                                        id="profilePicture"
-                                        name="profilePicture"
-                                        onChange={handleChange} />
-
-                                    <img style={imageStyles} src={file} width={250} height={250} alt="" />
-                                    <br></br>
-                                    <label htmlFor="profilePicture">
-                                        <Button color="primary" variant="contained" component="span">
-                                            Choose a photo
-                                        </Button>
-                                    </label>
-                                </Box> */}
-
                                 <Typography
                                     component="h1"
                                     variant="h5"
@@ -157,9 +122,6 @@ export default function Profile() {
                     </Grid>
 
                     <Grid item xs={12} sm={3} md={5} >
-
-                        {/* <ProfileBusiness business={businessInfo!} /> */}
-
                         <Box
                             sx={{
                                 alignItems: 'center',

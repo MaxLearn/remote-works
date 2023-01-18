@@ -23,6 +23,7 @@ export default function ProfileBusiness(props: { business: Business }) {
     const [businessInfo, setBusinessInfo] = useState<Business>(props.business!);
     const [postingArray, setPostingArray] = useState<Array<any>>([]);
     const [moreDetail, setMoreDetail] = React.useState(false);
+    const [seeApplicants, setSeeApplicants] = React.useState(false);
     const [currentPosting, setCurrentPosting] = useState<Posting>()
     const [currentApplicants, setCurrentApplicants] = useState<Array<any>>();
 
@@ -31,6 +32,7 @@ export default function ProfileBusiness(props: { business: Business }) {
         console.log("postingID:" + postingID);
         console.log(applicants);
         setCurrentApplicants(applicants);
+        setSeeApplicants(true);
 
     }
 
@@ -41,6 +43,12 @@ export default function ProfileBusiness(props: { business: Business }) {
     const handleCloseDetail = () => {
         setMoreDetail(false);
     };
+
+   
+    const handleCloseApplicants = () => {
+        setSeeApplicants(false);
+    };
+
 
     useEffect(() => {
         setCurrentPosting(postingArray[0])
@@ -210,17 +218,17 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                 <>
                                                                     <h1>{posting.job_title && posting.job_title}</h1>
                                                                     <p>{posting.country && posting.country}</p>
-                                                                    <p>{posting.salary && posting.salary}</p>
+                                                                    <p> + de {posting.salary && posting.salary} $</p>
                                                                 </>
-                                                                <Button onClick={handleClicDetail}>more detail...</Button>
-                                                                {/* <Dialog open={moreDetail} onClose={handleClicDetail}>
+                                                                <Button onClick={handleClicDetail}>more detail...</Button>                                                   
+                                                                <Dialog sx={{width:'100%'}} open={moreDetail} onClose={handleClicDetail}>
                                                                     <DialogTitle> <h4>{posting.job_title}</h4></DialogTitle>
                                                                     <DialogContent>
                                                                         <DialogContentText>
                                                                             Country: {posting.country}
                                                                             <br></br>
                                                                             <br></br>
-                                                                            Salary: {posting.salary}
+                                                                            Salary: + de {posting.salary} $                                                         
                                                                             <h5>Description:</h5>{posting.description}
                                                                             <h5>Requirement:</h5>{posting.requirement}
                                                                         </DialogContentText>
@@ -228,8 +236,19 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                     <DialogActions>
                                                                         <Button onClick={handleCloseDetail}>Close</Button>
                                                                     </DialogActions>
-                                                                </Dialog> */}
+                                                                </Dialog>
                                                                  <Button onClick={()=>handleSeeApplicants(posting._id)}>see applicants</Button>
+                                                                 <Dialog sx={{width:'100%'}} open={seeApplicants} onClose={handleSeeApplicants}>
+                                                                    <DialogTitle> <h4>Applicant</h4></DialogTitle>
+                                                                    <DialogContent>
+                                                                        <DialogContentText>
+                                                                        {currentApplicants && <ApplicantsList userList={currentApplicants} />}
+                                                                        </DialogContentText>
+                                                                    </DialogContent>
+                                                                    <DialogActions>
+                                                                        <Button onClick={handleCloseApplicants}>Close</Button>
+                                                                    </DialogActions>
+                                                                </Dialog>
                                                             </CardContent>
                                                         </Card>
 
@@ -240,10 +259,7 @@ export default function ProfileBusiness(props: { business: Business }) {
                                     </CardContent>
                                 </Card>
                             </Box>
-                        </Box>
-                        <Typography>Applicants:</Typography>
-                        {currentApplicants && <ApplicantsList userList={currentApplicants} />}
-
+                        </Box>                 
                     </Grid>
                 </Grid>
             </Box>
