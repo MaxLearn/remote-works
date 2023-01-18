@@ -12,10 +12,12 @@ import { getUserProfile } from "../hooks/user/account/getUserProfile";
 import ProfileUser from "./ProfileUser";
 import { User } from "../models/User";
 import { createExperience } from "../hooks/user/account/createExperience";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function Profile() {
+    const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState<User>();
     const [inputFirstName, setInputFirstName] = useState("");
     const [inputLastName, setInputLastName] = useState("");
@@ -53,6 +55,7 @@ export default function Profile() {
 
         updateUser(getUserId(), newUserInfo);
         setUpdate(update + 1);
+        navigate("/EditProfile");
     };
 
     const handleSaveExperiences = (event: React.FormEvent<HTMLFormElement>) => {
