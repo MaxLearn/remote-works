@@ -30,6 +30,7 @@ import banner from "../assets/images/banner.jpg";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 function SearchBanner() {
+
   const [subscribe, setSubscribe] = React.useState(false);
 
   const [inputtimeZone, setInputtimeZone] = useState("");
