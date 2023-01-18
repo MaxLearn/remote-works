@@ -386,9 +386,9 @@ export default function EditPosting() {
                                                             >
                                                                 <CardContent sx={{ flexGrow: 1 }}>
                                                                     <>
-                                                                        <h1>{posting.job_title}</h1>
-                                                                        <p>{posting.country}</p>
-                                                                        <p>{posting.salary}</p>
+                                                                        <h1>{posting.job_title && posting.job_title}</h1>
+                                                                        <p>{posting.country && posting.country}</p>
+                                                                        <p>{posting.salary && posting.salary}</p>
                                                                         <p>
                                                                             {posting.description && posting.description.substring(0, 150)}..
                                                                         </p>
