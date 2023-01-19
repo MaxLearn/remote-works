@@ -60,7 +60,7 @@ export default function ProfileBusiness(props: { business: Business }) {
         setSeeDetails(false);
     };
 
-   
+
     const handleCloseApplicants = () => {
         setSeeApplicants(false);
     };
@@ -68,7 +68,7 @@ export default function ProfileBusiness(props: { business: Business }) {
 
     useEffect(() => {
         setCurrentPosting(postingArray[0])
-        }, [postingArray] ) 
+    }, [postingArray])
 
     useEffect(() => {
         ((async () => {
@@ -82,7 +82,7 @@ export default function ProfileBusiness(props: { business: Business }) {
             setPostingArray(post);
         })()).catch(console.error);
     }, []);
-   
+
     if (!businessInfo) return <div>nothing...</div>;
 
     return (
@@ -236,22 +236,22 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                     <p>{posting.country && posting.country}</p>
                                                                     <p> + de {posting.salary && posting.salary} $</p>
                                                                 </>
-                                                                <Button onClick={()=>handleSeeDetails(posting._id)}>more detail...</Button>                                                   
-                                                                <Dialog sx={{width:'100%'}} open={seeDetails} onClose={handleSeeDetails}>                                    
+                                                                <Button onClick={() => handleSeeDetails(posting._id)}>more detail...</Button>
+                                                                <Dialog sx={{ width: '100%' }} open={seeDetails} onClose={handleSeeDetails}>
                                                                     <DialogContent>
                                                                         <DialogContentText>
-                                                                        {currentDetails && <PostingDetailsList detailsList={currentDetails} />}
+                                                                            {currentDetails && <PostingDetailsList detailsList={currentDetails} />}
                                                                         </DialogContentText>
                                                                     </DialogContent>
                                                                     <DialogActions>
                                                                         <Button onClick={handleCloseDetail}>Close</Button>
                                                                     </DialogActions>
                                                                 </Dialog>
-                                                                 <Button onClick={()=>handleSeeApplicants(posting._id)}>see applicants</Button>
-                                                                 <Dialog sx={{width:'100%'}} open={seeApplicants} onClose={handleSeeApplicants}>
+                                                                <Button onClick={() => handleSeeApplicants(posting._id)}>see applicants</Button>
+                                                                <Dialog sx={{ width: '100%' }} open={seeApplicants} onClose={handleSeeApplicants}>
                                                                     <DialogContent>
                                                                         <DialogContentText>
-                                                                        {currentApplicants && <ApplicantsList userList={currentApplicants} />}
+                                                                            {currentApplicants && <ApplicantsList userList={currentApplicants} />}
                                                                         </DialogContentText>
                                                                     </DialogContent>
                                                                     <DialogActions>
@@ -263,11 +263,10 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                     </Grid>
                                                 ))}
                                         </Grid>
-
                                     </CardContent>
                                 </Card>
                             </Box>
-                        </Box>                 
+                        </Box>
                     </Grid>
                 </Grid>
             </Box>

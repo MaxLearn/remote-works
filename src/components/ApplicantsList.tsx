@@ -71,7 +71,15 @@ function ApplicantsList(props: { userList: Array<User> }) {
             <Grid item xs={12} sm={6}>
               <CategoryText> <a href='http://localhost:3000/remote-works'>{userInfo.git_url && userInfo.git_url}</a></CategoryText>
             </Grid>
-
+            <Grid item xs={12} sm={12}>
+              <Divider />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <CategoryTitle>email: </CategoryTitle>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <CategoryText> <a href='http://localhost:3000/remote-works'>{userInfo.email && userInfo.email}</a></CategoryText>
+            </Grid>
           
           </Grid>
         </p>

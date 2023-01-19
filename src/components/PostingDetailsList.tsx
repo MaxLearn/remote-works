@@ -29,6 +29,16 @@ function PostingDetailsList(props: { detailsList: Posting }) {
         </Grid>
 
         <Grid item xs={12} sm={6}>
+          <CategoryTitle> Business name :</CategoryTitle>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <CategoryText> {props.detailsList.business_name && props.detailsList.business_name}</CategoryText>
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <Divider />
+        </Grid>
+
+        <Grid item xs={12} sm={6}>
           <CategoryTitle> Title :</CategoryTitle>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -39,20 +49,20 @@ function PostingDetailsList(props: { detailsList: Posting }) {
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <CategoryTitle> TimeZone :</CategoryTitle>
+          <CategoryTitle> Country :</CategoryTitle>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <CategoryText> {props.detailsList.timezone && props.detailsList.timezone}</CategoryText>
+          <CategoryText> {props.detailsList.country && props.detailsList.country}</CategoryText>
         </Grid>
         <Grid item xs={12} sm={12}>
           <Divider />
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <CategoryTitle> Country :</CategoryTitle>
+          <CategoryTitle> Salary :</CategoryTitle>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <CategoryText> {props.detailsList.country && props.detailsList.country}</CategoryText>
+          <CategoryText>+ de {props.detailsList.salary && props.detailsList.salary}$</CategoryText>
         </Grid>
         <Grid item xs={12} sm={12}>
           <Divider />
