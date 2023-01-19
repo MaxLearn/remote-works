@@ -36,6 +36,7 @@ export default function ProfileUser(props: { user: User }) {
         console.log("this is exp ID: " + expId)
         removeExperience(getUserId(), expId);
         setUpdate(update+1);
+        document.location.reload();
 
     }
 

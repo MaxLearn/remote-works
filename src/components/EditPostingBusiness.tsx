@@ -83,6 +83,8 @@ export default function EditPosting() {
 
         setUpdate(update++);
 
+        document.location.reload();
+
 
     };
 

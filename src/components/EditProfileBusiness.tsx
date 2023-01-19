@@ -42,6 +42,7 @@ export default function Profile() {
         updateBusiness(getBusinessId(), newBusinessInfo);
 
         setUpdate(update++);
+        document.location.reload();
       
 
     };

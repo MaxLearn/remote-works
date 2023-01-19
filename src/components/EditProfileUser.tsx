@@ -73,6 +73,8 @@ export default function Profile() {
         setInputValStartDate("");
         setInputValEndDate("");
         setUpdate(update + 1);
+
+        document.location.reload();
     };
 
     return (

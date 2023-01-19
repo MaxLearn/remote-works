@@ -6,8 +6,9 @@ import { Posting } from '../models/Posting';
 
       let address =  "https://remote-works-backend-production.up.railway.app"
       let route = `/search`
-      let url = address + route
       let params = `?minSalary=${minSalary}?maxSalary=?title=${jobTitle}`
+      let url = address + route + params
+     
       
       let res = await axios.get(url)
       .catch( function (error) {
