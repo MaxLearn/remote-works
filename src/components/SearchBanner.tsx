@@ -29,6 +29,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import banner from "../assets/images/banner.jpg";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import { searchPostings } from "../hooks/searchPostings";
 
 function SearchBanner() {
 
@@ -36,6 +37,7 @@ function SearchBanner() {
 
   const [inputtimeZone, setInputtimeZone] = useState("");
   const [inputSalary, setInputSalary] = useState("");
+  const [title , setTitle] = useState("");
 
   const handleClicSubscribe = () => {
     setSubscribe(true);
@@ -47,8 +49,9 @@ function SearchBanner() {
 
   const navigate = useNavigate();
 
-  const navigateSearch = () => {
-    return navigate("/SearchPosting")
+  const navigateSearch = async () => {
+    const posts = await searchPostings(inputSalary, title)
+    return navigate("/SearchPosting", {state: posts})
   }
 
   return (
@@ -99,6 +102,10 @@ function SearchBanner() {
                       <InputBase
                         sx={{ ml: 1, flex: 1 }}
                         inputProps={{ "aria-label": "search" }}
+                        onChange={
+                          (event) =>
+                          setTitle(event.target.value)
+                        }
                       />
                       <IconButton
                         type="button"

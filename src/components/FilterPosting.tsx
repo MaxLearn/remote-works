@@ -1,3 +1,5 @@
+
+//@ts-nocheck
 import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -11,27 +13,24 @@ import { Posting } from '../models/Posting';
 import PostingBox from './PostingBox';
 import { getPostings } from '../hooks/getPostings.ts';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 
 
 export default function FilterAdvancePost() {
 
+  const location = useLocation();
+
   const [currentPosting, setCurrentPosting] = useState<Posting>()
 
-  const [postingArray, setPostingArray] = useState<Array<any>>([]);
+  const [postingArray, setPostingArray] = useState<Array<any>>(location.state);
 
 
   useEffect(() => {
     postingArray && setCurrentPosting(postingArray[0])
   }, [postingArray])
 
-  useEffect(() => {
-    ((async () => {
-      const value = await getPostings();
-      value.sort((a: Posting, b: Posting) => a.isPromoted > b.isPromoted);
-      setPostingArray(value)
-    })()).catch(console.error);
-  }, []);
+
 
   return (
     <>

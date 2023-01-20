@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { Posting } from '../models/Posting';
 
- export const searchPostings = async (minSalary: number, jobTitle: string) => {
+ export const searchPostings = async (minSalary: string, jobTitle: string) => {
     try {
 
       let address =  "https://remote-works-backend-production.up.railway.app"
       let route = `/search`
-      let params = `?minSalary=${minSalary}?maxSalary=?title=${jobTitle}`
+      let params = `?minSalary=${minSalary}&title=${jobTitle}`
       let url = address + route + params
      
       
