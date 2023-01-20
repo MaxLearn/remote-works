@@ -118,12 +118,14 @@ export default function PostingsList() {
                   pl: 5,
                   pr: 5,
                   pt: 1,
+                  pb: 5
                 }}
               >
                 <Box
                   id="test"
                   sx={{
                     mt: 7,
+                    
                     bgcolor: "white",
                     border: 1
                   }}

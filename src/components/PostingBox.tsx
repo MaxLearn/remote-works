@@ -40,7 +40,7 @@ const handleClicAddtoFav = (postingID: any) => {
     <>
    
     <Box
-    
+            
             component="form"
             onSubmit={handleSubmit}
             >

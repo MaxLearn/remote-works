@@ -95,6 +95,8 @@ export default function EditPosting() {
 
         setUpdate(update++);
 
+        window.location.reload();
+
 
 
     };
