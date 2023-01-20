@@ -17,6 +17,7 @@ import ApplicantsList from './ApplicantsList';
 import PostingBox from './PostingBox';
 import PostingDetailsList from './PostingDetailsList';
 import { getPostingDetails } from '../hooks/business/postings/getPostingDetails.ts';
+import ModifyPosting from './ModifyPosting';
 
 
 export default function ProfileBusiness(props: { business: Business }) {
@@ -236,28 +237,53 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                     <p>{posting.country && posting.country}</p>
                                                                     <p> + de {posting.salary && posting.salary} $</p>
                                                                 </>
-                                                                <Button onClick={() => handleSeeDetails(posting._id)}>more detail...</Button>
-                                                                <Dialog sx={{ width: '100%' }} open={seeDetails} onClose={handleSeeDetails}>
-                                                                    <DialogContent>
-                                                                        <DialogContentText>
-                                                                            {currentDetails && <PostingDetailsList detailsList={currentDetails} />}
-                                                                        </DialogContentText>
-                                                                    </DialogContent>
-                                                                    <DialogActions>
-                                                                        <Button onClick={handleCloseDetail}>Close</Button>
-                                                                    </DialogActions>
-                                                                </Dialog>
-                                                                <Button onClick={() => handleSeeApplicants(posting._id)}>see applicants</Button>
-                                                                <Dialog sx={{ width: '100%' }} open={seeApplicants} onClose={handleSeeApplicants}>
-                                                                    <DialogContent>
-                                                                        <DialogContentText>
-                                                                            {currentApplicants && <ApplicantsList userList={currentApplicants} />}
-                                                                        </DialogContentText>
-                                                                    </DialogContent>
-                                                                    <DialogActions>
-                                                                        <Button onClick={handleCloseApplicants}>Close</Button>
-                                                                    </DialogActions>
-                                                                </Dialog>
+                                                                <Grid container sx={{
+                                                                    backgroundColor: (theme) =>
+                                                                        theme.palette.mode === "light"
+                                                                            ? theme.palette.grey[200]
+                                                                            : theme.palette.grey[800],
+                                                                }}>
+                                                                    <Grid item xs={6} sm={4} md={4}>
+                                                                        <Button onClick={() => handleSeeDetails(posting._id)}>More detail...</Button>
+                                                                        <Dialog sx={{ width: '100%' }} open={seeDetails} onClose={handleSeeDetails}>
+                                                                            <DialogContent>
+                                                                                <DialogContentText>
+                                                                                    {currentDetails && <PostingDetailsList detailsList={currentDetails} />}
+                                                                                </DialogContentText>
+                                                                            </DialogContent>
+                                                                            <DialogActions>
+                                                                                <Button onClick={handleCloseDetail}>Close</Button>
+                                                                            </DialogActions>
+                                                                        </Dialog>
+                                                                    </Grid>
+                                                                    <Grid item xs={6} sm={4} md={4}>
+                                                                        <Button onClick={() => handleSeeApplicants(posting._id)}>See applicants</Button>
+                                                                        <Dialog sx={{ width: '100%' }} open={seeApplicants} onClose={handleSeeApplicants}>
+                                                                            <DialogContent>
+                                                                                <DialogContentText>
+                                                                                    {currentApplicants && <ApplicantsList userList={currentApplicants} />}
+                                                                                </DialogContentText>
+                                                                            </DialogContent>
+                                                                            <DialogActions>
+                                                                                <Button onClick={handleCloseApplicants}>Close</Button>
+                                                                            </DialogActions>
+                                                                        </Dialog>
+                                                                    </Grid>
+                                                                    <Grid item xs={6} sm={4} md={4}>
+
+                                                                        <Button onClick={() => handleSeeDetails(posting._id)}>Modify</Button>
+                                                                        <Dialog sx={{ width: '100%' }} open={seeDetails} onClose={handleSeeDetails}>
+                                                                            <DialogContent>
+                                                                                <DialogContentText>
+                                                                                    {currentDetails && <ModifyPosting detailsList={currentDetails} />}
+                                                                                </DialogContentText>
+                                                                            </DialogContent>
+                                                                            <DialogActions>
+                                                                                <Button onClick={handleCloseDetail}>Close</Button>
+                                                                            </DialogActions>
+                                                                        </Dialog>
+                                                                    </Grid>
+                                                                </Grid>
                                                             </CardContent>
                                                         </Card>
                                                     </Grid>
