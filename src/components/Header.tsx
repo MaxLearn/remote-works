@@ -95,6 +95,10 @@ function Header() {
     else if (accountType === "employee") return navigate("/Favorites")
   }
 
+  const navigateSearch = () => {
+    return navigate("/SearchPosting")
+  }
+
   const navigateMyPostings = () => {
     let accountType = getAccountType();
     if (!accountType) {
@@ -149,6 +153,9 @@ function Header() {
           component="div"
           sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           <Button onClick={(e) => navigate("/remote-works")} color="inherit">Home</Button>
+
+         
+
           <Button color="inherit" onClick={handleClicSubscribe}>
             Subscribe
           </Button>

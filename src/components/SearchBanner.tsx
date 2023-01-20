@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import {
   Avatar,
@@ -43,6 +44,13 @@ function SearchBanner() {
   const handleCloseSubscribe = () => {
     setSubscribe(false);
   };
+
+  const navigate = useNavigate();
+
+  const navigateSearch = () => {
+    return navigate("/SearchPosting")
+  }
+
   return (
     <div>
       <Box
@@ -96,6 +104,7 @@ function SearchBanner() {
                         type="button"
                         sx={{ p: "10px" }}
                         aria-label="search"
+                        onClick={() => navigateSearch()}
                       >
                         <SearchIcon />
                       </IconButton>
@@ -183,7 +192,7 @@ function SearchBanner() {
                           variant="standard"
                         />
 
-                        <FormGroup sx={{ flexDirection: "row" }}>
+                        {/* <FormGroup sx={{ flexDirection: "row" }}>
                           <FormControlLabel
                             control={<Checkbox />}
                             label="Contract"
@@ -196,7 +205,7 @@ function SearchBanner() {
                             control={<Checkbox />}
                             label="Part time"
                           />
-                        </FormGroup>
+                        </FormGroup> */}
                       </DialogContent>
                       <DialogActions
                         sx={{

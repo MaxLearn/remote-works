@@ -20,9 +20,7 @@ text-align: justify;
 function PostingDetailsList(props: { detailsList: Posting }) {
   return (
     <>
-
       <Grid container>
-
       <Grid item xs={12} sm={12}
       sx={{  bgcolor: "rgb(16, 70, 123)", color:'white'}}>
           <CategoryHeader> JOB OFFER</CategoryHeader>
@@ -47,7 +45,6 @@ function PostingDetailsList(props: { detailsList: Posting }) {
         <Grid item xs={12} sm={12}>
           <Divider />
         </Grid>
-
         <Grid item xs={12} sm={6}>
           <CategoryTitle> Country :</CategoryTitle>
         </Grid>
@@ -57,7 +54,15 @@ function PostingDetailsList(props: { detailsList: Posting }) {
         <Grid item xs={12} sm={12}>
           <Divider />
         </Grid>
-
+        <Grid item xs={12} sm={6}>
+          <CategoryTitle> TimeZone :</CategoryTitle>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <CategoryText> {props.detailsList.timezone && props.detailsList.timezone}</CategoryText>
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <Divider />
+        </Grid>
         <Grid item xs={12} sm={6}>
           <CategoryTitle> Salary :</CategoryTitle>
         </Grid>

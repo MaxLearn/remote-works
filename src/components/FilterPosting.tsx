@@ -14,7 +14,7 @@ import React from 'react';
 
 
 
-export default function PostingsList() {
+export default function FilterAdvancePost() {
 
   const [currentPosting, setCurrentPosting] = useState<Posting>()
 

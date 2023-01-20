@@ -17,6 +17,7 @@ import { getBusinessPostings } from '../hooks/business/postings/getBusinessPosti
 import { Posting } from '../models/Posting';
 import { getPostingDetails } from '../hooks/business/postings/getPostingDetails';
 import PostingDetailsList from './PostingDetailsList';
+import { setJobType } from '../hooks/global/accountType';
 
 
 const theme = createTheme();
@@ -28,10 +29,11 @@ export default function EditPosting() {
     const [businessInfo, setBusinessInfo] = useState<Business>();
     const [inputStartDate, setStartDate] = React.useState<Dayjs | null>(null);
     const [inputJobTitle, setInputJobTitle] = useState('');
-    const [inputTimeZone, setInputTimeZone] = useState('');
+    const [inputtimeZone, setInputtimeZone] = useState("");
     const [inputCountry, setInputCountry] = useState('');
     const [inputSalary, setInputSalary] = useState('');
     const [inputContract, setInputContract] = useState('');
+    const [inputJobType, setInputJobType] = useState('');
     const [inputDescription, setInputDescription] = useState('');
     const [inputRequirement, setInputRequirement] = useState('');
     let [update, setUpdate] = useState(1);
@@ -64,18 +66,28 @@ export default function EditPosting() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const inputJobType = data.get("controlled-radio-buttons-group")
+        const inputJobType = data.get("jobType")
         const answerPromoted = data.get("isPromoted")
+    //    if(inputJobType === "fullTime"){
+    //     setInputJobType("fullTime")
+    //    }
+    //    else if(inputJobType === "partTime"){
+    //     setInputJobType("partTime")
+    //    }
+    //    else if(inputJobType === "contract"){
+    //     setInputJobType("contract")
+    //    }
+
         const newPostingJob = {
             job_title: inputJobTitle,
-            timeZone: inputTimeZone,
+            timezone: inputtimeZone,
             country: inputCountry,
             salary: inputSalary,
-            starDate: inputStartDate,
+            start_date: inputStartDate,
             contractLenght: inputContract,
             description: inputDescription,
             requirement: inputRequirement,
-            jobType: inputJobType,
+            isContract: inputJobType,
             isPromoted: answerPromoted
         };
 
@@ -83,7 +95,6 @@ export default function EditPosting() {
 
         setUpdate(update++);
 
-        document.location.reload();
 
 
     };
@@ -142,9 +153,9 @@ export default function EditPosting() {
                                                 <Select
                                                     required
                                                     id="timezone"
-                                                    value={inputTimeZone}
+                                                    value={inputtimeZone}
                                                     label="Time Zone"
-                                                    onChange={(event) => setInputTimeZone(event.target.value)}>
+                                                    onChange={(event) => setInputtimeZone(event.target.value)}>
                                                     <MenuItem value={'UTC -12:00'}>UTC -12:00 </MenuItem>
                                                     <MenuItem value={'UTC -11:00'}>UTC -11:00</MenuItem>
                                                     <MenuItem value={'UTC -10:00'}>UTC -10:00</MenuItem>
@@ -221,27 +232,25 @@ export default function EditPosting() {
                                                 </Select>
                                             </FormControl>
                                         </Grid>
-
+                                     
                                         <Grid item xs={12} sm={12} >
                                             <fieldset style={{ color: '#ababab' }}>
                                                 <legend>Job Type</legend>
                                                 <RadioGroup
-                                                    row
-                                                    aria-labelledby="demo-controlled-radio-buttons-group"
-                                                    name="controlled-radio-buttons-group"
+                                                    name="jobType"
                                                     aria-required>
-                                                    <FormControlLabel sx={{ ml: 15 }} value="fullTime" control={<Radio />} label="Full time" />
-                                                    <FormControlLabel sx={{ ml: 15 }} value="PartTime" control={<Radio />} label="Part time" />
-                                                    <FormControlLabel sx={{ ml: 15 }} value="Contract" control={<Radio />} label="Contract" />
+                                                    <FormControlLabel sx={{ ml: 15 }} value={true} control={<Radio />} label="Full time" />
+                                                    <FormControlLabel sx={{ ml: 15 }} value={true} control={<Radio />} label="Part time" />
+                                                    <FormControlLabel sx={{ ml: 15 }} value={true} control={<Radio />} label="Contract" />
                                                 </RadioGroup>
                                             </fieldset>
                                         </Grid>
-
 
                                         <Grid item xs={12} sm={5}>
                                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                 <DatePicker
                                                     label="Start date"
+                                                 
                                                     value={inputStartDate}
                                                     onChange={(newValue) => {
                                                         setStartDate(newValue);

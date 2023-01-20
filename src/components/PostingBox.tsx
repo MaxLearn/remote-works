@@ -77,10 +77,10 @@ const handleClicAddtoFav = (postingID: any) => {
             <CategoryText>+ de {props.salary && props.salary} $</CategoryText>
             </Grid>
             <Grid item xs={12} sm={6}>
-            <CategoryTitle>Job Type</CategoryTitle>
+            <CategoryTitle>TimeZone</CategoryTitle>
             </Grid>
             <Grid item xs={12} sm={6}>
-            <CategoryText>{props.field && props.field}</CategoryText>
+            <CategoryText>{props.timezone && props.timezone}</CategoryText>
             </Grid>
             <Grid item xs={12} sm={12}>
             <CategoryTitle>Full job Description:</CategoryTitle>

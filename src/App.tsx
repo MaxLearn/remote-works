@@ -10,6 +10,7 @@ import EditProfileBusiness from "./pages/EditProfileBusiness"
 import EditPostingBusiness from "./pages/EditPostingBusiness"
 import Favorites from "./pages/Favorites";
 import SignUpPage from "./pages/SignUpPage";
+import FilterPosting from "./pages/FilterPosting";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/ProfileBusiness" element={<ProfileBusiness />} />
         <Route path="/EditProfileBusiness" element={<EditProfileBusiness />} />
         <Route path="/EditPostingBusiness" element={<EditPostingBusiness />} />
+        <Route path="/SearchPosting" element={<FilterPosting />} />
       </Routes>
       <StickyFooter />
     </BrowserRouter>
