@@ -236,8 +236,8 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                             <CardContent sx={{ flexGrow: 1 }}>
                                                                 <>
                                                                     <h1>{posting.job_title && posting.job_title}</h1>
-                                                                    <p>{posting.country && posting.country}</p>
-                                                                    <p> + de {posting.salary && posting.salary} $</p>
+                                                                    <p>Country: {posting.country && posting.country}</p>
+                                                                    <p>Salary :  + de {posting.salary && posting.salary} $</p>
                                                                 </>
                                                                 <Grid container sx={{
                                                                     backgroundColor: (theme) =>
