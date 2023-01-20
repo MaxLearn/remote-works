@@ -5,21 +5,18 @@ import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Dayjs } from "dayjs";
 import React, { useState } from "react";
-import { Business } from "../models/Business";
-import { createBusinessPostings } from "../hooks/business/postings/createBusinessPostings";
+import { updateBusinessPosting } from "../hooks/business/postings/updateBusinessPostings";
+import { getPostingDetails } from "../hooks/business/postings/getPostingDetails.ts";
 
 const CategoryHeader = styled.h3`
 text-align: center;
 
 `
 
-
 function ModifyPosting(props: { detailsList: Posting }) {
 
-    const [postingArray, setPostingArray] = useState<Array<Posting>>();
-    const [businessInfo, setBusinessInfo] = useState<Business>();
+  
     const [inputStartDate, setStartDate] = React.useState<Dayjs | null>(null);
-    const [inputJobTitle, setInputJobTitle] = useState('');
     const [inputTimeZone, setInputTimeZone] = useState('');
     const [inputCountry, setInputCountry] = useState('');
     const [inputSalary, setInputSalary] = useState('');
@@ -27,16 +24,14 @@ function ModifyPosting(props: { detailsList: Posting }) {
     const [inputDescription, setInputDescription] = useState('');
     const [inputRequirement, setInputRequirement] = useState('');
     let [update, setUpdate] = useState(1);
-    const [seeDetails, setSeeDetails] = React.useState(false);
-    const [currentDetails, setCurrentDetails] = useState<Posting>();
+   
     
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const inputJobType = data.get("controlled-radio-buttons-group")
         const answerPromoted = data.get("isPromoted")
-        const newPostingJob = {
-            job_title: inputJobTitle,
+        const updatePosting = {
             timeZone: inputTimeZone,
             country: inputCountry,
             salary: inputSalary,
@@ -47,21 +42,16 @@ function ModifyPosting(props: { detailsList: Posting }) {
             jobType: inputJobType,
             isPromoted: answerPromoted
         };
-
-        createBusinessPostings(newPostingJob);
-
+        // @ts-ignore
+        await updateBusinessPosting(props.detailsList._id, updatePosting);
         setUpdate(update++);
-
         document.location.reload();
-
-
     };
     
     return (
         <>
 
             <Grid container>
-
                 <Grid item xs={12} sm={12}
                     sx={{ bgcolor: "rgb(16, 70, 123)", color: 'white' }}>
                     <CategoryHeader> Modify informations</CategoryHeader>
@@ -74,25 +64,12 @@ function ModifyPosting(props: { detailsList: Posting }) {
                     }}>
                     <Grid container  sx={{ mt: 5, mb: 2 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="job_title"
-                                    label="Job Title"
-                                    name="job_title"
-                                    autoComplete="Job Title"
-                                    value={inputJobTitle}
-                                    onChange={(event) => setInputJobTitle(event.target.value)}
-                                />
-                            </Grid>
-
-
+                            
                             <Grid item xs={12} sm={6}>
                                 <FormControl fullWidth>
                                     <InputLabel>Time Zone</InputLabel>
                                     <Select
-                                        required
+                                        // required
                                         id="timezone"
                                         value={inputTimeZone}
                                         label="Time Zone"
@@ -141,7 +118,7 @@ function ModifyPosting(props: { detailsList: Posting }) {
 
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    required
+                                    // required
                                     fullWidth
                                     id="country"
                                     label="Country"
@@ -156,7 +133,7 @@ function ModifyPosting(props: { detailsList: Posting }) {
                                 <FormControl fullWidth>
                                     <InputLabel>Salary</InputLabel>
                                     <Select
-                                        required
+                                        // required
                                         id="salary"
                                         value={inputSalary}
                                         label="Salary"
@@ -181,7 +158,8 @@ function ModifyPosting(props: { detailsList: Posting }) {
                                         row
                                         aria-labelledby="demo-controlled-radio-buttons-group"
                                         name="controlled-radio-buttons-group"
-                                        aria-required>
+                                        // aria-required
+                                        >
                                         <FormControlLabel sx={{ ml: 15 }} value="fullTime" control={<Radio />} label="Full time" />
                                         <FormControlLabel sx={{ ml: 15 }} value="PartTime" control={<Radio />} label="Part time" />
                                         <FormControlLabel sx={{ ml: 15 }} value="Contract" control={<Radio />} label="Contract" />
@@ -234,7 +212,7 @@ function ModifyPosting(props: { detailsList: Posting }) {
                         <Grid container spacing={2} mt={2}>
                             <Grid item xs={12} sm={12}>
                                 <TextField
-                                    required
+                                    // required
                                     fullWidth
                                     id="description"
                                     label=" Job Description"
@@ -248,7 +226,7 @@ function ModifyPosting(props: { detailsList: Posting }) {
 
                             <Grid item xs={12} sm={12}>
                                 <TextField
-                                    required
+                                    // required
                                     fullWidth
                                     id="requirement"
                                     label=" Requirements"
@@ -264,7 +242,8 @@ function ModifyPosting(props: { detailsList: Posting }) {
                                     <legend>I want to promote this Posting</legend>
                                     <RadioGroup
                                         name="isPromoted"
-                                        aria-required>
+                                        // aria-required
+                                        >
                                         <FormControlLabel sx={{ ml: 15 }} value={true} control={<Radio />} label="Yes" />
                                         <FormControlLabel sx={{ ml: 15 }} value={false} control={<Radio />} label="No" />
                                     </RadioGroup>

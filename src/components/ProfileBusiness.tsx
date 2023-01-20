@@ -34,6 +34,8 @@ export default function ProfileBusiness(props: { business: Business }) {
     const [seeDetails, setSeeDetails] = React.useState(false);
     const [currentDetails, setCurrentDetails] = useState<Posting>();
 
+    const [seeDetails1, setSeeDetails1] = React.useState(false);
+    const [modifyCurrentPosting, setModifyCurrentPosting] = useState<Posting>();
 
     const handleSeeApplicants = async (postingID: string) => {
         const applicants = await getApplicants(postingID);
@@ -50,22 +52,22 @@ export default function ProfileBusiness(props: { business: Business }) {
         console.log(details);
         setCurrentDetails(details);
         setSeeDetails(true);
-
+    }
+ 
+    const handleModify = async (postingID: string) => {
+        const modify = await getPostingDetails(postingID);
+        console.log("postingID:" + postingID);
+        console.log(modify);
+        setModifyCurrentPosting(modify);
+        setSeeDetails1(true);
     }
 
-    // const handleClicDetail = () => {
-    //     setMoreDetail(true);
-    // };
-
-    const handleCloseDetail = () => {
+    const handleClose = () => {
         setSeeDetails(false);
-    };
-
-
-    const handleCloseApplicants = () => {
+        setSeeDetails1(false);
         setSeeApplicants(false);
-    };
 
+    };
 
     useEffect(() => {
         setCurrentPosting(postingArray[0])
@@ -252,7 +254,7 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                                 </DialogContentText>
                                                                             </DialogContent>
                                                                             <DialogActions>
-                                                                                <Button onClick={handleCloseDetail}>Close</Button>
+                                                                                <Button onClick={handleClose}>Close</Button>
                                                                             </DialogActions>
                                                                         </Dialog>
                                                                     </Grid>
@@ -265,21 +267,21 @@ export default function ProfileBusiness(props: { business: Business }) {
                                                                                 </DialogContentText>
                                                                             </DialogContent>
                                                                             <DialogActions>
-                                                                                <Button onClick={handleCloseApplicants}>Close</Button>
+                                                                                <Button onClick={handleClose}>Close</Button>
                                                                             </DialogActions>
                                                                         </Dialog>
                                                                     </Grid>
                                                                     <Grid item xs={6} sm={4} md={4}>
 
-                                                                        <Button onClick={() => handleSeeDetails(posting._id)}>Modify</Button>
-                                                                        <Dialog sx={{ width: '100%' }} open={seeDetails} onClose={handleSeeDetails}>
+                                                                        <Button onClick={() => handleModify(posting._id)}>Modify</Button>
+                                                                        <Dialog sx={{ width: '100%' }} open={seeDetails1} onClose={handleModify}>
                                                                             <DialogContent>
                                                                                 <DialogContentText>
-                                                                                    {currentDetails && <ModifyPosting detailsList={currentDetails} />}
+                                                                                    {currentPosting && <ModifyPosting detailsList={currentPosting} />}
                                                                                 </DialogContentText>
                                                                             </DialogContent>
                                                                             <DialogActions>
-                                                                                <Button onClick={handleCloseDetail}>Close</Button>
+                                                                                <Button onClick={handleClose}>Close</Button>
                                                                             </DialogActions>
                                                                         </Dialog>
                                                                     </Grid>
