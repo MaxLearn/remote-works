@@ -171,9 +171,12 @@ export default function ProfileUser(props: { user: User }) {
                                                         <p>Company: {exp.company && exp.company} </p>
                                                         <p>From: {exp.startDate && exp.startDate}</p>
                                                         <p>To: {exp.endDate && exp.endDate}</p>
-                                                        <Divider />
                                                         { getUserId() === userInfo._id &&
-                                                        <button type='submit'>Remove Experience</button>} </form>
+                                                        <button type='submit'>Remove Experience</button>}
+                                                        <br></br>
+                                                        <br></br>
+                                                        <Divider />
+                                                        </form>
                                                    </>
                                                 ))}
                                             </CardContent>

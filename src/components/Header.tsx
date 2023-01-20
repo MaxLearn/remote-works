@@ -267,7 +267,7 @@ function Header() {
             <MenuItem onClick={() => navigateProfile()}><AccountCircleIcon /> Profile </MenuItem>
             <MenuItem onClick={() => navigateEditProfile()}><SettingsIcon /> Edit Profile </MenuItem>
             <MenuItem onClick={() => navigateEditPostings()}><ArticleIcon /> Post a Job </MenuItem>
-            <MenuItem onClick={() => navigateFavorites()}><FavoriteIcon /> Favorites </MenuItem>
+            {/* <MenuItem onClick={() => navigateFavorites()}><FavoriteIcon /> Favorites </MenuItem> */}
             <MenuItem onClick={handleClose}><LogoutIcon /> Logout </MenuItem>
           </Menu>
         </Box>
